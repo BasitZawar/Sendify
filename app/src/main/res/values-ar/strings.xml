@@ -1,0 +1,401 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">النقل الذكي</string>
+    <string name="hello_blank_fragment">مرحبًا بك في الجزء الفارغ</string>
+
+    <!-- شاشة البداية -->
+    <string name="quickly_share_files_and_copy_data_between_devices_simple_and_fast">شارك الملفات وانسخ البيانات بين الأجهزة بسرعة وبساطة!</string>
+    <string name="get_started">ابدأ الآن</string>
+
+    <!-- شاشة الأذونات -->
+    <string name="smart_transfer_uses_these_permissions">النقل الذكي يستخدم هذه <small>الأذونات</small>!</string>
+    <string name="location_service">خدمة الموقع</string>
+    <string name="allow_location_access_to_find_nearby_devices">السماح بالوصول إلى الموقع للعثور على الأجهزة القريبة.</string>
+    <string name="allow">سماح</string>
+    <string name="allowed">مسموح</string>
+    <string name="nearby_devices">الأجهزة القريبة</string>
+    <string name="find_nearby_devices_using_wi_fi_or_bluetooth">العثور على الأجهزة القريبة باستخدام \nWi-Fi أو Bluetooth</string>
+    <string name="file_access">الوصول إلى الملفات</string>
+    <string name="allow_storage_access_to_send_and_receive_files">السماح بالوصول إلى التخزين لإرسال واستقبال الملفات.</string>
+    <string name="skip">تخطي</string>
+    <string name="please_allow_all_permissions">يرجى السماح بجميع الأذونات</string>
+    <string name="permission_required">الأذونات مطلوبة</string>
+    <string name="the_app_needs_the_following_permissions">التطبيق يحتاج إلى الأذونات التالية للعمل بشكل صحيح</string>
+    <string name="please_grant_these_permissions">يرجى منح هذه الأذونات</string>
+    <string name="grant">منح</string>
+    <string name="cancel">إلغاء</string>
+    <string name="permission_denied">تم رفض الإذن</string>
+    <string name="some_permissions_are_permanently_denied">تم رفض بعض الأذونات نهائيًا. يمكنك تمكينها من إعدادات التطبيق.</string>
+    <string name="go_to_settings">اذهب إلى الإعدادات</string>
+    <string name="tap_on_settings_to_enable_camera_for_intruder_selfies">اضغط على الإعدادات لتمكين الكاميرا لصور المتطفلين.</string>
+    <string name="required_permissions">الأذونات المطلوبة</string>
+    <string name="tap_on_settings_to_enable_permission">اضغط على الإعدادات لتمكين الإذن.</string>
+
+    <!-- شاشة الملف الشخصي -->
+    <string name="edit_profile">تعديل الملف الشخصي</string>
+    <string name="enter_your_name">أدخل اسمك</string>
+    <string name="select_avatar">اختر صورة رمزية</string>
+    <string name="profile_image">صورة الملف الشخصي</string>
+    <string name="done">تم</string>
+    <string name="max_length_message">يمكنك إدخال حد أقصى %1$d من الأحرف</string>
+
+    <!-- شاشة الخطأ -->
+    <string name="error_found">تم العثور على خطأ!</string>
+    <string name="error">خطأ</string>
+
+    <!-- شاشة الملاحظات -->
+    <string name="we_are_working_hard_for_better_user_n_experience">نعمل جاهدين لتحسين تجربة المستخدم.</string>
+    <string name="we_d_greatly_appreciate_if_you_can_rate_us">نقدّر تقييمك لنا بشكل كبير.</string>
+    <string name="the_best_we_can_get">أفضل ما يمكننا الحصول عليه :)</string>
+    <string name="feedback">التقييم</string>
+
+    <string name="sad_title">سيئ للغاية!!!</string>
+    <string name="sad_des">نحتاج بشدة إلى ملاحظاتك للتحسين.</string>
+    <string name="neutral_title">سيئ!</string>
+    <string name="neutral_des">نحتاج بشدة إلى ملاحظاتك للتحسين.</string>
+    <string name="happy_title">متوسط</string>
+    <string name="happy_des">نحتاج بشدة إلى ملاحظاتك للتحسين.</string>
+    <string name="funny_title">جيد</string>
+    <string name="funny_des">كيف يمكننا الحصول على 5 نجوم؟</string>
+    <string name="excellent_title">نحبك أيضًا!</string>
+    <string name="excellent_des">استمر في ذلك!</string>
+    <string name="feedback_submitted_rating">تم إرسال التقييم! التقييم</string>
+
+    <!-- شاشة الإعدادات -->
+    <string name="setting">الإعدادات</string>
+    <string name="history">السجل</string>
+    <string name="select_language">اختر اللغة</string>
+    <string name="privacy_policy">سياسة الخصوصية</string>
+
+    <!-- الشاشة الرئيسية -->
+    <string name="phone_clone">استنساخ الهاتف</string>
+    <string name="send">إرسال</string>
+    <string name="sent">تم الإرسال</string>
+    <string name="send_with_old_phone">إرسال باستخدام الهاتف القديم</string>
+    <string name="receiver">المستقبل</string>
+    <string name="receive_with_old_phone">استقبال باستخدام الهاتف القديم</string>
+    <string name="more_feature">ميزات إضافية</string>
+    <string name="videos">الفيديوهات</string>
+    <string name="photos">الصور</string>
+    <string name="audio">الصوتيات</string>
+    <string name="documents">المستندات</string>
+    <string name="apps">التطبيقات</string>
+    <string name="contacts">جهات الاتصال</string>
+    <string name="total_space">المساحة الإجمالية</string>
+    <string name="free">متاح</string>
+
+
+    <!-- ======================================================================================= -->
+
+
+    <string name="send_details">• تأكد من توصيل كلا الجهازين بنفس شبكة الواي فاي.\n\n• اطلب من المستلم بدء استقبال البيانات.\n\n• ثم اضغط على إرسال البيانات لبدء نقل الملفات.</string>
+    <string name="receive_details">• تأكد من توصيل كلا الجهازين بنفس شبكة الواي فاي.\n\n• اطلب من المرسل بدء إرسال البيانات.\n\n• ثم اضغط على استقبال البيانات لبدء استقبال الملفات.</string>
+
+    <string name="allow_contact">السماح بالوصول إلى جهات الاتصال</string>
+    <string name="desp_contact">نحتاج إلى الوصول إلى جهات الاتصال الخاصة بك لتحسين تجربتك</string>
+    <string name="allow_location">السماح بالوصول إلى الموقع</string>
+    <string name="desp_location">نحتاج إلى الوصول إلى موقعك لتحسين تجربتك</string>
+    <string name="allow_photo">السماح بالوصول إلى الصور</string>
+    <string name="desp_photo">نحتاج إلى الوصول إلى صورك لتحسين تجربتك</string>
+    <string name="allow_video">السماح بالوصول إلى الفيديو</string>
+    <string name="desp_video">نحتاج إلى الوصول إلى فيديوهاتك لتحسين تجربتك</string>
+    <string name="allow_audio">السماح بالوصول إلى الصوتيات</string>
+    <string name="desp_audio">نحتاج إلى الوصول إلى الصوتيات الخاصة بك لتحسين تجربتك</string>
+    <string name="allow_document">السماح بالوصول إلى المستندات</string>
+    <string name="desp_document">نحتاج إلى الوصول إلى مستنداتك لتحسين تجربتك</string>
+    <string name="allow_apps">السماح بالوصول إلى التطبيقات</string>
+    <string name="desp_app">نحتاج إلى الوصول إلى تطبيقاتك لتحسين تجربتك</string>
+
+    <string name="data_sending_is_in_progress">يتم إرسال البيانات</string>
+    <string name="sending_data">جاري إرسال البيانات</string>
+    <string name="allow_your_contact">السماح بالوصول إلى جهات الاتصال</string>
+    <string name="installed_apps">التطبيقات المثبتة</string>
+    <string name="no_apps_found">لم يتم العثور على تطبيقات!</string>
+    <string name="no_audio_found">لم يتم العثور على ملفات صوتية!</string>
+    <string name="transfer_contacts_files_photos_audios_videos_amp_more_data_with_one_click"><![CDATA[نقل جهات الاتصال، الملفات، الصور، الصوتيات، الفيديوهات والمزيد بنقرة واحدة.]]></string>
+    <string name="new_phone">هاتف جديد</string>
+    <string name="old_phone">هاتف قديم</string>
+    <string name="no_contact_found">لم يتم العثور على جهات اتصال!</string>
+    <string name="contact_permission">إذن الوصول إلى جهات الاتصال</string>
+    <string name="give_access_to_contact_to_easily_transfer_data_between_your_devices_over_a_local_network_we_don_t_collect_or_upload_any_of_your_data_you_re_in_control_of_what_you_share">امنح الإذن للوصول إلى جهات الاتصال لتسهيل نقل البيانات بين أجهزتك عبر الشبكة المحلية. نحن لا نجمع أو نرفع أي من بياناتك. أنت المتحكم بما تشاركه.</string>
+
+    <string name="no_files_found">لم يتم العثور على ملفات!</string>
+    <string name="categories">الفئات</string>
+    <string name="send_data_directly">إرسال البيانات مباشرة</string>
+    <string name="receive">استقبال</string>
+    <string name="received">تم الاستلام</string>
+    <string name="receive_data_easily">استقبال البيانات بسهولة</string>
+    <string name="transfer_contacts_files_photos_videos_amp_more_data_with_one_click"><![CDATA[نقل جهات الاتصال، الملفات، الصور، الفيديوهات والمزيد بنقرة واحدة.]]></string>
+    <string name="direct_transfer">نقل مباشر</string>
+    <string name="albums">الألبومات</string>
+    <string name="discover_surrounding_devices_to_establish_a_connection">اكتشاف الأجهزة المحيطة\nلإنشاء اتصال</string>
+
+    <string name="allow_access_to_photos_videos_files_on_your_device">السماح بالوصول إلى الصور، الفيديوهات،\n والملفات على جهازك</string>
+    <string name="Continue">متابعة</string>
+    <string name="no_photos_file_found">لم يتم العثور على ملفات صور!</string>
+    <string name="you_re_now_connected">تم الاتصال بنجاح.</string>
+    <string name="how_it_works">كيف يعمل.</string>
+    <string name="waiting_for_the_connection">في انتظار الاتصال</string>
+    <string name="nearby_device">جهاز قريب</string>
+    <string name="searching_your_nearby_device_make_sure_to_turn_on_its_wifi">جاري البحث عن جهاز قريب. تأكد من تشغيل الواي فاي وتوصيله بنفس الشبكة.</string>
+    <string name="try_again">حاول مجددًا</string>
+    <string name="select_data_to_send">حدد البيانات لإرسالها</string>
+    <string name="send_your_data_to_other_device">أرسل بياناتك إلى جهاز آخر</string>
+    <string name="profile">الملف الشخصي</string>
+    <string name="language">اللغة</string>
+    <string name="no_video_files_found">لم يتم العثور على ملفات فيديو!</string>
+    <string name="device">الجهاز</string>
+    <string name="please_wait">يرجى الانتظار</string>
+    <string name="edit_icon">تعديل الأيقونة</string>
+    <string name="elie_john">إيلي جون</string>
+    <string name="avatar_image">صورة الأفاتار</string>
+    <string name="spanish">الإسبانية</string>
+    <string name="italian">الإيطالية</string>
+    <string name="french">الفرنسية</string>
+    <string name="arabic">العربية</string>
+    <string name="english">الإنجليزية</string>
+    <string name="japanese">اليابانية</string>
+    <string name="chinese">الصينية</string>
+    <string name="german">الألمانية</string>
+    <string name="hindi">الهندية</string>
+    <string name="urdu">أوردو</string>
+    <string name="quick_transfer">نقل سريع</string>
+    <string name="australia">أستراليا</string>
+    <string name="wifi_connectivity">اتصال واي فاي</string>
+    <string name="history_check">التحقق من السجل</string>
+    <string name="send_amp_receive"><![CDATA[إرسال واستقبال]]></string>
+    <string name="transfer_your_data_from_one_ndevice_to_other">انقل بياناتك من جهاز\n إلى آخر.</string>
+    <string name="share_multiple_types_of_files">شارك أنواع متعددة من الملفات.</string>
+    <string name="securely_transfer_files_between_devices_nconnected_to_same_wifi_network">انقل الملفات بأمان بين الأجهزة المتصلة بنفس شبكة الواي فاي.</string>
+    <string name="seamlessly_clone_data_nbetween_phones">انسخ البيانات بين الهواتف بسلاسة.</string>
+    <string name="manage_your_send_and_nreceive_data_in_history">إدارة بيانات الإرسال والاستقبال في السجل</string>
+    <string name="files">الملفات</string>
+    <string name="are_you_sure_you_want_to_cancel_data_sending">هل أنت متأكد من إلغاء إرسال البيانات؟</string>
+    <string name="no">لا</string>
+    <string name="yes">نعم</string>
+    <string name="oops_something_went_wrong_here">عذرًا! حدث خطأ هنا.</string>
+    <string name="you_have_send_data_successfully">تم إرسال البيانات بنجاح!</string>
+    <string name="thankyou_for_sending_data">شكرًا لإرسال البيانات.</string>
+    <string name="you_have_receive_data_successfully">تم استقبال البيانات بنجاح!</string>
+    <string name="thankyou_for_receiving_data">شكرًا لاستقبال البيانات.</string>
+
+
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">الشاشة الأولى</string>
+    <string name="second_fragment_label">الشاشة الثانية</string>
+    <string name="next">التالي</string>
+    <string name="previous">السابق</string>
+
+    <string name="smart_transfer">النقل الذكي</string>
+    <string name="allow_your_apps">اسمح لتطبيقاتك</string>
+    <string name="we_will_need_your_apps_to_give_you_n_better_experience">سنحتاج إلى تطبيقاتك لتقديم تجربة أفضل.</string>
+
+    <string name="transfer_successful">تم النقل بنجاح!</string>
+    <string name="do_you_want_to_delete_all_the_files">هل تريد حذف جميع الملفات؟</string>
+    <string name="delete">حذف</string>
+    <string name="some_files_are_selected">تم تحديد بعض الملفات</string>
+    <string name="do_you_want_to_go_back">هل تريد العودة؟</string>
+    <string name="are_you_sure_you_want_to_go_back">هل أنت متأكد من أنك تريد العودة؟</string>
+    <string name="sent_successfully">تم الإرسال بنجاح</string>
+    <string name="you_have_sent_data">لقد أرسلت البيانات!</string>
+    <string name="you_have_received_data">لقد استلمت البيانات!</string>
+    <string name="received_successfully">تم الاستلام بنجاح</string>
+    <string name="sending_files">جارٍ إرسال الملفات</string>
+    <string name="do_you_want_to_cancel">هل تريد الإلغاء؟</string>
+    <string name="device_found">تم العثور على جهاز</string>
+    <string name="scan_for_other_device">البحث عن جهاز آخر</string>
+    <string name="search_for_other_devices">البحث عن أجهزة أخرى</string>
+
+    <string name="transfer_all_data_in_one_go">انقل كل البيانات دفعة واحدة!</string>
+    <string name="selected_files">الملفات المحددة</string>
+    <string name="item_deleted_successful">تم حذف العنصر بنجاح</string>
+    <string name="no_item_selected">لم يتم تحديد أي عنصر</string>
+    <string name="selected_items_deleted">تم حذف العناصر المحددة</string>
+    <string name="please_select_at_least_one_item_to_proceed">يرجى تحديد عنصر واحد على الأقل للمتابعة</string>
+
+    <string name="properties">الخصائص</string>
+    <string name="modified_on">تم التعديل في</string>
+    <string name="modified">معدل</string>
+    <string name="size">الحجم</string>
+    <string name="type">النوع</string>
+    <string name="location">الموقع</string>
+    <string name="ok">موافق</string>
+    <string name="select_all">تحديد الكل</string>
+    <string name="de_select_all">إلغاء تحديد الكل</string>
+    <string name="title">العنوان</string>
+    <string name="artist">الفنان</string>
+    <string name="album">الألبوم</string>
+    <string name="unknown_title">عنوان غير معروف</string>
+    <string name="unknown_artist">فنان غير معروف</string>
+    <string name="unknown_album">ألبوم غير معروف</string>
+    <string name="unknown_app">تطبيق غير معروف</string>
+    <string name="unknown_audio">ملف صوتي غير معروف</string>
+    <string name="unknown_contact">جهة اتصال غير معروفة</string>
+    <string name="unknown_document">مستند غير معروف</string>
+    <string name="unknown_video">فيديو غير معروف</string>
+    <string name="unknown_photo">صورة غير معروفة</string>
+    <string name="name">الاسم</string>
+    <string name="contact_no">رقم الاتصال</string>
+    <string name="item">عنصر</string>
+    <string name="service_error">خطأ في الخدمة</string>
+    <string name="unable_to_start_receiving_Please_try_again">تعذر بدء الاستلام. يرجى المحاولة مرة أخرى.</string>
+
+    <string name="transfer_Starting">يبدأ النقل</string>
+    <string name="transfer_is_starting_please_wait">النقل يبدأ، يرجى الانتظار.</string>
+
+    <string name="transfer_Cancelled">تم إلغاء النقل</string>
+    <string name="the_file_transfer_was_cancelled">تم إلغاء نقل الملف.</string>
+
+    <string name="connection_timeout">انتهاء مهلة الاتصال</string>
+    <string name="the_connection_has_timed_out">انتهت مهلة الاتصال. يرجى التحقق من الشبكة والمحاولة مرة أخرى.</string>
+
+    <string name="enable_wifi">تمكين الواي فاي</string>
+    <string name="please_enable_Wifi_to_continue">يرجى تمكين الواي فاي للمتابعة</string>
+
+    <string name="wifi_disabled">تم تعطيل الواي فاي</string>
+    <string name="wifi_must_be_enabled_to_continue">يجب تمكين الواي فاي للمتابعة. يرجى تمكينه والمحاولة مرة أخرى.</string>
+
+    <string name="enable_gps">تمكين GPS</string>
+    <string name="please_enable_gps_to_continue">يرجى تمكين GPS للمتابعة</string>
+
+    <string name="gps_disabled">تم تعطيل GPS</string>
+    <string name="gps_must_be_enabled_to_continue">يجب تمكين GPS للمتابعة. يرجى تمكينه والمحاولة مرة أخرى.</string>
+
+    <string name="permissions_missing">الأذونات مفقودة</string>
+    <string name="location_and_Nearby_permissions_must_be_granted_to_continue">يجب منح أذونات الموقع والأجهزة المجاورة للمتابعة. يرجى منحها والمحاولة مرة أخرى.</string>
+
+    <string name="permission">الإذن</string>
+    <string name="please_enable_location_and_nearby_permission_to_continue">يرجى تمكين أذونات الموقع والأجهزة المجاورة للمتابعة</string>
+    <string name="location_permission">إذن الموقع</string>
+    <string name="please_enable_location_permission_to_continue">يرجى تمكين إذن الموقع للمتابعة</string>
+    <string name="connect_device_text">اضغط على %1$s للاتصال بهذا الجهاز وتأكد من توصيل الجهاز بنفس شبكة الواي فاي.</string>
+
+    <string name="receiving_data">جارٍ استلام البيانات</string>
+    <string name="data_receiving_is_in_progress">عملية استلام البيانات جارية</string>
+
+    <string name="transfer_initialized">تم بدء النقل</string>
+    <string name="transfer_has_been_initialized">تم بدء النقل، في انتظار الاتصال.</string>
+
+    <string name="receiver_not_found">لم يتم العثور على مستقبل</string>
+    <string name="make_sure_the_receiver_has_started_receiving_on_their_device">تأكد من أن المستقبل قد بدأ عملية الاستلام على جهازه.</string>
+
+    <string name="wifi_is_turned_off">تم إيقاف الواي فاي. يرجى تمكينه للمتابعة.</string>
+
+    <string name="transfer_failed">فشل النقل</string>
+    <string name="the_file_transfer_has_failed">فشل نقل الملف. يرجى المحاولة مرة أخرى.</string>
+
+    <string name="wifi_is_disabled_Please_enable_wifi">تم تعطيل الواي فاي. يرجى تمكينه.</string>
+    <string name="gps_is_disabled_Please_enable_gps">تم تعطيل GPS. يرجى تمكينه.</string>
+    <string name="location_permission_is_required">إذن الموقع مطلوب. يرجى منح الأذونات.</string>
+    <string name="this_is_old_phone">هذا هو الهاتف القديم</string>
+    <string name="select_data_on_the_next_screen_to_transfer_from_your_old_phone_to_the_new_phone">حدد البيانات على الشاشة التالية لنقلها من هاتفك القديم إلى الجديد.</string>
+    <string name="or">أو</string>
+    <string name="this_is_new_phone">هذا هو الهاتف الجديد</string>
+    <string name="select_data_on_the_next_screen_to_transfer_from_your_new_phone_to_the_old_phone">حدد البيانات على الشاشة التالية لنقلها من هاتفك الجديد إلى القديم.</string>
+
+
+    <string name="share">مشاركة</string>
+    <string name="media_type_photos">صور</string>
+    <string name="media_type_videos">فيديوهات</string>
+    <string name="media_type_audios">ملفات صوتية</string>
+    <string name="media_type_apps">تطبيقات</string>
+    <string name="media_type_contacts">جهات اتصال</string>
+    <string name="media_type_documents">مستندات</string>
+    <string name="media_type_other">أخرى</string>
+
+
+    <string name="heading1">استنساخ الهاتف</string>
+    <string name="heading2">نقل البيانات</string>
+    <string name="heading3">واي فاي مباشر</string>
+
+    <string name="details1">انسخ البيانات بسهولة بين هواتف الأندرويد.</string>
+    <string name="details2">انقل البيانات من هاتف إلى آخر بدون عناء.</string>
+    <string name="details3">انقل البيانات بسرعة بين الأجهزة باستخدام الواي فاي المباشر.</string>
+    <string name="night_mode">الوضع الليلي</string>
+
+
+    <string name="allow_notification">السماح بالإشعارات</string>
+    <string name="you_will_need_notification_permission_for_nbetter_exprience">ستحتاج إلى إذن الإشعارات لتجربة أفضل</string>
+    <string name="allow_storage">السماح بالتخزين</string>
+    <string name="tap_on_settings_to_enable_required_permissions">انقر على الإعدادات لتمكين الأذونات المطلوبة</string>
+
+
+    <string name="go_to_premiun">اذهب إلى البريميوم</string>
+    <string name="unlock_all_features">افتح جميع الميزات</string>
+    <string name="file_sending">إرسال الملفات</string>
+    <string name="file_receiving">استلام الملفات</string>
+    <string name="transfer_history">سجل النقل</string>
+    <string name="remove_ads">إزالة الإعلانات</string>
+    <string name="best_offer">أفضل عرض</string>
+    <string name="life_time">مدى الحياة*</string>
+    <string name="start_free_trial">ابدأ النسخة التجريبية المجانية</string>
+    <string name="by_continue_you_agree_to_our_terms_amp_privacy_policy"><![CDATA[بالمتابعة، فإنك توافق على الشروط وسياسة الخصوصية الخاصة بنا]]></string>
+    <string name="term_amp_conditions"><![CDATA[الشروط والأحكام]]></string>
+
+
+    <string name="share_with_ease_connect_with_trust">شارك بسهولة، واتصل بثقة</string>
+    <string name="powered_by">مشغل بواسطة</string>
+    <string name="intro_1_new">انقل البيانات وشارك الملفات بسهولة بين أجهزة Android</string>
+    <string name="intro_2_new">انقل جميع بياناتك من الهاتف القديم إلى الهاتف الجديد بأمان</string>
+    <string name="intro_3_new">أرسل ملفات كبيرة فقط بإنشاء رابط، ببساطة وسهولة</string>
+    <string name="upgrate_to_premium">الترقية إلى البريميوم</string>
+    <string name="features">الميزات</string>
+    <string name="basic">أساسي</string>
+    <string name="pro">احترافي</string>
+    <string name="ads_free">بدون إعلانات</string>
+    <string name="unlimited_data_transfer">نقل بيانات غير محدود</string>
+    <string name="weekly">أسبوعي</string>
+    <string name="monthly">شهري</string>
+    <string name="yearly">سنوي</string>
+    <string name="lifetime">مدى الحياة</string>
+    <string name="most_popular">الأكثر شيوعًا</string>
+    <string name="continue_with_ads">الاستمرار مع الإعلانات</string>
+    <string name="with_subscription_you_get">من خلال الاشتراك، تحصل على وصول غير محدود لجميع الميزات المدفوعة وسيتم إزالة الإعلانات. سيتم خصم الدفع من حسابك في Google Play عند تأكيد الشراء. يتم تجديد الاشتراكات تلقائيًا ما لم يتم الإلغاء قبل 24 ساعة على الأقل من نهاية الفترة الحالية. يمكنك إدارة الاشتراك أو إلغاؤه من إعدادات حسابك في Google Play في أي وقت.</string>
+    <string name="cancel_subscription">إلغاء الاشتراك</string>
+
+    <string name="used">مستخدم</string>
+    <string name="check_sending_and_receiving_history">تحقق من سجل الإرسال والاستلام</string>
+    <string name="choose_languages_as_you_want">اختر اللغات كما تريد</string>
+    <string name="choose_theme_as_you_want">اختر السمة كما تريد</string>
+    <string name="rate_our_app_on_playstore">قيّم تطبيقنا على متجر بلاي</string>
+    <string name="share_the_smart_switch_with_your_friends">شارك المفتاح الذكي مع أصدقائك</string>
+    <string name="read_our_privacy_policy_document">اقرأ وثيقة سياسة الخصوصية الخاصة بنا</string>
+    <string name="more_app">تطبيقات أخرى</string>
+    <string name="explore_more_app_from_our_store">استكشف المزيد من التطبيقات من متجرنا</string>
+    <string name="add_is_expected">من المتوقع عرض إعلان بملء الشاشة</string>
+
+
+    <string name="no_doc_found">لم يتم العثور على مستند</string>
+    <string name="rate_us">قيّمنا</string>
+    <string name="transfer_files_old_to_new">نقل الملفات من الجهاز القديم إلى الجديد</string>
+    <string name="receive_from_old_device">استلام من الجهاز القديم</string>
+    <string name="data_size">حجم البيانات</string>
+    <string name="exit">خروج</string>
+    <string name="upgrade_to_premium">الترقية إلى بريميوم</string>
+
+    <string name="exit_app">خروج من التطبيق</string>
+    <string name="are_you_sure_you_want_to_exit">هل أنت متأكد أنك تريد الخروج؟</string>
+    <string name="storage_permission_Text">يرجى السماح بالوصول إلى الصور ومقاطع الفيديو والصوتيات والمستندات والتطبيقات وجهات الاتصال حتى يعمل Smart Switch بشكل صحيح</string>
+    <string name="all_permission_allow">السماح بجميع الأذونات</string>
+    <string name="unlock_your_full_potential">أطلق إمكاناتك الكاملة\n</string>
+    <string name="you_can_try_the_premium_version_for_3_days_for_free_after_that_it_s"> يمكنك تجربة الإصدار المميز لمدة <b><font color="#747B81">3 أيام</font></b> مجانًا! بعد ذلك، سيكون</string>
+    <string name="feel_free_to_cancel_anytime">يمكنك الإلغاء في أي وقت.</string>
+    <string name="features_you_get">المميزات التي ستحصل عليها</string>
+    <string name="send_and_receive_files">إرسال واستلام الملفات</string>
+    <string name="all_type_of_data">جميع أنواع البيانات</string>
+    <string name="unlimited_transfer">نقل غير محدود</string>
+    <string name="quick_file_transfer">نقل ملفات سريع</string>
+    <string name="no_ads">بدون إعلانات</string>
+    <string name="vip_support">دعم VIP</string>
+    <string name="no_payment_now">لا يوجد دفع الآن</string>
+    <string name="try_premium_for_free">جرّب البريميوم مجانًا</string>
+    <string name="just">فقط</string>
+    <string name="aweek">أسبوع.</string>
+    <string name="price_unavailable">السعر غير متاح</string>
+    <string name="receive_files">استلام الملفات</string>
+    <string name="here_s_your_reward">إليك مكافأتك</string>
+    <string name="to_get_your_reward_upgrade_to_premium_watch_a_video_ad_to_unlock">للحصول على مكافأتك، قم بالترقية إلى البريميوم\n وشاهد إعلان فيديو لفتحه</string>
+    <string name="upgrade_now">قم بالترقية الآن</string>
+    <string name="watch_ad">مشاهدة إعلان</string>
+    <string name="send_files">إرسال الملفات</string>
+</resources>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- res/drawable/tab_shape_send_receive.xml -->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_selected="true">
+        <shape>
+            <solid android:color="@color/colorPrimary"/> <!-- Button-like color for selected tab -->
+            <corners android:radius="@dimen/_20sdp"/>
+           />
+        </shape>
+    </item>
+    <item>
+        <shape>
+            <solid android:color="@color/tab_colour"/> <!-- Default background color -->
+            <corners android:radius="@dimen/_20sdp"/>
+        </shape>
+    </item>
+</selector>

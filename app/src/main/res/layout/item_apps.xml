@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/_8sdp"
+    >
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_40sdp"
+        android:contentDescription="@string/app_name"
+        app:shapeAppearanceOverlay="@style/ShapeableImageView2"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:src="@drawable/ic_app_new"
+        />
+
+
+    <CheckBox
+        android:id="@+id/checkbox"
+        android:layout_width="@dimen/_16sdp"
+        android:layout_height="@dimen/_16sdp"
+        android:layout_gravity="end|top"
+        app:rippleColor="?attr/colorSwitchThumbNormal"
+        android:button="@null"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
+
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Audio Relay"
+        android:maxLines="1"
+        android:ems="4"
+        android:ellipsize="end"
+        android:gravity="center"
+        android:singleLine="true"
+        style="@style/RegularTextViewStyle"
+        app:layout_constraintTop_toBottomOf="@id/imageView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="@dimen/_8sdp"
+        />
+
+
+    <TextView
+        android:id="@+id/size"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="14 MB"
+        app:layout_constraintTop_toBottomOf="@id/name"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="@dimen/_3sdp"
+        style="@style/RegularTextViewStyle"
+        android:textSize="@dimen/_8ssp"
+        />
+<!--    <TextView-->
+<!--        android:id="@+id/myTextView"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:maxLines="1"-->
+<!--        android:ems="3"-->
+<!--        android:ellipsize="end"-->
+<!--        android:singleLine="true"-->
+<!--        android:text="Active fitness and health"-->
+<!--        android:textSize="16sp"-->
+<!--        android:layout_margin="8dp"-->
+<!--        app:layout_constraintTop_toBottomOf="@id/size"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        />-->
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

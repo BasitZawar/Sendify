@@ -1,0 +1,396 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Smart Switch</string>
+    <string name="hello_blank_fragment">Bonjour, fragment vide</string>
+
+    <!-- Splash Screen -->
+    <string name="quickly_share_files_and_copy_data_between_devices_simple_and_fast">Partagez rapidement des fichiers et copiez des données entre les appareils. Simple et rapide !</string>
+    <string name="get_started">Commencer</string>
+
+    <!-- Permission Screen -->
+    <string name="smart_transfer_uses_these_permissions">Smart Transfer utilise ces \n<small>Autorisations</small> !</string>
+    <string name="location_service">Service de localisation</string>
+    <string name="allow_location_access_to_find_nearby_devices">Autoriser l\'accès à la localisation pour trouver \ndes appareils à proximité.</string>
+    <string name="allow">Autoriser</string>
+    <string name="allowed">Autorisé</string>
+    <string name="nearby_devices">Appareils à proximité</string>
+    <string name="find_nearby_devices_using_wi_fi_or_bluetooth">Trouver des appareils à proximité en utilisant \nle Wi-Fi ou le Bluetooth</string>
+    <string name="file_access">Accès aux fichiers</string>
+    <string name="allow_storage_access_to_send_and_receive_files">Autoriser l\'accès au stockage pour \nenvoyer et recevoir des fichiers.</string>
+    <string name="skip">Passer</string>
+    <string name="please_allow_all_permissions">Veuillez autoriser toutes les autorisations</string>
+    <string name="permission_required">Autorisation requise</string>
+    <string name="the_app_needs_the_following_permissions">L\'application a besoin des autorisations suivantes pour fonctionner correctement</string>
+    <string name="please_grant_these_permissions">Veuillez accorder ces autorisations</string>
+    <string name="grant">Accorder</string>
+    <string name="cancel">Annuler</string>
+    <string name="permission_denied">Autorisation refusée</string>
+    <string name="some_permissions_are_permanently_denied">Certaines autorisations sont définitivement refusées. Vous pouvez les activer dans les paramètres de l\'application.</string>
+    <string name="go_to_settings">Aller aux paramètres</string>
+    <string name="tap_on_settings_to_enable_camera_for_intruder_selfies">Appuyez sur les paramètres pour activer la caméra pour les selfies d\'intrus.</string>
+    <string name="required_permissions">Autorisations requises</string>
+    <string name="tap_on_settings_to_enable_permission">Appuyez sur les paramètres pour activer l\'autorisation.</string>
+
+    <!-- Profile Screen -->
+    <string name="edit_profile">Modifier le profil</string>
+    <string name="enter_your_name">Entrez votre nom</string>
+    <string name="select_avatar">Sélectionner un avatar</string>
+    <string name="profile_image">Image de profil</string>
+    <string name="done">Terminé</string>
+    <string name="max_length_message">Vous pouvez entrer un maximum de %1$d caractères</string>
+
+    <!-- Error Screen -->
+    <string name="error_found">Erreur trouvée !</string>
+    <string name="error">Erreur</string>
+
+    <!-- Feedback Screen -->
+    <string name="we_are_working_hard_for_better_user_n_experience">Nous travaillons dur pour une meilleure \nexpérience utilisateur.</string>
+    <string name="we_d_greatly_appreciate_if_you_can_rate_us">Nous apprécierions grandement si vous pouviez nous évaluer.</string>
+    <string name="the_best_we_can_get">Le meilleur que nous puissions obtenir :)</string>
+    <string name="feedback">Retour d\'information</string>
+
+    <string name="sad_title">Terrible !!!</string>
+    <string name="sad_des">Nous avons vraiment besoin de vos retours pour nous améliorer.</string>
+    <string name="neutral_title">Mauvais !</string>
+    <string name="neutral_des">Nous avons vraiment besoin de vos retours pour nous améliorer.</string>
+    <string name="happy_title">Moyenne</string>
+    <string name="happy_des">Nous avons vraiment besoin de vos retours pour nous améliorer.</string>
+    <string name="funny_title">Bien</string>
+    <string name="funny_des">Comment pouvons-nous obtenir 5 étoiles ?</string>
+    <string name="excellent_title">Nous vous aimons aussi !</string>
+    <string name="excellent_des">Continuez ainsi !</string>
+    <string name="feedback_submitted_rating">Retour d\'information soumis ! Évaluation</string>
+
+    <!-- Setting Screen -->
+    <string name="setting">Paramètres</string>
+    <string name="history">Historique</string>
+    <string name="select_language">Sélectionner la langue</string>
+    <string name="privacy_policy">Politique de confidentialité</string>
+
+    <!-- Home Screen -->
+    <string name="phone_clone">Clonage de téléphone</string>
+    <string name="send">Envoyer</string>
+    <string name="sent">Envoyé</string>
+    <string name="send_with_old_phone">Envoyer avec l\'ancien téléphone</string>
+    <string name="receiver">Récepteur</string>
+    <string name="receive_with_old_phone">Recevoir avec l\'ancien téléphone</string>
+    <string name="more_feature">Plus de fonctionnalités</string>
+    <string name="videos">Vidéos</string>
+    <string name="photos">Photos</string>
+    <string name="audio">Audios</string>
+    <string name="documents">Documents</string>
+    <string name="apps">Applications</string>
+    <string name="contacts">Contacts</string>
+    <string name="total_space">Espace total</string>
+    <string name="free">Libre</string>
+
+    <!-- ========================================= A ============================================== -->
+    <string name="send_details">• Assurez-vous que les deux appareils sont connectés au même Wifi.\n\n• Demandez au récepteur de commencer à recevoir des données. \n\n• Cliquez ensuite sur envoyer des données pour commencer le transfert des fichiers.</string>
+    <string name="receive_details">• Assurez-vous que les deux appareils sont connectés au même Wifi.\n\n• Demandez à l\'expéditeur de commencer à envoyer des données. \n\n• Cliquez ensuite sur recevoir des données pour commencer à recevoir les fichiers.</string>
+
+    <string name="allow_contact">Autoriser vos contacts</string>
+    <string name="desp_contact">Nous aurons besoin de vos contacts pour vous offrir \n une meilleure expérience</string>
+    <string name="allow_location">Autoriser votre localisation</string>
+    <string name="desp_location">Nous aurons besoin de votre localisation pour vous offrir \n une meilleure expérience</string>
+    <string name="allow_photo">Autoriser votre photo</string>
+    <string name="desp_photo">Nous avons besoin de votre photo pour vous offrir \n une meilleure expérience</string>
+    <string name="allow_video">Autoriser votre vidéo</string>
+    <string name="desp_video">Nous avons besoin de votre vidéo pour vous offrir \n une meilleure expérience</string>
+    <string name="allow_audio">Autoriser votre audio</string>
+    <string name="desp_audio">Nous aurons besoin de votre audio pour vous offrir \n une meilleure expérience</string>
+    <string name="allow_document">Autoriser votre document</string>
+    <string name="desp_document">Nous avons besoin de votre document pour vous offrir \n une meilleure expérience</string>
+    <string name="allow_apps">Autoriser vos applications</string>
+    <string name="desp_app">Nous avons besoin de vos applications pour vous offrir \n une meilleure expérience</string>
+
+    <string name="data_sending_is_in_progress">L\'envoi des données est en cours</string>
+    <string name="sending_data">Envoi des données</string>
+    <string name="allow_your_contact">Autoriser vos contacts</string>
+    <string name="installed_apps">Applications installées</string>
+    <string name="no_apps_found">Aucune application trouvée!</string>
+    <string name="no_audio_found">Aucun audio trouvé!</string>
+    <string name="transfer_contacts_files_photos_audios_videos_amp_more_data_with_one_click"><![CDATA[Transférez les contacts, fichiers, photos, audios, vidéos et plus de données en un clic.]]></string>
+    <string name="new_phone">Nouveau téléphone</string>
+    <string name="old_phone">Ancien téléphone</string>
+    <string name="no_contact_found">Aucun contact trouvé!</string>
+    <string name="contact_permission">Permission de contact</string>
+    <string name="give_access_to_contact_to_easily_transfer_data_between_your_devices_over_a_local_network_we_don_t_collect_or_upload_any_of_your_data_you_re_in_control_of_what_you_share">Donnez accès à vos contacts pour transférer facilement des données entre vos appareils via un réseau local. Nous ne collectons ni ne téléchargeons aucune de vos données. Vous êtes maître de ce que vous partagez.</string>
+
+    <string name="no_files_found">Aucun fichier trouvé!</string>
+    <string name="categories">Catégories</string>
+    <string name="send_data_directly">Envoyer des données directement</string>
+    <string name="receive">Recevoir</string>
+    <string name="received">Reçu</string>
+    <string name="receive_data_easily">Recevoir des données facilement</string>
+    <string name="transfer_contacts_files_photos_videos_amp_more_data_with_one_click"><![CDATA[Transférez les contacts, fichiers, photos, vidéos et plus de données en un clic.]]></string>
+    <string name="direct_transfer">Transfert direct</string>
+    <string name="albums">Albums</string>
+    <string name="discover_surrounding_devices_to_establish_a_connection">Découvrez les appareils environnants\n pour établir une connexion</string>
+
+    <string name="allow_access_to_photos_videos_files_on_your_device">Autorisez l\'accès aux photos, vidéos,\n fichiers sur votre appareil</string>
+    <string name="Continue">Continuer</string>
+    <string name="no_photos_file_found">Aucun fichier photo trouvé!</string>
+    <string name="you_re_now_connected">Vous êtes maintenant connecté.</string>
+    <string name="how_it_works">Comment ça marche.</string>
+    <string name="waiting_for_the_connection">En attente de la connexion</string>
+    <string name="nearby_device">Appareil à proximité</string>
+    <string name="searching_your_nearby_device_make_sure_to_turn_on_its_wifi">Recherche de votre appareil à proximité. Assurez-vous que son Wifi est activé et qu\'il est connecté au même Wifi.</string>
+    <string name="try_again">Essayer encore</string>
+    <string name="select_data_to_send">Sélectionnez les données à envoyer</string>
+    <string name="send_your_data_to_other_device">Envoyez vos données vers un autre appareil</string>
+    <string name="profile">Profil</string>
+    <string name="language">Langue</string>
+    <string name="no_video_files_found">Aucun fichier vidéo trouvé!</string>
+    <string name="device">Appareil</string>
+    <string name="please_wait">Veuillez patienter</string>
+    <string name="edit_icon">Modifier l\'icône</string>
+    <string name="elie_john">Elie John</string>
+    <string name="avatar_image">Image de l\'avatar</string>
+    <string name="spanish">Espagnol</string>
+    <string name="italian">Italien</string>
+    <string name="french">Français</string>
+    <string name="arabic">Arabe</string>
+    <string name="english">Anglais</string>
+    <string name="japanese">Japonais</string>
+    <string name="chinese">Chinois</string>
+    <string name="german">Allemand</string>
+    <string name="hindi">Hindi</string>
+    <string name="urdu">Ourdou</string>
+    <string name="quick_transfer">Transfert rapide</string>
+    <string name="australia">Australie</string>
+    <string name="wifi_connectivity">Connectivité Wifi</string>
+    <string name="history_check">Vérification de l\'historique</string>
+    <string name="send_amp_receive"><![CDATA[Envoyer & Recevoir]]></string>
+    <string name="transfer_your_data_from_one_ndevice_to_other">Transférez vos données d\'un \napparat à l\'autre.</string>
+    <string name="share_multiple_types_of_files">Partagez plusieurs types de fichiers.</string>
+    <string name="securely_transfer_files_between_devices_nconnected_to_same_wifi_network">Transférez en toute sécurité des fichiers entre des appareils connectés au même réseau Wifi.</string>
+    <string name="seamlessly_clone_data_nbetween_phones">Clonez facilement des données \nentre les téléphones.</string>
+    <string name="manage_your_send_and_nreceive_data_in_history">Gérez vos données envoyées et \n reçues dans l\'historique</string>
+    <string name="files">Fichiers</string>
+    <string name="are_you_sure_you_want_to_cancel_data_sending">Êtes-vous sûr de vouloir annuler \nl\'envoi des données?</string>
+    <string name="no">Non</string>
+    <string name="yes">Oui</string>
+    <string name="oops_something_went_wrong_here">Oups! Quelque chose s\'est mal passé ici.</string>
+    <string name="you_have_send_data_successfully">Vous avez envoyé les données avec succès!</string>
+    <string name="thankyou_for_sending_data">Merci d\'avoir envoyé les données.</string>
+    <string name="you_have_receive_data_successfully">Vous avez reçu les données avec succès!</string>
+    <string name="thankyou_for_receiving_data">Merci d\'avoir reçu les données.</string>
+
+    <!-- ========================================= B ============================================== -->
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">Premier Fragment</string>
+    <string name="second_fragment_label">Deuxième Fragment</string>
+    <string name="next">Suivant</string>
+    <string name="previous">Précédent</string>
+
+    <string name="smart_transfer">Transfert Intelligent</string>
+    <string name="allow_your_apps">Autoriser vos applications</string>
+    <string name="we_will_need_your_apps_to_give_you_n_better_experience">Nous aurons besoin de vos applications pour vous offrir une meilleure expérience.</string>
+
+    <string name="transfer_successful">Transfert Réussi !</string>
+    <string name="do_you_want_to_delete_all_the_files">Voulez-vous supprimer tous les fichiers ?</string>
+    <string name="delete">Supprimer</string>
+    <string name="some_files_are_selected">Certains fichiers sont sélectionnés</string>
+    <string name="do_you_want_to_go_back">Voulez-vous revenir en arrière ?</string>
+    <string name="are_you_sure_you_want_to_go_back">Êtes-vous sûr de vouloir revenir en arrière ?</string>
+    <string name="sent_successfully">Envoyé avec succès</string>
+    <string name="you_have_sent_data">Vous avez envoyé des données !</string>
+    <string name="you_have_received_data">Vous avez reçu des données !</string>
+    <string name="received_successfully">Reçu avec succès</string>
+    <string name="sending_files">Envoi des fichiers</string>
+    <string name="do_you_want_to_cancel">Voulez-vous annuler ?</string>
+    <string name="device_found">Appareil trouvé</string>
+    <string name="scan_for_other_device">Scanner pour un autre appareil</string>
+    <string name="search_for_other_devices">Rechercher d\'autres appareils</string>
+
+    <string name="transfer_all_data_in_one_go">Transférer toutes les données en une seule fois !</string>
+    <string name="selected_files">Fichiers sélectionnés</string>
+    <string name="item_deleted_successful">Élément supprimé avec succès</string>
+    <string name="no_item_selected">Aucun élément sélectionné</string>
+    <string name="selected_items_deleted">Éléments sélectionnés supprimés</string>
+    <string name="please_select_at_least_one_item_to_proceed">Veuillez sélectionner au moins un élément pour continuer</string>
+
+    <string name="properties">Propriétés</string>
+    <string name="modified_on">Modifié le</string>
+    <string name="modified">Modifié</string>
+    <string name="size">Taille</string>
+    <string name="type">Type</string>
+    <string name="location">Emplacement</string>
+    <string name="ok">OK</string>
+    <string name="select_all">Sélectionner tout</string>
+    <string name="de_select_all">Désélectionner tout</string>
+    <string name="title">Titre</string>
+    <string name="artist">Artiste</string>
+    <string name="album">Album</string>
+    <string name="unknown_title">Titre inconnu</string>
+    <string name="unknown_artist">Artiste inconnu</string>
+    <string name="unknown_album">Album inconnu</string>
+    <string name="unknown_app">Application inconnue</string>
+    <string name="unknown_audio">Audio inconnu</string>
+    <string name="unknown_contact">Contact inconnu</string>
+    <string name="unknown_document">Document inconnu</string>
+    <string name="unknown_video">Vidéo inconnue</string>
+    <string name="unknown_photo">Photo inconnue</string>
+    <string name="name">Nom</string>
+    <string name="contact_no">Numéro de contact</string>
+    <string name="item">Élément</string>
+    <string name="service_error">Erreur de service</string>
+    <string name="unable_to_start_receiving_Please_try_again">Impossible de commencer à recevoir. Veuillez réessayer.</string>
+
+    <string name="transfer_Starting">Transfert en cours</string>
+    <string name="transfer_is_starting_please_wait">Le transfert commence, veuillez patienter.</string>
+
+    <string name="transfer_Cancelled">Transfert annulé</string>
+    <string name="the_file_transfer_was_cancelled">Le transfert de fichier a été annulé.</string>
+
+    <string name="connection_timeout">Délai de connexion expiré</string>
+    <string name="the_connection_has_timed_out">La connexion a expiré. Veuillez vérifier votre réseau et réessayer.</string>
+
+    <string name="enable_wifi">Activer le Wi-Fi</string>
+    <string name="please_enable_Wifi_to_continue">Veuillez activer le Wi-Fi pour continuer</string>
+
+    <string name="wifi_disabled">Wi-Fi désactivé</string>
+    <string name="wifi_must_be_enabled_to_continue">Le Wi-Fi doit être activé pour continuer. Veuillez l\'activer et réessayer.</string>
+
+    <string name="enable_gps">Activer le GPS</string>
+    <string name="please_enable_gps_to_continue">Veuillez activer le GPS pour continuer</string>
+
+    <string name="gps_disabled">GPS désactivé</string>
+    <string name="gps_must_be_enabled_to_continue">Le GPS doit être activé pour continuer. Veuillez l\'activer et réessayer.</string>
+
+    <string name="permissions_missing">Permissions manquantes</string>
+    <string name="location_and_Nearby_permissions_must_be_granted_to_continue">Les permissions de localisation et de proximité doivent être accordées pour continuer. Veuillez les accorder et réessayer.</string>
+
+    <string name="permission">Permission</string>
+    <string name="please_enable_location_and_nearby_permission_to_continue">Veuillez activer la permission de localisation et de proximité pour continuer</string>
+    <string name="location_permission">Permission de localisation</string>
+    <string name="please_enable_location_permission_to_continue">Veuillez activer la permission de localisation pour continuer</string>
+    <string name="connect_device_text">Appuyez sur le %1$s pour vous connecter à cet appareil et assurez-vous de connecter l\'appareil au même Wi-Fi.</string>
+
+    <string name="receiving_data">Réception des données</string>
+    <string name="data_receiving_is_in_progress">Réception des données en cours</string>
+
+    <string name="transfer_initialized">Transfert initialisé</string>
+    <string name="transfer_has_been_initialized">Le transfert a été initialisé, en attente de connexion.</string>
+
+    <string name="receiver_not_found">Récepteur non trouvé</string>
+    <string name="make_sure_the_receiver_has_started_receiving_on_their_device">Assurez-vous que le récepteur a commencé à recevoir sur son appareil.</string>
+
+    <string name="wifi_is_turned_off">Le Wi-Fi est désactivé. Veuillez activer le Wi-Fi pour continuer.</string>
+
+    <string name="transfer_failed">Échec du transfert</string>
+    <string name="the_file_transfer_has_failed">Le transfert de fichier a échoué. Veuillez réessayer.</string>
+
+    <string name="wifi_is_disabled_Please_enable_wifi">Le Wi-Fi est désactivé. Veuillez activer le Wi-Fi.</string>
+    <string name="gps_is_disabled_Please_enable_gps">Le GPS est désactivé. Veuillez activer le GPS.</string>
+    <string name="location_permission_is_required">La permission de localisation est requise. Veuillez accorder les permissions.</string>
+    <string name="this_is_old_phone">C\'est un ancien téléphone</string>
+    <string name="select_data_on_the_next_screen_to_transfer_from_your_old_phone_to_the_new_phone">Sélectionnez les données sur l\'écran suivant pour les transférer de votre ancien téléphone vers le nouveau téléphone.</string>
+    <string name="or">Ou</string>
+    <string name="this_is_new_phone">C\'est un nouveau téléphone</string>
+    <string name="select_data_on_the_next_screen_to_transfer_from_your_new_phone_to_the_old_phone">Sélectionnez les données sur l\'écran suivant pour les transférer de votre nouveau téléphone vers l\'ancien téléphone.</string>
+
+    <string name="share">Partager</string>
+    <string name="media_type_photos">Photos</string>
+    <string name="media_type_videos">Vidéos</string>
+    <string name="media_type_audios">Audios</string>
+    <string name="media_type_apps">Applications</string>
+    <string name="media_type_contacts">Contacts</string>
+    <string name="media_type_documents">Documents</string>
+    <string name="media_type_other">Autre</string>
+
+    <string name="heading1">Clonage de Téléphone</string>
+    <string name="heading2">Transfert de Données</string>
+    <string name="heading3">Wi-Fi Direct</string>
+
+    <string name="details1">Clonez facilement entre les téléphones Android.</string>
+    <string name="details2">Transférez des données sans effort d\'un téléphone à un autre.</string>
+    <string name="details3">Transférez rapidement des données entre appareils via Wi-Fi Direct.</string>
+    <string name="night_mode">Mode Nuit</string>
+
+    <string name="allow_notification">Autoriser les notifications</string>
+    <string name="you_will_need_notification_permission_for_nbetter_exprience">Vous aurez besoin de l\'autorisation de notification pour \nune meilleure expérience</string>
+    <string name="allow_storage">Autoriser le stockage</string>
+    <string name="tap_on_settings_to_enable_required_permissions">Appuyez sur paramètres pour activer les autorisations requises</string>
+
+
+    <string name="go_to_premiun">Aller à Premium</string>
+    <string name="unlock_all_features">Débloquer toutes les fonctionnalités</string>
+    <string name="file_sending">Envoi de fichiers</string>
+    <string name="file_receiving">Réception de fichiers</string>
+    <string name="transfer_history">Historique des transferts</string>
+    <string name="remove_ads">Supprimer les publicités</string>
+    <string name="best_offer">Meilleure offre</string>
+    <string name="life_time">À vie*</string>
+    <string name="start_free_trial">Commencer l’essai gratuit</string>
+    <string name="by_continue_you_agree_to_our_terms_amp_privacy_policy"><![CDATA[En continuant, vous acceptez nos Conditions et notre Politique de confidentialité]]></string>
+    <string name="term_amp_conditions"><![CDATA[Conditions générales]]></string>
+
+
+    <string name="share_with_ease_connect_with_trust">Partagez facilement, connectez-vous en toute confiance</string>
+    <string name="powered_by">Propulsé par</string>
+    <string name="intro_1_new">Transférez des données et partagez facilement des fichiers entre appareils Android</string>
+    <string name="intro_2_new">Transférez toutes vos données de l\'ancien téléphone vers le nouveau en toute sécurité</string>
+    <string name="intro_3_new">Envoyez de gros fichiers en créant simplement un lien, simple et facile</string>
+    <string name="upgrate_to_premium">Passer à Premium</string>
+    <string name="features">Fonctionnalités</string>
+    <string name="basic">De base</string>
+    <string name="pro">Pro</string>
+    <string name="ads_free">Sans publicités</string>
+    <string name="unlimited_data_transfer">Transfert de données illimité</string>
+    <string name="weekly">Hebdomadaire</string>
+    <string name="monthly">Mensuel</string>
+    <string name="yearly">Annuel</string>
+    <string name="lifetime">À vie</string>
+    <string name="most_popular">Le plus populaire</string>
+    <string name="continue_with_ads">Continuer avec des publicités</string>
+    <string name="with_subscription_you_get">Avec un abonnement, vous bénéficiez d\'un accès illimité à toutes les fonctionnalités payantes et les publicités seront supprimées. Le paiement sera débité de votre compte Google Play à la confirmation de l\'achat. L\'abonnement se renouvelle automatiquement sauf s\'il est annulé au moins 24 heures avant la fin de la période en cours. Gérez ou annulez votre abonnement à tout moment dans les paramètres de votre compte Google Play.</string>
+    <string name="cancel_subscription">Annuler l’abonnement</string>
+
+
+    <string name="used">Utilisé</string>
+    <string name="check_sending_and_receiving_history">Vérifier l\'historique des envois et réceptions</string>
+    <string name="choose_languages_as_you_want">Choisissez les langues comme vous le souhaitez</string>
+    <string name="choose_theme_as_you_want">Choisissez le thème comme vous le souhaitez</string>
+    <string name="rate_our_app_on_playstore">Évaluez notre application sur le Playstore</string>
+    <string name="share_the_smart_switch_with_your_friends">Partagez le commutateur intelligent avec vos amis</string>
+    <string name="read_our_privacy_policy_document">Lisez notre document de politique de confidentialité</string>
+    <string name="more_app">Plus d\'applications</string>
+    <string name="explore_more_app_from_our_store">Découvrez plus d\'applications de notre magasin</string>
+    <string name="add_is_expected">Un annonce en plein écran devrait apparaître</string>
+
+    <string name="no_doc_found">Aucun document trouvé</string>
+    <string name="rate_us">Évaluez-nous</string>
+    <string name="transfer_files_old_to_new">Transférer les fichiers de l\'ancien vers le nouveau</string>
+    <string name="receive_from_old_device">Recevoir depuis l\'ancien appareil</string>
+    <string name="data_size">Taille des données</string>
+    <string name="exit">Quitter</string>
+
+    <string name="upgrade_to_premium">Passer à Premium</string>
+    <string name="exit_app">Quitter l\'application</string>
+    <string name="are_you_sure_you_want_to_exit">Êtes-vous sûr de vouloir quitter ?</string>
+    <string name="storage_permission_Text">Veuillez autoriser l\'accès à vos photos, vidéos, fichiers audio, documents, applications et contacts pour que Smart Switch fonctionne correctement</string>
+    <string name="all_permission_allow">Autoriser toutes les autorisations</string>
+    <string name="unlock_your_full_potential">Débloquez tout votre\npotentiel</string>
+    <string name="you_can_try_the_premium_version_for_3_days_for_free_after_that_it_s"> Vous pouvez essayer la version premium pendant <b><font color="#747B81">3 jours</font></b> gratuitement ! Après cela, ce sera</string>
+    <string name="feel_free_to_cancel_anytime">Vous pouvez annuler à tout moment.</string>
+    <string name="features_you_get">Fonctionnalités incluses</string>
+    <string name="send_and_receive_files">Envoyer et recevoir des\n fichiers</string>
+    <string name="all_type_of_data">Tous types de données</string>
+    <string name="unlimited_transfer">Transfert illimité</string>
+    <string name="quick_file_transfer">Transfert rapide de fichiers</string>
+    <string name="no_ads">Sans publicité</string>
+    <string name="vip_support">Support VIP</string>
+    <string name="no_payment_now">Aucun paiement maintenant</string>
+    <string name="try_premium_for_free">Essayer Premium gratuitement</string>
+    <string name="just">juste</string>
+    <string name="aweek">une semaine.</string>
+    <string name="price_unavailable">prix indisponible</string>
+    <string name="receive_files">Recevoir des fichiers</string>
+    <string name="here_s_your_reward">Voici votre récompense</string>
+    <string name="to_get_your_reward_upgrade_to_premium_watch_a_video_ad_to_unlock">Pour obtenir votre récompense, passez à Premium\n et regardez une publicité vidéo pour la débloquer</string>
+    <string name="upgrade_now">Mettre à niveau maintenant</string>
+    <string name="watch_ad">Regarder la pub</string>
+    <string name="send_files">Envoyer des fichiers</string>
+</resources>

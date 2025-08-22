@@ -1,0 +1,25 @@
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Background Circle (Unused Storage) -->
+    <item android:id="@android:id/background">
+        <shape android:shape="ring"
+            android:useLevel="false"
+            android:innerRadiusRatio="3"
+            android:thicknessRatio="20"
+            android:angle="360">
+            <solid android:color="#FFFFFF"/>
+        </shape>
+    </item>
+
+    <!-- Foreground Circle (Used Storage) -->
+    <item android:id="@android:id/progress">
+        <shape android:shape="ring"
+            android:useLevel="true"
+            android:innerRadiusRatio="3"
+            android:thicknessRatio="20"
+            android:angle="360">
+            <solid android:color="#67C6FF"/>
+        </shape>
+    </item>
+
+</layer-list>

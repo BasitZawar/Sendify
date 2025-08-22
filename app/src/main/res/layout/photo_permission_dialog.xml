@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:backgroundTint="@color/white"
+    android:paddingVertical="@dimen/_10sdp"
+    android:background="@drawable/background_permission_card">
+
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/cancel_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:scaleType="centerInside"
+            android:adjustViewBounds="true"
+            android:padding="@dimen/_10sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:src="@drawable/ic_cancel"
+            android:layout_gravity="end"/>
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/photoIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_photo"
+            android:scaleType="centerInside"
+            android:adjustViewBounds="true"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:paddingVertical="@dimen/_28sdp"
+            android:layout_gravity="center_horizontal"/>
+
+        <TextView
+            android:id="@+id/tvPhoto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="@string/allow_photo"
+            android:textSize="@dimen/_16ssp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/photoIcon"
+            style="@style/mediumTextViewStyle" />
+
+        <TextView
+            android:id="@+id/tvDespPhoto"
+            android:layout_width="0dp"
+            android:layout_marginHorizontal="@dimen/_16sdp"
+
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvPhoto"
+            android:textSize="@dimen/_12ssp"
+            android:gravity="center_horizontal"
+            style="@style/RegularTextViewStyle"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:text="@string/storage_permission_Text"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/allowBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="@dimen/_70sdp"
+                android:paddingVertical="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_gravity="center_horizontal"
+                android:backgroundTint="@color/colorPrimary"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvDespPhoto"
+                android:textAllCaps="false"
+                android:letterSpacing="0"
+                android:text="@string/allow"
+                android:textSize="@dimen/_12ssp"
+                app:rippleColor="?attr/colorControlHighlight"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

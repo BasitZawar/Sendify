@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:paddingVertical="@dimen/_15sdp"
+    android:backgroundTint="@color/white"
+    android:background="@drawable/permission_card_bg">
+
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tvSend"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/sending_files"
+        android:textColor="@color/sub_heading_text_color"
+       android:textSize="@dimen/_18ssp"
+        android:layout_marginTop="@dimen/_15sdp"
+        android:fontFamily="@font/roboto_bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tvSubSend"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/do_you_want_to_cancel"
+        android:textColor="@color/sub_heading_text_color"
+        android:layout_marginTop="@dimen/_12sdp"
+        android:textSize="@dimen/_14ssp"
+        android:fontFamily="@font/roboto_medium"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvSend"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/noBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/Widget.Material3.Button.OutlinedButton"
+        app:strokeColor="@color/colorPrimary"
+        android:text="@string/no"
+        android:textColor="@color/skip_color"
+        app:rippleColor="@color/ripple_color_card"
+        android:textSize="@dimen/_12ssp"
+        android:paddingVertical="@dimen/_8sdp"
+        app:strokeWidth="@dimen/_1sdp"
+        android:paddingHorizontal="@dimen/_40sdp"
+        android:layout_marginStart="@dimen/_25sdp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvSubSend"
+        android:layout_marginTop="@dimen/_15sdp"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/yesBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/yes"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_12ssp"
+        android:backgroundTint="@color/colorPrimary"
+        android:layout_marginEnd="@dimen/_25sdp"
+        android:paddingVertical="@dimen/_8sdp"
+        app:rippleColor="@color/ripple_color"
+        android:paddingHorizontal="@dimen/_40sdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvSubSend"
+        android:layout_marginTop="@dimen/_15sdp"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

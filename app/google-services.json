@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "689741681390",
+    "project_id": "phone-clone-1a3f6",
+    "storage_bucket": "phone-clone-1a3f6.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:689741681390:android:2926a6b910931dd514d9ff",
+        "android_client_info": {
+          "package_name": "com.phoneclone.quickshare.sendanywhere.smartswitch.mobiletransfer.sendit"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBJM6iK_cHnu5j0hPoLssPjFTZFV-35MJM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

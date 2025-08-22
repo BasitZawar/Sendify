@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/_8sdp"
+    android:background="@drawable/permission_card_bg"
+    android:backgroundTint="@color/white"
+    android:paddingHorizontal="@dimen/_8sdp"
+    android:paddingVertical="@dimen/_12sdp">
+
+    <FrameLayout
+        android:id="@+id/frameLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        >
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/imageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/app_name"
+            android:padding="@dimen/_1sdp"
+            android:scaleType="center"
+            app:shapeAppearanceOverlay="@style/ShapeableImageView3" />
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/videoIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_play"
+            android:visibility="gone"
+            />
+
+    </FrameLayout>
+
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginHorizontal="@dimen/_8sdp"
+        android:layout_toStartOf="@id/checkbox"
+        android:layout_toEndOf="@id/frameLayout"
+        android:orientation="vertical">
+
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/mainTextView"
+            style="@style/RegularTextViewStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:textSize="@dimen/_13ssp" />
+
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/subTextView"
+            style="@style/RegularTextViewStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_4sdp"
+            android:textColor="@color/sub_text_color"
+            android:textSize="@dimen/_11ssp" />
+
+
+    </LinearLayout>
+
+
+    <CheckBox
+        android:id="@+id/checkbox"
+        android:layout_width="@dimen/_24sdp"
+        android:layout_height="@dimen/_24sdp"
+        android:scaleX="0.8"
+        android:scaleY="0.8"
+        android:layout_alignParentEnd="true"
+        android:background="@drawable/uncheck_circle"
+        android:layout_centerVertical="true"
+        android:button="@null" />
+
+</RelativeLayout>

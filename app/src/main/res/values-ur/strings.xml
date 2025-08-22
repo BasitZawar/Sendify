@@ -1,0 +1,395 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">اسمارٹ سوئچ</string>
+    <string name="hello_blank_fragment">ہیلو خالی فریگمنٹ</string>
+
+    <!-- Splash Screen -->
+    <string name="quickly_share_files_and_copy_data_between_devices_simple_and_fast">فائلوں کو تیزی سے شیئر کریں اور ڈیوائسز کے درمیان ڈیٹا کو کاپی کریں۔ سادہ اور تیز!</string>
+    <string name="get_started">شروع کریں</string>
+
+    <!-- Permission Screen -->
+    <string name="smart_transfer_uses_these_permissions">اسمارٹ ٹرانسفر یہ \n<small>اجازتیں</small> استعمال کرتا ہے!</string>
+    <string name="location_service">مقام کی خدمت</string>
+    <string name="allow_location_access_to_find_nearby_devices">قریبی ڈیوائسز تلاش کرنے کے لئے مقام تک رسائی کی اجازت دیں۔</string>
+    <string name="allow">اجازت دیں</string>
+    <string name="allowed">اجازت دی گئی</string>
+    <string name="nearby_devices">قریبی ڈیوائسز</string>
+    <string name="find_nearby_devices_using_wi_fi_or_bluetooth">Wi-Fi یا بلوٹوتھ کے ذریعے قریبی ڈیوائسز تلاش کریں</string>
+    <string name="file_access">فائل تک رسائی</string>
+    <string name="allow_storage_access_to_send_and_receive_files">فائلیں بھیجنے اور وصول کرنے کے لئے اسٹوریج تک رسائی کی اجازت دیں۔</string>
+    <string name="skip">نظرانداز کریں</string>
+    <string name="please_allow_all_permissions">براہ کرم تمام اجازتیں دیں</string>
+    <string name="permission_required">اجازت درکار ہے</string>
+    <string name="the_app_needs_the_following_permissions">ایپ کو صحیح طریقے سے کام کرنے کے لئے درج ذیل اجازتوں کی ضرورت ہے</string>
+    <string name="please_grant_these_permissions">براہ کرم یہ اجازتیں دیں</string>
+    <string name="grant">دے دیں</string>
+    <string name="cancel">منسوخ کریں</string>
+    <string name="permission_denied">اجازت مسترد</string>
+    <string name="some_permissions_are_permanently_denied">کچھ اجازتیں مستقل طور پر مسترد کر دی گئی ہیں۔ آپ انہیں ایپ کی سیٹنگز میں چالو کر سکتے ہیں۔</string>
+    <string name="go_to_settings">سیٹنگز میں جائیں</string>
+    <string name="tap_on_settings_to_enable_camera_for_intruder_selfies">سیٹنگز پر ٹیپ کریں تاکہ انٹروڈر سیلفیز کے لئے کیمرا چالو ہو سکے۔</string>
+    <string name="required_permissions">درکار اجازتیں</string>
+    <string name="tap_on_settings_to_enable_permission">اجازت چالو کرنے کے لئے سیٹنگز پر ٹیپ کریں۔</string>
+
+    <!-- Profile Screen -->
+    <string name="edit_profile">پروفائل میں ترمیم کریں</string>
+    <string name="enter_your_name">اپنا نام درج کریں</string>
+    <string name="select_avatar">آواتار منتخب کریں</string>
+    <string name="profile_image">پروفائل کی تصویر</string>
+    <string name="done">مکمل</string>
+    <string name="max_length_message">آپ زیادہ سے زیادہ %1$d حروف درج کر سکتے ہیں</string>
+
+    <!-- Error Screen -->
+    <string name="error_found">غلطی ملی!</string>
+    <string name="error">غلطی</string>
+
+    <!-- Feedback Screen -->
+    <string name="we_are_working_hard_for_better_user_n_experience">ہم بہتر صارف کے تجربے کے لئے محنت کر رہے ہیں۔</string>
+    <string name="we_d_greatly_appreciate_if_you_can_rate_us">ہمیں بہت خوشی ہو گی اگر آپ ہمیں درجہ دیں۔</string>
+    <string name="the_best_we_can_get">ہم جو بہترین حاصل کر سکتے ہیں:)</string>
+    <string name="feedback">آراء</string>
+
+    <string name="sad_title">انتہائی برا!!!</string>
+    <string name="sad_des">ہمیں بہتری کے لئے آپ کی آراء کی ضرورت ہے۔</string>
+    <string name="neutral_title">برا!</string>
+    <string name="neutral_des">ہمیں بہتری کے لئے آپ کی آراء کی ضرورت ہے۔</string>
+    <string name="happy_title">اوسط</string>
+    <string name="happy_des">ہمیں بہتری کے لئے آپ کی آراء کی ضرورت ہے۔</string>
+    <string name="funny_title">اچھا</string>
+    <string name="funny_des">ہم 5 ستارے کیسے حاصل کر سکتے ہیں؟</string>
+    <string name="excellent_title">ہمیں بھی آپ پسند ہیں!</string>
+    <string name="excellent_des">یوں ہی جاری رکھیں!</string>
+    <string name="feedback_submitted_rating">آراء جمع کرائی گئی! درجہ</string>
+
+    <!-- Setting Screen -->
+    <string name="setting">سیٹنگز</string>
+    <string name="history">تاریخ</string>
+    <string name="select_language">زبان منتخب کریں</string>
+    <string name="privacy_policy">پرائیویسی پالیسی</string>
+
+    <!-- Home Screen -->
+    <string name="phone_clone">فون کلون</string>
+    <string name="send">بھيجیں</string>
+    <string name="sent">بھجوایا گیا</string>
+    <string name="send_with_old_phone">پرانے فون کے ساتھ بھیجیں</string>
+    <string name="receiver">موصول کنندہ</string>
+    <string name="receive_with_old_phone">پرانے فون کے ساتھ وصول کریں</string>
+    <string name="more_feature">مزید خصوصیات</string>
+    <string name="videos">ویڈیوز</string>
+    <string name="photos">تصاویر</string>
+    <string name="audio">آڈیو</string>
+    <string name="documents">دستاویزات</string>
+    <string name="apps">ایپس</string>
+    <string name="contacts">رابطے</string>
+    <string name="total_space">کل جگہ</string>
+    <string name="free">مفت</string>
+
+    <!-- ========================================= A ============================================== -->
+    <string name="send_details">• دونوں ڈیوائسز کو ایک ہی Wi-Fi سے کنیکٹ کرنا یقینی بنائیں۔\n\n• وصول کنندہ سے کہیں کہ ڈیٹا وصول کرنا شروع کرے۔\n\n• پھر ڈیٹا بھیجنے کے لیے "Send Data" پر کلک کریں تاکہ فائلیں منتقل کی جا سکیں۔</string>
+    <string name="receive_details">• دونوں ڈیوائسز کو ایک ہی Wi-Fi سے کنیکٹ کرنا یقینی بنائیں۔\n\n• بھیجنے والے سے کہیں کہ ڈیٹا بھیجنا شروع کرے۔\n\n• پھر "Receive Data" پر کلک کریں تاکہ فائلیں وصول کی جا سکیں۔</string>
+
+    <string name="allow_contact">اپنے رابطوں کی اجازت دیں</string>
+    <string name="desp_contact">ہمیں بہتر تجربہ دینے کے لیے آپ کے رابطے کی ضرورت ہوگی</string>
+    <string name="allow_location">اپنی لوکیشن کی اجازت دیں</string>
+    <string name="desp_location">ہمیں بہتر تجربہ دینے کے لیے آپ کی لوکیشن کی ضرورت ہوگی</string>
+    <string name="allow_photo">اپنی تصویر کی اجازت دیں</string>
+    <string name="desp_photo">ہمیں بہتر تجربہ دینے کے لیے آپ کی تصویر کی ضرورت ہوگی</string>
+    <string name="allow_video">اپنی ویڈیو کی اجازت دیں</string>
+    <string name="desp_video">ہمیں بہتر تجربہ دینے کے لیے آپ کی ویڈیو کی ضرورت ہوگی</string>
+    <string name="allow_audio">اپنے آڈیو کی اجازت دیں</string>
+    <string name="desp_audio">ہمیں بہتر تجربہ دینے کے لیے آپ کی آڈیو کی ضرورت ہوگی</string>
+    <string name="allow_document">اپنے دستاویزات کی اجازت دیں</string>
+    <string name="desp_document">ہمیں بہتر تجربہ دینے کے لیے آپ کے دستاویزات کی ضرورت ہوگی</string>
+    <string name="allow_apps">اپنے ایپس کی اجازت دیں</string>
+    <string name="desp_app">ہمیں بہتر تجربہ دینے کے لیے آپ کے ایپس کی ضرورت ہوگی</string>
+
+    <string name="data_sending_is_in_progress">ڈیٹا بھیجا جا رہا ہے</string>
+    <string name="sending_data">ڈیٹا بھیجا جا رہا ہے</string>
+    <string name="allow_your_contact">اپنے رابطوں کی اجازت دیں</string>
+    <string name="installed_apps">انسٹال شدہ ایپس</string>
+    <string name="no_apps_found">کوئی ایپس نہیں ملی!</string>
+    <string name="no_audio_found">کوئی آڈیو نہیں ملی!</string>
+    <string name="transfer_contacts_files_photos_audios_videos_amp_more_data_with_one_click"><![CDATA[ایک کلک سے رابطے، فائلیں، تصاویر، آڈیو، ویڈیوز اور مزید ڈیٹا منتقل کریں۔]]></string>
+    <string name="new_phone">نیا فون</string>
+    <string name="old_phone">پرانا فون</string>
+    <string name="no_contact_found">کوئی رابطہ نہیں ملا!</string>
+    <string name="contact_permission">رابطہ کی اجازت</string>
+    <string name="give_access_to_contact_to_easily_transfer_data_between_your_devices_over_a_local_network_we_don_t_collect_or_upload_any_of_your_data_you_re_in_control_of_what_you_share">رابطہ تک رسائی دیں تاکہ آپ اپنے ڈیوائسز کے درمیان لوکل نیٹ ورک پر آسانی سے ڈیٹا منتقل کر سکیں۔ ہم آپ کا کوئی بھی ڈیٹا اکٹھا یا اپلوڈ نہیں کرتے۔ آپ جو کچھ شیئر کرتے ہیں اس پر آپ کا کنٹرول ہے۔</string>
+
+    <string name="no_files_found">کوئی فائلیں نہیں ملی!</string>
+    <string name="categories">زمرے</string>
+    <string name="send_data_directly">براہ راست ڈیٹا بھیجیں</string>
+    <string name="receive">وصول کریں</string>
+    <string name="received">وصول کر لیا گیا</string>
+    <string name="receive_data_easily">آسانی سے ڈیٹا وصول کریں</string>
+    <string name="transfer_contacts_files_photos_videos_amp_more_data_with_one_click"><![CDATA[ایک کلک سے رابطے، فائلیں، تصاویر، آڈیو، ویڈیوز اور مزید ڈیٹا منتقل کریں۔]]></string>
+    <string name="direct_transfer">براہ راست منتقلی</string>
+    <string name="albums">البمز</string>
+    <string name="discover_surrounding_devices_to_establish_a_connection">کنییکٹ کرنے کے لیے ارد گرد کے ڈیوائسز تلاش کریں</string>
+
+    <string name="allow_access_to_photos_videos_files_on_your_device">اپنے ڈیوائس پر تصاویر، ویڈیوز، فائلوں تک رسائی کی اجازت دیں</string>
+    <string name="Continue">جاری رکھیں</string>
+    <string name="no_photos_file_found">کوئی تصاویر فائل نہیں ملی!</string>
+    <string name="you_re_now_connected">آپ اب جڑ چکے ہیں۔</string>
+    <string name="how_it_works">یہ کیسے کام کرتا ہے۔</string>
+    <string name="waiting_for_the_connection">کنیکشن کا انتظار ہے</string>
+    <string name="nearby_device">قریب ترین ڈیوائس</string>
+    <string name="searching_your_nearby_device_make_sure_to_turn_on_its_wifi">آپ کی قریب ترین ڈیوائس تلاش کی جا رہی ہے۔ براہ کرم اس کا Wi-Fi آن کر کے ایک ہی Wi-Fi سے کنیکٹ ہونے کو یقینی بنائیں۔</string>
+    <string name="try_again">دوبارہ کوشش کریں</string>
+    <string name="select_data_to_send">بھیجنے کے لیے ڈیٹا منتخب کریں</string>
+    <string name="send_your_data_to_other_device">اپنا ڈیٹا دوسرے ڈیوائس پر بھیجیں</string>
+    <string name="profile">پروفائل</string>
+    <string name="language">زبان</string>
+    <string name="no_video_files_found">کوئی ویڈیو فائلیں نہیں ملی!</string>
+    <string name="device">ڈیوائس</string>
+    <string name="please_wait">براہ کرم انتظار کریں</string>
+    <string name="edit_icon">آئیکن ایڈیٹ کریں</string>
+    <string name="elie_john">ایلی جان</string>
+    <string name="avatar_image">آواتار کی تصویر</string>
+    <string name="spanish">ہسپانوی</string>
+    <string name="italian">اطالوی</string>
+    <string name="french">فرینچ</string>
+    <string name="arabic">عربی</string>
+    <string name="english">انگریزی</string>
+    <string name="japanese">جاپانی</string>
+    <string name="chinese">چینی</string>
+    <string name="german">جرمن</string>
+    <string name="hindi">ہندی</string>
+    <string name="urdu">اردو</string>
+    <string name="quick_transfer">فوری منتقلی</string>
+    <string name="australia">آسٹریلیا</string>
+    <string name="wifi_connectivity">Wi-Fi کنیکٹیویٹی</string>
+    <string name="history_check">تاریخ چیک کریں</string>
+    <string name="send_amp_receive"><![CDATA[بھیجیں اور وصول کریں]]></string>
+    <string name="transfer_your_data_from_one_ndevice_to_other">اپنے ڈیٹا کو ایک ڈیوائس سے دوسرے میں منتقل کریں۔</string>
+    <string name="share_multiple_types_of_files">متعدد قسم کی فائلیں شیئر کریں۔</string>
+    <string name="securely_transfer_files_between_devices_nconnected_to_same_wifi_network">ایک ہی Wi-Fi نیٹ ورک سے جڑے ڈیوائسز کے درمیان فائلیں محفوظ طریقے سے منتقل کریں۔</string>
+    <string name="seamlessly_clone_data_nbetween_phones">فونز کے درمیان ڈیٹا کو بغیر کسی رکاوٹ کے کلون کریں۔</string>
+    <string name="manage_your_send_and_nreceive_data_in_history">اپنے بھیجے اور وصول کیے گئے ڈیٹا کو تاریخ میں منظم کریں</string>
+    <string name="files">فائلیں</string>
+    <string name="are_you_sure_you_want_to_cancel_data_sending">کیا آپ واقعی ڈیٹا بھیجنا منسوخ کرنا چاہتے ہیں؟</string>
+    <string name="no">نہیں</string>
+    <string name="yes">ہاں</string>
+    <string name="oops_something_went_wrong_here">اوپس! یہاں کچھ غلط ہوگیا۔</string>
+    <string name="you_have_send_data_successfully">آپ نے ڈیٹا کامیابی سے بھیجا ہے!</string>
+    <string name="thankyou_for_sending_data">ڈیٹا بھیجنے کا شکریہ۔</string>
+    <string name="you_have_receive_data_successfully">آپ نے ڈیٹا کامیابی سے وصول کیا ہے!</string>
+    <string name="thankyou_for_receiving_data">ڈیٹا وصول کرنے کا شکریہ۔</string>
+
+    <!-- ========================================= B ============================================== -->
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">پہلا فریگمنٹ</string>
+    <string name="second_fragment_label">دوسرا فریگمنٹ</string>
+    <string name="next">آگے</string>
+    <string name="previous">پچھلا</string>
+
+    <string name="smart_transfer">اسمارٹ منتقلی</string>
+    <string name="allow_your_apps">اپنے ایپس کو اجازت دیں</string>
+    <string name="we_will_need_your_apps_to_give_you_n_better_experience">ہمیں آپ کے ایپس کی ضرورت ہوگی تاکہ ہم آپ کو بہتر تجربہ فراہم کر سکیں۔</string>
+
+    <string name="transfer_successful">منتقلی کامیاب!</string>
+    <string name="do_you_want_to_delete_all_the_files">کیا آپ تمام فائلز حذف کرنا چاہتے ہیں؟</string>
+    <string name="delete">حذف کریں</string>
+    <string name="some_files_are_selected">کچھ فائلز منتخب کی گئی ہیں</string>
+    <string name="do_you_want_to_go_back">کیا آپ واپس جانا چاہتے ہیں؟</string>
+    <string name="are_you_sure_you_want_to_go_back">کیا آپ پختہ طور پر واپس جانا چاہتے ہیں؟</string>
+    <string name="sent_successfully">کامیابی کے ساتھ بھیجا گیا</string>
+    <string name="you_have_sent_data">آپ نے ڈیٹا بھیجا ہے!</string>
+    <string name="you_have_received_data">آپ نے ڈیٹا وصول کیا ہے!</string>
+    <string name="received_successfully">کامیابی کے ساتھ وصول کیا گیا</string>
+    <string name="sending_files">فائلز بھیجی جا رہی ہیں</string>
+    <string name="do_you_want_to_cancel">کیا آپ منسوخ کرنا چاہتے ہیں؟</string>
+    <string name="device_found">آلہ ملا</string>
+    <string name="scan_for_other_device">دوسرے آلے کے لیے اسکین کریں</string>
+    <string name="search_for_other_devices">دوسرے آلات کے لیے تلاش کریں</string>
+
+    <string name="transfer_all_data_in_one_go">ایک ہی کوشش میں تمام ڈیٹا منتقل کریں!</string>
+    <string name="selected_files">منتخب فائلز</string>
+    <string name="item_deleted_successful">آئٹم کامیابی کے ساتھ حذف کر دیا گیا</string>
+    <string name="no_item_selected">کوئی آئٹم منتخب نہیں کی گئی</string>
+    <string name="selected_items_deleted">منتخب آئٹمز حذف کر دی گئی</string>
+    <string name="please_select_at_least_one_item_to_proceed">براہ کرم آگے بڑھنے کے لیے کم از کم ایک آئٹم منتخب کریں</string>
+
+    <string name="properties">خصوصیات</string>
+    <string name="modified_on">تبدیلی کی تاریخ</string>
+    <string name="modified">تبدیل شدہ</string>
+    <string name="size">سائز</string>
+    <string name="type">قسم</string>
+    <string name="location">مقام</string>
+    <string name="ok">ٹھیک ہے</string>
+    <string name="select_all">تمام منتخب کریں</string>
+    <string name="de_select_all">تمام منتخب نہ کریں</string>
+    <string name="title">عنوان</string>
+    <string name="artist">فنکار</string>
+    <string name="album">البلم</string>
+    <string name="unknown_title">انجان عنوان</string>
+    <string name="unknown_artist">انجان فنکار</string>
+    <string name="unknown_album">انجان البم</string>
+    <string name="unknown_app">انجان ایپ</string>
+    <string name="unknown_audio">انجان آڈیو</string>
+    <string name="unknown_contact">انجان رابطہ</string>
+    <string name="unknown_document">انجان دستاویز</string>
+    <string name="unknown_video">انجان ویڈیو</string>
+    <string name="unknown_photo">انجان تصویر</string>
+    <string name="name">نام</string>
+    <string name="contact_no">رابطہ نمبر</string>
+    <string name="item">آئٹم</string>
+    <string name="service_error">سروس کی خرابی</string>
+    <string name="unable_to_start_receiving_Please_try_again">وصول کرنا شروع نہیں کر سکا۔ براہ کرم دوبارہ کوشش کریں۔</string>
+
+    <string name="transfer_Starting">منتقلی شروع ہو رہی ہے</string>
+    <string name="transfer_is_starting_please_wait">منتقلی شروع ہو رہی ہے، براہ کرم انتظار کریں۔</string>
+
+    <string name="transfer_Cancelled">منتقلی منسوخ ہو گئی</string>
+    <string name="the_file_transfer_was_cancelled">فائل کی منتقلی منسوخ ہو گئی۔</string>
+
+    <string name="connection_timeout">کنکشن ٹائم آؤٹ</string>
+    <string name="the_connection_has_timed_out">کنکشن کا وقت ختم ہو گیا ہے۔ براہ کرم اپنے نیٹ ورک کو چیک کریں اور دوبارہ کوشش کریں۔</string>
+
+    <string name="enable_wifi">وائی فائی فعال کریں</string>
+    <string name="please_enable_Wifi_to_continue">براہ کرم جاری رکھنے کے لیے وائی فائی فعال کریں</string>
+
+    <string name="wifi_disabled">وائی فائی غیر فعال ہے</string>
+    <string name="wifi_must_be_enabled_to_continue">وائی فائی کو جاری رکھنے کے لیے فعال کرنا ضروری ہے۔ براہ کرم اسے فعال کریں اور دوبارہ کوشش کریں۔</string>
+
+    <string name="enable_gps">جی پی ایس فعال کریں</string>
+    <string name="please_enable_gps_to_continue">براہ کرم جاری رکھنے کے لیے جی پی ایس فعال کریں</string>
+
+    <string name="gps_disabled">جی پی ایس غیر فعال ہے</string>
+    <string name="gps_must_be_enabled_to_continue">جی پی ایس کو جاری رکھنے کے لیے فعال کرنا ضروری ہے۔ براہ کرم اسے فعال کریں اور دوبارہ کوشش کریں۔</string>
+
+    <string name="permissions_missing">اجازتیں غائب ہیں</string>
+    <string name="location_and_Nearby_permissions_must_be_granted_to_continue">مقام اور قریبی اجازتیں جاری رکھنے کے لیے دی جانی ضروری ہیں۔ براہ کرم انہیں دے کر دوبارہ کوشش کریں۔</string>
+
+    <string name="permission">اجازت</string>
+    <string name="please_enable_location_and_nearby_permission_to_continue">براہ کرم جاری رکھنے کے لیے مقام اور قریبی اجازت فعال کریں</string>
+    <string name="location_permission">مقام کی اجازت</string>
+    <string name="please_enable_location_permission_to_continue">براہ کرم جاری رکھنے کے لیے مقام کی اجازت فعال کریں</string>
+    <string name="connect_device_text">اس آلے سے جڑنے کے لیے %1$s پر ٹیپ کریں اور یہ یقینی بنائیں کہ آلہ ایک ہی وائی فائی سے جڑا ہو۔</string>
+
+    <string name="receiving_data">ڈیٹا وصول ہو رہا ہے</string>
+    <string name="data_receiving_is_in_progress">ڈیٹا وصولی کا عمل جاری ہے</string>
+
+    <string name="transfer_initialized">منتقلی شروع ہو چکی ہے</string>
+    <string name="transfer_has_been_initialized">منتقلی شروع ہو چکی ہے، کنکشن کا انتظار ہے۔</string>
+
+    <string name="receiver_not_found">موصول کنندہ نہیں ملا</string>
+    <string name="make_sure_the_receiver_has_started_receiving_on_their_device">یقینی بنائیں کہ موصول کنندہ نے اپنے آلے پر وصول کرنا شروع کر دیا ہو۔</string>
+
+    <string name="wifi_is_turned_off">وائی فائی بند ہے۔ براہ کرم وائی فائی کو فعال کریں۔</string>
+
+    <string name="transfer_failed">منتقلی ناکام ہوئی</string>
+    <string name="the_file_transfer_has_failed">فائل کی منتقلی ناکام ہو گئی۔ براہ کرم دوبارہ کوشش کریں۔</string>
+
+    <string name="wifi_is_disabled_Please_enable_wifi">وائی فائی غیر فعال ہے۔ براہ کرم وائی فائی فعال کریں۔</string>
+    <string name="gps_is_disabled_Please_enable_gps">جی پی ایس غیر فعال ہے۔ براہ کرم جی پی ایس فعال کریں۔</string>
+    <string name="location_permission_is_required">مقام کی اجازت درکار ہے۔ براہ کرم اجازت دیں۔</string>
+    <string name="this_is_old_phone">یہ پرانا فون ہے</string>
+    <string name="select_data_on_the_next_screen_to_transfer_from_your_old_phone_to_the_new_phone">اگلے اسکرین پر ڈیٹا منتخب کریں تاکہ آپ کے پرانے فون سے نئے فون میں منتقل کیا جا سکے۔</string>
+    <string name="or">یا</string>
+    <string name="this_is_new_phone">یہ نیا فون ہے</string>
+    <string name="select_data_on_the_next_screen_to_transfer_from_your_new_phone_to_the_old_phone">اگلے اسکرین پر ڈیٹا منتخب کریں تاکہ آپ کے نئے فون سے پرانے فون میں منتقل کیا جا سکے۔</string>
+
+    <string name="share">شیئر کریں</string>
+    <string name="media_type_photos">تصاویر</string>
+    <string name="media_type_videos">ویڈیوز</string>
+    <string name="media_type_audios">آڈیوز</string>
+    <string name="media_type_apps">ایپس</string>
+    <string name="media_type_contacts">رابطے</string>
+    <string name="media_type_documents">دستاویزات</string>
+    <string name="media_type_other">دوسرا</string>
+
+    <string name="heading1">فون کلون</string>
+    <string name="heading2">ڈیٹا ٹرانسفر</string>
+    <string name="heading3">وائی فائی ڈائریکٹ</string>
+
+    <string name="details1">اینڈرائیڈ فونز کے درمیان بغیر کسی رکاوٹ کے کلون کریں۔</string>
+    <string name="details2">آسانی سے ایک فون سے دوسرے فون پر ڈیٹا منتقل کریں۔</string>
+    <string name="details3">وائی فائی ڈائریکٹ کا استعمال کرتے ہوئے تیزی سے ڈیٹا منتقل کریں۔</string>
+    <string name="night_mode">نائٹ موڈ</string>
+
+    <string name="allow_notification">اطلاعات کی اجازت دیں</string>
+    <string name="you_will_need_notification_permission_for_nbetter_exprience">بہتر تجربے کے لیے آپ کو اطلاعات کی اجازت درکار ہوگی</string>
+    <string name="allow_storage">اسٹوریج کی اجازت دیں</string>
+    <string name="tap_on_settings_to_enable_required_permissions">ضروری اجازتوں کو فعال کرنے کے لیے سیٹنگز پر ٹیپ کریں</string>
+
+
+    <string name="go_to_premiun">پریمیم پر جائیں</string>
+    <string name="unlock_all_features">تمام خصوصیات کو انلاک کریں</string>
+    <string name="file_sending">فائل بھیجنا</string>
+    <string name="file_receiving">فائل وصول کرنا</string>
+    <string name="transfer_history">منتقلی کی تاریخ</string>
+    <string name="remove_ads">اشتہارات ہٹائیں</string>
+    <string name="best_offer">بہترین آفر</string>
+    <string name="life_time">تاحیات*</string>
+    <string name="start_free_trial">مفت آزمائش شروع کریں</string>
+    <string name="by_continue_you_agree_to_our_terms_amp_privacy_policy"><![CDATA[جاری رکھنے سے آپ ہماری شرائط و رازداری کی پالیسی سے اتفاق کرتے ہیں]]></string>
+    <string name="term_amp_conditions"><![CDATA[شرائط و ضوابط]]></string>
+
+
+    <string name="share_with_ease_connect_with_trust">آسانی سے شیئر کریں، اعتماد کے ساتھ جڑیں</string>
+    <string name="powered_by">چلایا گیا بذریعہ</string>
+    <string name="intro_1_new">ڈیٹا منتقل کریں، اینڈرائیڈ ڈیوائسز کے درمیان فائلیں آسانی سے شیئر کریں</string>
+    <string name="intro_2_new">اپنا تمام ڈیٹا پرانے فون سے نئے فون میں محفوظ طریقے سے منتقل کریں</string>
+    <string name="intro_3_new">صرف ایک لنک بنا کر بڑی فائلیں بھیجیں، آسان اور سادہ</string>
+    <string name="upgrate_to_premium">پریمیم میں اپگریڈ کریں</string>
+    <string name="features">خصوصیات</string>
+    <string name="basic">بنیادی</string>
+    <string name="pro">پرو</string>
+    <string name="ads_free">بغیر اشتہارات</string>
+    <string name="unlimited_data_transfer">لامحدود ڈیٹا منتقلی</string>
+    <string name="weekly">ہفتہ وار</string>
+    <string name="monthly">ماہانہ</string>
+    <string name="yearly">سالانہ</string>
+    <string name="lifetime">تاحیات</string>
+    <string name="most_popular">سب سے مقبول</string>
+    <string name="continue_with_ads">اشتہارات کے ساتھ جاری رکھیں</string>
+    <string name="with_subscription_you_get">سبسکرپشن کے ساتھ آپ کو تمام پریمیم خصوصیات تک لامحدود رسائی حاصل ہوگی اور اشتہارات ہٹا دیے جائیں گے۔ خریداری کی تصدیق پر ادائیگی آپ کے Google Play اکاؤنٹ سے کی جائے گی۔ سبسکرپشن خود بخود تجدید ہو جائے گا جب تک کہ موجودہ مدت کے اختتام سے کم از کم 24 گھنٹے پہلے منسوخ نہ کیا جائے۔ آپ اپنے Google Play اکاؤنٹ کی سیٹنگز میں کسی بھی وقت سبسکرپشن منظم یا منسوخ کر سکتے ہیں۔</string>
+    <string name="cancel_subscription">سبسکرپشن منسوخ کریں</string>
+
+    <string name="used">استعمال شدہ</string>
+    <string name="check_sending_and_receiving_history">بھیجنے اور وصول کرنے کی تاریخ چیک کریں</string>
+    <string name="choose_languages_as_you_want">اپنی مرضی سے زبانیں منتخب کریں</string>
+    <string name="choose_theme_as_you_want">اپنی مرضی سے تھیم منتخب کریں</string>
+    <string name="rate_our_app_on_playstore">پلے اسٹور پر ہمارا ایپ ریٹ کریں</string>
+    <string name="share_the_smart_switch_with_your_friends">اسمارٹ سوئچ اپنے دوستوں سے شیئر کریں</string>
+    <string name="read_our_privacy_policy_document">ہماری پرائیویسی پالیسی کی دستاویز پڑھیں</string>
+    <string name="more_app">مزید ایپس</string>
+    <string name="explore_more_app_from_our_store">ہمارے اسٹور سے مزید ایپس دریافت کریں</string>
+    <string name="add_is_expected">مکمل اسکرین اشتہار دکھائے جانے کی توقع ہے</string>
+
+
+    <string name="no_doc_found">کوئی دستاویز نہیں ملی</string>
+    <string name="rate_us">ہمیں درجہ دیں</string>
+    <string name="transfer_files_old_to_new">پرانے سے نئے ڈیوائس پر فائلز منتقل کریں</string>
+    <string name="receive_from_old_device">پرانے ڈیوائس سے وصول کریں</string>
+    <string name="data_size">ڈیٹا کا سائز</string>
+    <string name="exit">نکلیں</string>
+
+    <string name="upgrade_to_premium">پریمیم میں اپ گریڈ کریں</string>
+    <string name="exit_app">ایپ سے باہر نکلیں</string>
+    <string name="are_you_sure_you_want_to_exit">کیا آپ واقعی باہر نکلنا چاہتے ہیں؟</string>
+    <string name="storage_permission_Text">براہ کرم Smart Switch کو صحیح طریقے سے کام کرنے کے لیے اپنی تصاویر، ویڈیوز، آڈیوز، دستاویزات، ایپس اور روابط تک رسائی کی اجازت دیں</string>
+    <string name="all_permission_allow">تمام اجازتیں دیں</string>
+    <string name="unlock_your_full_potential">اپنی مکمل صلاحیت\nکھولیں</string>
+    <string name="you_can_try_the_premium_version_for_3_days_for_free_after_that_it_s"> آپ پریمیم ورژن کو <b><font color="#747B81">3 دن</font></b> کے لیے مفت آزما سکتے ہیں! اس کے بعد، یہ ہوگا</string>
+    <string name="feel_free_to_cancel_anytime">آپ کسی بھی وقت منسوخ کر سکتے ہیں۔</string>
+    <string name="features_you_get">خصوصیات جو آپ کو ملتی ہیں</string>
+    <string name="send_and_receive_files">فائلیں بھیجیں اور وصول کریں</string>
+    <string name="all_type_of_data">ہر قسم کا ڈیٹا</string>
+    <string name="unlimited_transfer">لامحدود منتقلی</string>
+    <string name="quick_file_transfer">فائلوں کی تیز منتقلی</string>
+    <string name="no_ads">بغیر اشتہارات</string>
+    <string name="vip_support">وی آئی پی سپورٹ</string>
+    <string name="no_payment_now">ابھی کوئی ادائیگی نہیں</string>
+    <string name="try_premium_for_free">پریمیم مفت آزمائیں</string>
+    <string name="just">صرف</string>
+    <string name="aweek">ایک ہفتہ۔</string>
+    <string name="price_unavailable">قیمت دستیاب نہیں</string>
+    <string name="receive_files">فائلیں وصول کریں</string>
+    <string name="here_s_your_reward">یہ رہا آپ کا انعام</string>
+    <string name="to_get_your_reward_upgrade_to_premium_watch_a_video_ad_to_unlock">اپنا انعام حاصل کرنے کے لیے پریمیم پر اپ گریڈ کریں\n اور انلاک کرنے کے لیے ویڈیو اشتہار دیکھیں</string>
+    <string name="upgrade_now">ابھی اپ گریڈ کریں</string>
+    <string name="watch_ad">اشتہار دیکھیں</string>
+    <string name="send_files">فائلیں بھیجیں</string>
+</resources>

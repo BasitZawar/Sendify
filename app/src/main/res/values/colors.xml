@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFF</color>
+    <color name="text_color">#FF000000</color>
+    <color name="sub_heading_text_color">#383838</color>
+    <color name="sub_text_color">#626262</color>
+    <color name="colorPrimary">#3993FE</color>
+    <color name="text_colors">#49454F</color>
+    <color name="grey">#E2E2E2</color>
+    <color name="black_grey">#000000</color>
+    <color name="white_grey">#F5F5F5</color>
+    <color name="lightGrey">#7E383838</color>
+    <color name="transparent">#00000000</color>
+    <color name="white_bg">#F6F7FB</color>
+    <color name="tab_colour">#1A4479F2</color>
+    <color name="black_sub_text">#4F4F4F</color>
+    <color name="allowed_bg">#D3EBFC</color>
+    <color name="grey_black">#989999</color>
+    <color name="skip_color">#A0A0A0</color>
+    <color name="cancel_color">#626272</color>
+    <color name="bottom_nav">#254479F2</color>
+    <color name="dialogBackgroundDark">#66000000</color>
+    <color name="dialogBackgroundLight">#99FFFFFF</color>
+    <color name="ripple_colorr">#66FFFFFF</color>
+    <color name="ripple_color_card">#4479F2</color>
+    <color name="splash_color">#434343</color>
+    <color name="ripple_color">#80FFFFFF</color>
+
+
+    <color name="grid_list_color">#F4F4F4</color>
+    <color name="grid_list_selected_color">#D9E5D5</color>
+
+    <color name="send_card_bg">#F3F9FE</color>
+    <color name="receive_card_bg">#F3F9FE</color>
+    <color name="premium_card_color">#EAEEFD</color>
+
+
+
+
+    <color name="gnt_blue">#1560FA</color>
+    <color name="bg_app">#0031bb</color>
+    <color name="new_dark_black">#152533</color>
+
+
+</resources>

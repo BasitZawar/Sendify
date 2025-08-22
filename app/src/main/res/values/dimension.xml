@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="card_corner_radius">@dimen/_8sdp</dimen>
+    <dimen name="fragment_horizontal_margin">@dimen/_16sdp</dimen>
+    <dimen name="vertical_list_item_width">@dimen/_50sdp</dimen>
+    <dimen name="vertical_list_item_height">@dimen/_50sdp</dimen>
+    <dimen name="checkbox_size">@dimen/_30sdp</dimen>
+    <dimen name="vertical_item_layout_start_margin">@dimen/_8sdp</dimen>
+    <dimen name="vertical_item_layout_end_margin">@dimen/_8sdp</dimen>
+    <dimen name="vertical_item_layout_top_margin">@dimen/_8sdp</dimen>
+    <dimen name="select_all_layout_top_margin">@dimen/_8sdp</dimen>
+    <dimen name="select_all_layout_horizontal_margin">@dimen/_8sdp</dimen>
+    <dimen name="media_fragments_recyclerview_top_margin">@dimen/_16sdp</dimen>
+    <dimen name="dialog_width">@dimen/_280sdp</dimen>
+    <dimen name="dialog_height">@dimen/_370sdp</dimen>
+    <dimen name="dot_margin2">@dimen/_2sdp</dimen>
+    <dimen name="button_width">@dimen/_87sdp</dimen>
+    <dimen name="button_height">@dimen/_35sdp</dimen>
+
+</resources>

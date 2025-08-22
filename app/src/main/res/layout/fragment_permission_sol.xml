@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/white"
+    tools:context=".presentation.PermissionSolFragment">
+
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/skipButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/white"
+        android:text="@string/skip"
+        android:layout_margin="@dimen/_8sdp"
+        android:textAllCaps="false"
+        app:rippleColor="@color/ripple_color"
+        android:textColor="@color/sub_heading_text_color"
+        android:textSize="@dimen/_10ssp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        />
+
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/permissionImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_permission_screen"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="@dimen/_20sdp" />
+
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/locationCard"
+        android:backgroundTint="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:paddingVertical="@dimen/_12sdp"
+        android:background="@drawable/permission_card_bg"
+        android:layout_marginTop="@dimen/_18sdp"
+        android:layout_marginHorizontal="@dimen/_10sdp"
+        app:layout_constraintTop_toBottomOf="@id/permissionImage"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/locationIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_location"
+            android:layout_marginStart="@dimen/_6sdp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/locationTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/location_service"
+            android:fontFamily="@font/roboto_medium"
+            android:textSize="@dimen/_12ssp"
+            android:textColor="@color/black_grey"
+            app:layout_constraintTop_toTopOf="@id/locationIcon"
+            app:layout_constraintStart_toEndOf="@id/locationIcon"
+            app:layout_constraintEnd_toStartOf="@id/locationAllowButton"
+            android:layout_marginHorizontal="@dimen/_8sdp" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/locationDesc"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_8sdp"
+            android:fontFamily="@font/roboto"
+            android:text="@string/allow_location_access_to_find_nearby_devices"
+            android:textColor="@color/black_sub_text"
+            android:textSize="@dimen/_10ssp"
+            app:layout_constraintStart_toEndOf="@id/locationIcon"
+            app:layout_constraintTop_toBottomOf="@id/locationTitle"
+            app:layout_constraintEnd_toStartOf="@id/locationAllowButton"
+            />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/locationAllowButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="@dimen/_25sdp"
+            android:backgroundTint="@color/allowed_bg"
+            android:text="@string/allow"
+            android:layout_marginEnd="@dimen/_8sdp"
+            android:textAllCaps="false"
+            app:rippleColor="@color/ripple_color"
+            android:textColor="@color/sub_heading_text_color"
+            android:textSize="@dimen/_10ssp"
+            app:layout_constraintTop_toTopOf="@id/locationIcon"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/nearbyCard"
+        android:backgroundTint="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/_8sdp"
+        android:paddingVertical="@dimen/_12sdp"
+        android:background="@drawable/permission_card_bg"
+        android:layout_marginHorizontal="@dimen/_10sdp"
+        app:layout_constraintTop_toBottomOf="@id/locationCard"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/nearbyIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_6sdp"
+            android:src="@drawable/ic_nearby"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/nearbyTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/nearby_devices"
+            android:fontFamily="@font/roboto_medium"
+            android:textColor="@color/black_grey"
+            android:textSize="@dimen/_12ssp"
+            app:layout_constraintTop_toTopOf="@id/nearbyIcon"
+            app:layout_constraintStart_toEndOf="@id/nearbyIcon"
+            android:layout_marginHorizontal="@dimen/_8sdp"
+            app:layout_constraintEnd_toStartOf="@id/nearbyAllowButton"
+            />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/nearbyDesc"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto"
+            android:text="@string/find_nearby_devices_using_wi_fi_or_bluetooth"
+            android:textColor="@color/black_sub_text"
+            android:textSize="@dimen/_10ssp"
+            android:layout_marginHorizontal="@dimen/_8sdp"
+            app:layout_constraintTop_toBottomOf="@id/nearbyTitle"
+            app:layout_constraintStart_toEndOf="@id/nearbyIcon"
+            app:layout_constraintEnd_toStartOf="@id/nearbyAllowButton" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/nearbyAllowButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/allowed_bg"
+            android:text="@string/allow"
+            android:paddingHorizontal="@dimen/_25sdp"
+            android:layout_marginEnd="@dimen/_8sdp"
+            android:textAllCaps="false"
+            app:rippleColor="@color/ripple_color"
+            android:textColor="@color/sub_heading_text_color"
+            android:textSize="@dimen/_10ssp"
+            app:layout_constraintTop_toTopOf="@id/nearbyIcon"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/storageCard"
+        android:backgroundTint="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/_8sdp"
+        android:paddingVertical="@dimen/_12sdp"
+        android:background="@drawable/permission_card_bg"
+        android:layout_marginHorizontal="@dimen/_10sdp"
+        app:layout_constraintTop_toBottomOf="@id/nearbyCard"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/storageIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_6sdp"
+            android:src="@drawable/ic_file"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/storageTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/file_access"
+            android:fontFamily="@font/roboto_medium"
+            android:textColor="@color/black_grey"
+            android:textSize="@dimen/_12ssp"
+            app:layout_constraintTop_toTopOf="@id/storageIcon"
+            app:layout_constraintStart_toEndOf="@id/storageIcon"
+            android:layout_marginHorizontal="@dimen/_8sdp"
+            app:layout_constraintEnd_toStartOf="@id/storageAllowButton"
+            />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/storageDesc"
+            android:fontFamily="@font/roboto"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/allow_storage_access_to_send_and_receive_files"
+            android:textColor="@color/black_sub_text"
+            android:textSize="@dimen/_10ssp"
+            android:layout_marginHorizontal="@dimen/_8sdp"
+            app:layout_constraintTop_toBottomOf="@id/storageTitle"
+            app:layout_constraintStart_toEndOf="@id/storageIcon"
+            app:layout_constraintEnd_toStartOf="@id/storageAllowButton"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/storageAllowButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/allowed_bg"
+            android:paddingHorizontal="@dimen/_25sdp"
+            android:text="@string/allow"
+            android:layout_marginEnd="@dimen/_8sdp"
+            android:textAllCaps="false"
+            android:textColor="@color/sub_heading_text_color"
+            android:textSize="@dimen/_10ssp"
+            app:rippleColor="@color/ripple_color"
+            app:layout_constraintTop_toTopOf="@id/storageIcon"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/getStartedBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/colorPrimary"
+        android:fontFamily="@font/poppins_semibold"
+        android:paddingHorizontal="@dimen/_70sdp"
+        android:paddingVertical="@dimen/_10sdp"
+        android:text="@string/all_permission_allow"
+        app:rippleColor="@color/ripple_color"
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_10ssp"
+        app:layout_constraintBottom_toTopOf="@id/skipButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

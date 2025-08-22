@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Empty Star -->
+    <item>
+        <bitmap
+            android:src="@drawable/rating_star"
+            android:gravity="center"/>
+    </item>
+
+    <!-- Filled Star -->
+    <item>
+        <bitmap
+            android:src="@drawable/rating_filled__star"
+            android:gravity="center"/>
+    </item>
+</layer-list>
