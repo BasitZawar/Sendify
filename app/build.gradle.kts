@@ -18,8 +18,8 @@ android {
         applicationId = "com.phoneclone.quickshare.sendanywhere.smartswitch.mobiletransfer.sendit"
         minSdk = 28
         targetSdk = 35
-        versionCode = 9
-        versionName = "1.9"
+        versionCode = 11
+        versionName = "2.1"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         setProperty(
@@ -28,12 +28,12 @@ android {
         )
     }
     signingConfigs {
-        create("release") {
-            storeFile = file("G:\\Sendify\\Sendify\\app\\sendit.jks")
-            storePassword = "sendit"
-            keyAlias = "sendit"
-            keyPassword = "sendit"
-        }
+//        create("release") {
+//            storeFile = file("G:\\Sendify\\Sendify\\app\\sendit.jks")
+//            storePassword = "sendit"
+//            keyAlias = "sendit"
+//            keyPassword = "sendit"
+//        }
     }
     buildTypes {
         debug {
@@ -60,7 +60,7 @@ android {
 
         release {
             isDebuggable = false
-            signingConfig = signingConfigs.getByName("release")
+//            signingConfig = signingConfigs.getByName("release")
             resValue("string", "admob_app_id", "ca-app-pub-2493449427846338~1728402649")
             resValue("string", "app_open_on_resume", "ca-app-pub-2493449427846338/6383939312")
             resValue("string", "app_open_splash", "ca-app-pub-2493449427846338/4715634427")
