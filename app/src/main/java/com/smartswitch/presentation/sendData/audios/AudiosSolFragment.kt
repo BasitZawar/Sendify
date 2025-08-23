@@ -92,7 +92,7 @@ class AudiosSolFragment : Fragment(), OnMediaItemClickCallbackForSelectAll ,OnMe
         lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.isFetchingComplete.collect { isComplete ->
-                    Log.d("refresh_behav","observelist")
+                    Log.d("refresh_behav","observelist isComplete : $isComplete")
                     updateUi(isComplete)
                 }
             }

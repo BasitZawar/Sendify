@@ -6,7 +6,6 @@ import javax.inject.Inject
 
 class PhotosUseCase @Inject constructor(private val mediaRepository: MediaRepository) {
 
-
     suspend  fun getImages(onCompleteFetch: (list: List<MediaInfoModel>) -> Unit) {
         return mediaRepository.getAllPhotos(onCompleteFetch)
     }

@@ -1,3 +1,5 @@
+@file:OptIn(InternalCoroutinesApi::class)
+
 package com.smartswitch
 
 import android.content.ActivityNotFoundException
@@ -47,6 +49,7 @@ import com.smartswitch.utils.extensions.isAlive
 import com.smartswitch.utils.extensions.setSafeOnClickListener
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.InternalCoroutinesApi
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.suspendCancellableCoroutine
@@ -182,6 +185,7 @@ class PremiumFragment : Fragment(), SubscriptionPurchaseInterface {
             }
         }
     }
+/*
     private fun getProducts() {
         lifecycleScope.launch {
             try {
@@ -201,6 +205,53 @@ class PremiumFragment : Fragment(), SubscriptionPurchaseInterface {
                         continuation.resume(
                             billingResult to productDetailsResult.productDetailsList
                         )
+                    }
+                }
+
+                val (billingResult, productDetails) = result
+
+                if (billingResult.responseCode == BillingClient.BillingResponseCode.OK) {
+                    productDetails?.let { details ->
+                        Log.d(TAG, "Fetched products: ${details.map { it.productId }}")
+                        productDetailsList.clear()
+                        productDetailsList.addAll(details)
+                        withContext(Dispatchers.Main) {
+                            updateWeeklyPrice()
+                        }
+                    }
+                } else {
+                    Log.e(TAG, "Product query failed: ${billingResult.debugMessage}")
+                }
+            } catch (e: Exception) {
+                Log.e(TAG, "Error querying products", e)
+            }
+        }
+    }
+*/
+    private fun getProducts() {
+        lifecycleScope.launch {
+            try {
+                val productList = listOf(
+                    QueryProductDetailsParams.Product.newBuilder()
+                        .setProductId("weekly_freetrial")
+                        .setProductType(BillingClient.ProductType.SUBS)
+                        .build()
+                )
+
+                val params = QueryProductDetailsParams.newBuilder()
+                    .setProductList(productList)
+                    .build()
+
+                val result = suspendCancellableCoroutine<Pair<BillingResult, List<ProductDetails>?>> { continuation ->
+                    billingClient?.queryProductDetailsAsync(params) { billingResult, productDetailsResult ->
+                        val token = continuation.tryResume(
+                            billingResult to productDetailsResult.productDetailsList
+                        )
+                        if (token != null) {
+                            continuation.completeResume(token)
+                        } else {
+                            Log.w(TAG, "Continuation already resumed — skipping extra callback")
+                        }
                     }
                 }
 

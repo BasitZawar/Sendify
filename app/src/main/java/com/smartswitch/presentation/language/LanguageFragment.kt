@@ -11,6 +11,7 @@ import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -35,6 +36,7 @@ import com.smartswitch.utils.extensions.isAlive
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
@@ -80,22 +82,27 @@ class LanguageFragment : Fragment() {
         binding.headerLayout.setSubtitle(requireContext().getLanguageData()[selectedPosition].txt)
 
 
-
         if (args.from == "splash") {
             toggleBackButton(false)
         } else {
             toggleBackButton(true)
         }
 
-
         isAlive { activityContext ->
             activityContext.actionBar?.setDisplayHomeAsUpEnabled(false)
 
-
             // Done button logic
-            Handler(Looper.getMainLooper()).postDelayed({
-                binding.btnDone.visibility = View.VISIBLE
-            }, 2000L)
+//            Handler(Looper.getMainLooper()).postDelayed({
+//                binding.btnDone.visibility = View.VISIBLE
+//            }, 2000L)
+
+            viewLifecycleOwner.lifecycleScope.launch {
+                delay(2000L)
+                if (_binding != null) {
+                    binding.btnDone.visibility = View.VISIBLE
+                }
+            }
+
             binding.btnDone.setOnClickListener {
                 Log.d("awaiskhan", "Done btn is clicked")
                 if ( PrefUtil(requireContext()).getBool("is_premium", false) || !InterstitialClass.isInternetAvailable(

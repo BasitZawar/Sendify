@@ -12,6 +12,7 @@ import android.widget.ProgressBar
 import androidx.core.app.ActivityCompat.invalidateOptionsMenu
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.google.android.gms.ads.AdError
 import com.google.android.gms.ads.AdLoader
@@ -76,6 +77,7 @@ class SplashSolFragment : Fragment() {
         }
     }
 
+/*
     private fun showNextProcedureData() {
         CoroutineScope(Dispatchers.Main).launch {
             val isPremium = withContext(Dispatchers.IO) {
@@ -94,6 +96,29 @@ class SplashSolFragment : Fragment() {
                 requestConsent()
                 Log.d("TEGSPLAH", "requestConsent delay")
 
+            }
+        }
+    }
+*/
+    private fun showNextProcedureData() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            val ctx = context ?: return@launch
+
+            val isPremium = withContext(Dispatchers.IO) {
+                PrefUtil(ctx).getBool("is_premium", false)
+            }
+
+            if (!isAdded || context == null) return@launch
+
+            if (isPremium) {
+                animateProgressBar(binding.progressBar, 3000)
+                delay(3000)
+                intentbutton()
+                Log.d("TEGSPLAH", "is_premium")
+            } else {
+                animateProgressBar(binding.progressBar, 16000)
+                requestConsent()
+                Log.d("TEGSPLAH", "requestConsent delay")
             }
         }
     }
@@ -133,8 +158,7 @@ class SplashSolFragment : Fragment() {
             }
         }
     }
-
-
+/*
     private fun requestConsent() {
         Log.d("TEGSPLAH", "requestConsent")
         googleMobileAdsConsentManager = GoogleMobileAdsConsentManager.getInstance(requireContext())
@@ -143,27 +167,41 @@ class SplashSolFragment : Fragment() {
                 Log.e("TESTSPLASH", "consentError:   ")
                 initializeMobileAdsSdkOther()
             }
-
-
             if (googleMobileAdsConsentManager.canRequestAds) {
-
                 initializeMobileAdsSdkOther()
-
-
             }
             if (googleMobileAdsConsentManager.isPrivacyOptionsRequired) {
                 // Regenerate the options menu to include a privacy setting.
                 invalidateOptionsMenu(requireActivity())
             }
         }
-
         if (googleMobileAdsConsentManager.canRequestAds) {
-
             initializeMobileAdsSdkOther()
-
         }
-
-
+    }
+*/
+    private fun requestConsent() {
+        Log.d("TEGSPLAH", "requestConsent")
+        val safeContext = context ?: return
+        val safeActivity = activity ?: return
+        googleMobileAdsConsentManager = GoogleMobileAdsConsentManager.getInstance(safeContext)
+        googleMobileAdsConsentManager.gatherConsent(safeActivity) { consentError ->
+            if (!isAdded || activity == null) return@gatherConsent
+            if (consentError != null) {
+                Log.e("TESTSPLASH", "consentError: ${consentError.message}")
+                initializeMobileAdsSdkOther()
+            }
+            if (googleMobileAdsConsentManager.canRequestAds) {
+                initializeMobileAdsSdkOther()
+            }
+            if (googleMobileAdsConsentManager.isPrivacyOptionsRequired) {
+                invalidateOptionsMenu(requireActivity())
+            }
+        }
+        // You may want to remove this block, as it could double-initialize
+        if (googleMobileAdsConsentManager.canRequestAds) {
+            initializeMobileAdsSdkOther()
+        }
     }
 
 
@@ -187,34 +225,66 @@ class SplashSolFragment : Fragment() {
 
     }
 
+//    private fun initializeMobileAdsSdkOther() {
+//        if (isMobileAdsInitializeCalled.getAndSet(true)) {
+//            return
+//        }
+//        if (PrefUtil(requireContext()).getBool(
+//                "is_premium",
+//                false
+//            )
+//        ) {
+//            intentbutton()
+//            Log.d("TEGSPLAH", "is_premium2")
+//        } else {
+//
+//            loadNativeLangAd(getString(R.string.language_screen_native))
+//            loadSplashOpenAd()
+//            CoroutineScope(Dispatchers.Main).launch {
+//                Log.d("TEGSPLAH", "after loadSplashOpenAd")
+//                delay(16000)
+//                Log.d("TEGSPLAH", "after 16 sec")
+//                if (!isAdded) return@launch
+//                if (isAdLoaded) {
+//                    Log.e("TESTSPLASH", "after 16 sec")
+//                    Log.d("TEGSPLAH", "after 16 sec")
+//                    showSplashOpenAd()
+//                } else {
+//                    // If the ad is not loaded after 15 seconds, proceed with intentbutton
+//                    intentbutton()
+//                    Log.d("TEGSPLAH", "ad is not loaded:   ")
+//                }
+//            }
+//        }
+//    }
     private fun initializeMobileAdsSdkOther() {
         if (isMobileAdsInitializeCalled.getAndSet(true)) {
             return
         }
-        if (PrefUtil(requireContext()).getBool(
-                "is_premium",
-                false
-            )
-        ) {
+
+        val ctx = context ?: return
+
+        if (PrefUtil(ctx).getBool("is_premium", false)) {
             intentbutton()
             Log.d("TEGSPLAH", "is_premium2")
         } else {
-
             loadNativeLangAd(getString(R.string.language_screen_native))
             loadSplashOpenAd()
-            CoroutineScope(Dispatchers.Main).launch {
+
+            viewLifecycleOwner.lifecycleScope.launch {
                 Log.d("TEGSPLAH", "after loadSplashOpenAd")
                 delay(16000)
                 Log.d("TEGSPLAH", "after 16 sec")
-                if (!isAdded) return@launch
+
+                if (!isAdded || context == null) return@launch
+
                 if (isAdLoaded) {
                     Log.e("TESTSPLASH", "after 16 sec")
                     Log.d("TEGSPLAH", "after 16 sec")
                     showSplashOpenAd()
                 } else {
-                    // If the ad is not loaded after 15 seconds, proceed with intentbutton
                     intentbutton()
-                    Log.d("TEGSPLAH", "ad is not loaded:   ")
+                    Log.d("TEGSPLAH", "ad is not loaded")
                 }
             }
         }

@@ -263,6 +263,7 @@ class MediaSolFragment : Fragment(), OnMediaItemClickCallback {
         updateSendBtnUI()
     }
 
+/*
     private fun updateSendBtnUI() {
         if (getSelectedMediaListSize() > 0 || getSelectedContactsListSize() > 0) {
             binding.sendButton.enable()
@@ -293,4 +294,31 @@ class MediaSolFragment : Fragment(), OnMediaItemClickCallback {
 
         }
     }
+*/
+    private fun updateSendBtnUI() {
+        val safeBinding = _binding ?: return
+
+        if (getSelectedMediaListSize() > 0 || getSelectedContactsListSize() > 0) {
+            safeBinding.sendButton.enable()
+            safeBinding.sendButton.visible()
+            safeBinding.selectedTextView.text =
+                "${getSelectedMediaListSize() + getSelectedContactsListSize()} ${getString(R.string.files)} / ${getTotalSize()}"
+        } else {
+            safeBinding.sendButton.disable()
+            safeBinding.sendButton.gone()
+            safeBinding.selectedTextView.text =
+                "${getSelectedMediaListSize() + getSelectedContactsListSize()} ${getString(R.string.files)} / ${getTotalSize()}"
+        }
+
+        safeBinding.selectedTextView.setOnClickListener {
+            val mediaList = SelectedListManager.getSelectedMediaList()
+            val contactList = SelectedListManager.getSelectedContactsList()
+
+            for (i in mediaList) {
+                Log.d("checking", i.toString())
+            }
+            Log.d("checking", "============================================================")
+        }
+    }
+
 }

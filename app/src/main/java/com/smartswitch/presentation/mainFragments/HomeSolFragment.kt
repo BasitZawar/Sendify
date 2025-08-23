@@ -140,8 +140,19 @@ class HomeSolFragment : Fragment() {
                 )
             }
 
-            binding.historyBtn.setSafeOnClickListener {
+           /* binding.historyBtn.setSafeOnClickListener {
                 findNavController().navigate(R.id.action_homeSendifyFragment_to_historySendifyFragment)
+            }*/
+
+            binding.historyBtn.setSafeOnClickListener {
+                val navController = findNavController()
+                val currentId = navController.currentDestination?.id
+
+                if (currentId == R.id.homeSendifyFragment) {
+                    navController.navigate(R.id.action_homeSendifyFragment_to_historySendifyFragment)
+                } else {
+                    Log.w("NavigationWarning", "Tried to navigate from wrong fragment: $currentId")
+                }
             }
 
             binding.cloneBtn.setSafeOnClickListener {
