@@ -127,7 +127,6 @@ class ReceiverScanDeviceSolFragment : Fragment() {
 
     @SuppressLint("SetTextI18n")
     private fun observeConnection() {
-
         // Observe connectedDevice
         viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {

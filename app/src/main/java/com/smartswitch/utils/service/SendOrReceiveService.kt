@@ -115,7 +115,6 @@ class SendOrReceiveService : Service() {
         wifiChannel = wifiP2pManager?.initialize(this, this.mainLooper, null)
         val notification = createNotification()
         //startForeground(100, notification)
-
         try {
             // Your existing foreground service setup
             startForeground(100, notification)
@@ -126,21 +125,17 @@ class SendOrReceiveService : Service() {
             return START_NOT_STICKY
         }
         //return super.onStartCommand(intent, flags, startId)
-
         return START_STICKY
     }
-
 
     fun startSendingToReceiver() {
         isStop = false
         job?.cancel()
         var totalBytesRead = 0L
 
-
         wifiP2pManager?.requestConnectionInfo(wifiChannel) { connectionInfo ->
 
             job = CoroutineScope(Dispatchers.IO).launch {
-
                 try {
                     val hostAddress = connectionInfo.groupOwnerAddress
                     Log.i("startSendingToReceiver", "Resolved receiver host address: $hostAddress")
@@ -202,8 +197,6 @@ class SendOrReceiveService : Service() {
                             } else {
                                 File(uriString)
                             }
-
-
 
                             val fileSize = mFile.length()
                             val fileName = mFile.name

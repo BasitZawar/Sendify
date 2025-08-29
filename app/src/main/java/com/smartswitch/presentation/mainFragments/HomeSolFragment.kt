@@ -195,8 +195,6 @@ class HomeSolFragment : Fragment() {
             }
 
             binding.sendBtn.setSafeOnClickListener {
-
-
                 if (PermissionManager.hasLocationPermission(activityContext) && PermissionManager.hasNearbyPermission(
                         activityContext
                     ) && PermissionManager.hasStorageAccessPermission(activityContext)

@@ -64,8 +64,6 @@ class MediaSolFragment : Fragment(), OnMediaItemClickCallback {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         isAlive { activityContext ->
-
-
             //setViewPager()
             CoroutineScope(Dispatchers.IO).launch {
                 delay(300)
@@ -104,7 +102,6 @@ class MediaSolFragment : Fragment(), OnMediaItemClickCallback {
             if ( PrefUtil(requireContext()).getBool("is_premium", false)) {
                 binding.adRel.gone()
             } else {
-
                         var initialLayoutComplete = false
                         binding.adViewContainer.apply {
                             addView(AdView(activityContext))
@@ -118,8 +115,6 @@ class MediaSolFragment : Fragment(), OnMediaItemClickCallback {
                                 }
                             }
                         }
-
-
             }
         }
     }

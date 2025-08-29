@@ -39,7 +39,6 @@ android {
         debug {
             resValue("string", "admob_app_id", "ca-app-pub-3940256099942544~3347511713")
 
-
             resValue("string", "app_open_on_resume", "ca-app-pub-3940256099942544/9257395921")
             resValue("string", "app_open_splash", "ca-app-pub-3940256099942544/9257395921")
             resValue("string", "banner_all", "ca-app-pub-3940256099942544/9214589741")
@@ -152,8 +151,6 @@ dependencies {
     implementation("com.google.firebase:firebase-crashlytics:19.0.3")
     implementation ("com.google.firebase:firebase-messaging:24.1.0")
   //  implementation ("com.google.firebase:firebase-config-ktx:21.3.0")
-
-
     //billing
     implementation(libs.billing)
 

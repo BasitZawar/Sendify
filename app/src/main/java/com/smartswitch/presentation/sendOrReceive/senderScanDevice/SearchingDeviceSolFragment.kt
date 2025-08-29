@@ -202,13 +202,7 @@ class SearchingDeviceSolFragment : Fragment() {
                     )
                     Log.d("CHECKING", "Select : ${device.deviceName}")
                     AlertDialogManager.createWaitingDialog(act).showDialogSafely(act)
-
-
-
-
                     lifecycleScope.launch {
-
-
                         val isConnectionStarted = suspendCancellableCoroutine { continuation ->
                             wifiDirectManager?.connectWithDevice(device) { started ->
 
