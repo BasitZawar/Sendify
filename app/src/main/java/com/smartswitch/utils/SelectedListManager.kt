@@ -185,9 +185,15 @@ object SelectedListManager {
     }
 
     // Adding all media items if they are not already present
+//    fun addAllSelectedMedia(list: List<MediaInfoModel?>) {
+//        selectedMediaList.addAll(list.filterNot { selectedMediaList.contains(it) })
+//        Log.d("selectedList","add all selected media = "+ selectedMediaList.size.toString())
+//    }
     fun addAllSelectedMedia(list: List<MediaInfoModel?>) {
-        selectedMediaList.addAll(list.filterNot { selectedMediaList.contains(it) })
-        Log.d("selectedList","add all selected media = "+ selectedMediaList.size.toString())
+        val existingSet = selectedMediaList.toHashSet()
+        val newItems = list.filterNot { existingSet.contains(it) }
+        selectedMediaList.addAll(newItems)
+        Log.d("selectedList", "add all selected media = ${selectedMediaList.size}")
     }
 
     fun removeAllSelectedMedia(list: List<MediaInfoModel?>) {

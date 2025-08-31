@@ -99,7 +99,6 @@ class HomeSolFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         isAlive { activityContext ->
 
             if (PrefUtil(requireContext()).getBool("is_premium", false)) {
@@ -140,9 +139,9 @@ class HomeSolFragment : Fragment() {
                 )
             }
 
-           /* binding.historyBtn.setSafeOnClickListener {
-                findNavController().navigate(R.id.action_homeSendifyFragment_to_historySendifyFragment)
-            }*/
+            /* binding.historyBtn.setSafeOnClickListener {
+                 findNavController().navigate(R.id.action_homeSendifyFragment_to_historySendifyFragment)
+             }*/
 
             binding.historyBtn.setSafeOnClickListener {
                 val navController = findNavController()

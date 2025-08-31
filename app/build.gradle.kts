@@ -18,8 +18,8 @@ android {
         applicationId = "com.phoneclone.quickshare.sendanywhere.smartswitch.mobiletransfer.sendit"
         minSdk = 28
         targetSdk = 35
-        versionCode = 11
-        versionName = "2.1"
+        versionCode = 12
+        versionName = "2.2"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         setProperty(

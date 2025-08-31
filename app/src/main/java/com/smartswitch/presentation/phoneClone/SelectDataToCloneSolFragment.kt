@@ -157,31 +157,70 @@ class SelectDataToCloneSolFragment : Fragment(), OnItemCheckBoxClickCallback {
         handleSelectAllCheck()
     }
 
+//    private fun handleSelectAllCheck() {
+//        binding.apply {
+//            Log.d("awais","handleSelectAllCheck")
+//            checkboxSelectAll.setOnCheckedChangeListener { view, isChecked ->
+//                if (!checkboxSelectAll.isPressed) {
+//                    checkboxSelectAll.isChecked = false
+//                    return@setOnCheckedChangeListener
+//                }
+//                Log.d("awais","checkboxSelectAll.isPressed : ${checkboxSelectAll.isPressed}")
+//                Log.d("awais","isChecked : $isChecked")
+//                if (isChecked) {
+//                    SelectedListManager.addAllSelectedMedia(viewModel.allMedia)
+//                    SelectedListManager.addAllSelectedContacts(viewModel.allContactsList)
+//                    checkboxSelectAll.setBackgroundResource(R.drawable.check_circle)
+//                } else {
+//                    SelectedListManager.removeAllSelectedMedia(viewModel.allMedia)
+//                    SelectedListManager.removeAllSelectedContacts(viewModel.allContactsList)
+//                    checkboxSelectAll.setBackgroundResource(R.drawable.uncheck_circle)
+//                }
+//                checkSendButtonState()
+//                adapter?.updateCheckState(isChecked)
+//                val list = SelectedListManager.getSelectedMediaList()
+//                val list2 = SelectedListManager.getSelectedContactsList()
+//                Log.i(TAG, "handleSelectAllCheck: ${list.size} contacts ${list2.size}")
+//                updateSendBtnUI()
+//            }
+//        }
+//    }
+    private var isProgrammaticChange = false
+
     private fun handleSelectAllCheck() {
-        binding.apply {
-            Log.d("awais","handleSelectAllCheck")
-            checkboxSelectAll.setOnCheckedChangeListener { view, isChecked ->
-                if (!checkboxSelectAll.isPressed) {
-                    checkboxSelectAll.isChecked = false
-                    return@setOnCheckedChangeListener
-                }
-                Log.d("awais","checkboxSelectAll.isPressed : ${checkboxSelectAll.isPressed}")
-                Log.d("awais","isChecked : $isChecked")
+        binding.checkboxSelectAll.setOnCheckedChangeListener { _, isChecked ->
+            if (isProgrammaticChange) return@setOnCheckedChangeListener
+
+            if (!binding.checkboxSelectAll.isPressed) {
+                // Ignore programmatic changes
+                isProgrammaticChange = true
+                binding.checkboxSelectAll.isChecked = false
+                isProgrammaticChange = false
+                return@setOnCheckedChangeListener
+            }
+
+            // Run heavy operations in background
+            viewLifecycleOwner.lifecycleScope.launch(Dispatchers.Default) {
                 if (isChecked) {
                     SelectedListManager.addAllSelectedMedia(viewModel.allMedia)
                     SelectedListManager.addAllSelectedContacts(viewModel.allContactsList)
-                    checkboxSelectAll.setBackgroundResource(R.drawable.check_circle)
                 } else {
                     SelectedListManager.removeAllSelectedMedia(viewModel.allMedia)
                     SelectedListManager.removeAllSelectedContacts(viewModel.allContactsList)
-                    checkboxSelectAll.setBackgroundResource(R.drawable.uncheck_circle)
                 }
-                checkSendButtonState()
-                adapter?.updateCheckState(isChecked)
-                val list = SelectedListManager.getSelectedMediaList()
-                val list2 = SelectedListManager.getSelectedContactsList()
-                Log.i(TAG, "handleSelectAllCheck: ${list.size} contacts ${list2.size}")
-                updateSendBtnUI()
+
+                // Switch to main thread for UI updates
+                withContext(Dispatchers.Main) {
+                    val bgRes = if (isChecked) R.drawable.check_circle else R.drawable.uncheck_circle
+                    binding.checkboxSelectAll.setBackgroundResource(bgRes)
+                    checkSendButtonState()
+                    adapter?.updateCheckState(isChecked)
+                    updateSendBtnUI()
+
+                    val list = SelectedListManager.getSelectedMediaList()
+                    val list2 = SelectedListManager.getSelectedContactsList()
+                    Log.i(TAG, "handleSelectAllCheck: ${list.size} contacts ${list2.size}")
+                }
             }
         }
     }
@@ -308,10 +347,26 @@ class SelectDataToCloneSolFragment : Fragment(), OnItemCheckBoxClickCallback {
             SelectedListManager.getSelectedContactsList().isNotEmpty()
         ) {
             selectedFilesDialog(R.layout.selectedfilesdialog) {
-                findNavController().navigateUp()
+//                findNavController().navigateUp()
+                if (isAdded && view != null) {
+                    runCatching {
+                        findNavController().navigateUp()
+                    }.onFailure {
+                        Log.e("NavError", "Navigation failed: ${it.message}")
+                    }
+                }
+
             }
         } else {
-            findNavController().navigateUp()
+//            findNavController().navigateUp()
+            if (isAdded && view != null) {
+                runCatching {
+                    findNavController().navigateUp()
+                }.onFailure {
+                    Log.e("NavError", "Navigation failed: ${it.message}")
+                }
+            }
+
         }
     }
 
