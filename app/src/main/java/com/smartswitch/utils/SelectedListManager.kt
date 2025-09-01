@@ -140,7 +140,10 @@ object SelectedListManager {
 
             // Safely filter and retain
             selectedContactsList.retainAll { !list.contains(it) }
-            Log.d("SelectedListManager", "Contacts removed. Remaining size: ${selectedContactsList.size}")
+            Log.d(
+                "SelectedListManager",
+                "Contacts removed. Remaining size: ${selectedContactsList.size}"
+            )
         }
 //        Log.d("selectedList","remove all selected contact"+ selectedContactsList.size.toString())
 
@@ -198,8 +201,9 @@ object SelectedListManager {
 
     fun removeAllSelectedMedia(list: List<MediaInfoModel?>) {
         selectedMediaList.removeAll(list.toSet())
-        Log.d("selectedList","remove all selected media = "+ selectedMediaList.size.toString())
+        Log.d("selectedList", "remove all selected media = " + selectedMediaList.size.toString())
     }
+
     // Inside SelectedListManager
     fun clearSelected() {
         selectedMediaList.clear()

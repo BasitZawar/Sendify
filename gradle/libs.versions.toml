@@ -1,7 +1,7 @@
 [versions]
-agp = "8.3.0"
+agp = "8.3.2"
 billing = "8.0.0"
-glide = "5.0.0"
+glide = "4.16.0"
 hiltNavigationFragment = "1.2.0"
 kotlin = "2.0.0"
 coreKtx = "1.15.0"

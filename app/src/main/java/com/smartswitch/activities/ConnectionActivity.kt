@@ -9,6 +9,7 @@ import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.google.android.gms.ads.AdView
 import com.google.android.material.tabs.TabLayout
@@ -23,7 +24,8 @@ import com.smartswitch.utils.WifiGpsStatusReceiver
 
 
 @Suppress("DEPRECATION")
-class ConnectionActivity : BaseActivity(), WifiGpsStatusReceiver.StatusChangeListener {
+class ConnectionActivity : AppCompatActivity(), WifiGpsStatusReceiver.StatusChangeListener {
+    private lateinit var binding: ActivityConnectionBinding
     private lateinit var user: String
     private lateinit var locationManager: LocationManager
     private lateinit var wifiManager: WifiManager
@@ -33,14 +35,16 @@ class ConnectionActivity : BaseActivity(), WifiGpsStatusReceiver.StatusChangeLis
 
     private lateinit var wifiGpsStatusReceiver: WifiGpsStatusReceiver
     private lateinit var intentFilter: IntentFilter
-    private val binding: ActivityConnectionBinding by lazy {
-        ActivityConnectionBinding.inflate(
-            layoutInflater
-        )
-    }
+
+    //    private val binding: ActivityConnectionBinding by lazy {
+//        ActivityConnectionBinding.inflate(
+//            layoutInflater
+//        )
+//    }
     var currentPosition = 0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        binding = ActivityConnectionBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         locationManager = getSystemService(Context.LOCATION_SERVICE) as (LocationManager)
@@ -85,7 +89,6 @@ class ConnectionActivity : BaseActivity(), WifiGpsStatusReceiver.StatusChangeLis
 //            showBanner()
         } else {
             binding.frameConnection.visibility = View.GONE
-            binding.constraintLayout6.visibility = View.GONE
             binding.layoutBeforePermission.visibility = View.VISIBLE
         }
 
@@ -93,46 +96,46 @@ class ConnectionActivity : BaseActivity(), WifiGpsStatusReceiver.StatusChangeLis
         wifiDirectFragment = WifiDirectFragment.newInstance(user)
 
 
-        binding.tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
-            override fun onTabSelected(tab: TabLayout.Tab) {
-
-                when (tab.position) {
-                    0 -> {
-//                        binding.textConnectionDesc.text =
-//                            getString(R.string.share_file_using_wifi_and_direct)
-                        binding.title
-                        currentPosition = 0
-                        checkAndUpdateFragment()
-                        return
-                    }
-
-                    1 -> {
-                        //                        binding.textConnectionDesc.text = getString(R.string.share_file_using_wifi_and_direct)
-                        currentPosition = 1
-                        checkAndUpdateFragment()
-                        return
-                    }
-
-                    else -> {
-//                        binding.textConnectionDesc.text = getString(R.string.share_file_using_wifi_and_direct)
-                        binding.title
-                        currentPosition = 0
-                        checkAndUpdateFragment()
-                        return
-                    }
-                }
-            }
-
-            override fun onTabUnselected(
-                tab: TabLayout.Tab?
-            ) {
-            }
-
-            override fun onTabReselected(
-                tab: TabLayout.Tab?
-            ) {
-            }
-        })
+//        binding.tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
+//            override fun onTabSelected(tab: TabLayout.Tab) {
+//
+//                when (tab.position) {
+//                    0 -> {
+////                        binding.textConnectionDesc.text =
+////                            getString(R.string.share_file_using_wifi_and_direct)
+//                        binding.title
+//                        currentPosition = 0
+//                        checkAndUpdateFragment()
+//                        return
+//                    }
+//
+//                    1 -> {
+//                        //                        binding.textConnectionDesc.text = getString(R.string.share_file_using_wifi_and_direct)
+//                        currentPosition = 1
+//                        checkAndUpdateFragment()
+//                        return
+//                    }
+//
+//                    else -> {
+////                        binding.textConnectionDesc.text = getString(R.string.share_file_using_wifi_and_direct)
+//                        binding.title
+//                        currentPosition = 0
+//                        checkAndUpdateFragment()
+//                        return
+//                    }
+//                }
+//            }
+//
+//            override fun onTabUnselected(
+//                tab: TabLayout.Tab?
+//            ) {
+//            }
+//
+//            override fun onTabReselected(
+//                tab: TabLayout.Tab?
+//            ) {
+//            }
+//        })
 
 //        wifiDirect.setOnClickListener {
 //            if (!wifiManager.isWifiEnabled) {
@@ -220,6 +223,7 @@ class ConnectionActivity : BaseActivity(), WifiGpsStatusReceiver.StatusChangeLis
 
         }
     }
+
     private fun setUpConnection() {
         if (sender_user == "phone_clone_sender" || sender_user == "local_transfer_sender") {
             if (currentPosition == 0) {
@@ -291,49 +295,49 @@ class ConnectionActivity : BaseActivity(), WifiGpsStatusReceiver.StatusChangeLis
 //            })
 //    }
 
-/*
-    fun showBanner() {
-        Log.e(TAG, "activity selection connection showBanner: ")
-        if (!isEnabled || !bannerEnabled)
-            binding.bannerSelectConnection.visibility = View.GONE
-        return
-        if (!banner_connection_Collapsible) {
-            AdsManager.loadAdaptorBanner(
-                binding.bannerSelectConnection,
-                this@ConnectionActivity,
-                object : AdsManager.AdmobBannerAdListener {
-                    override fun onAdFailed() {
-                        Log.e(TAG, "onAdFailed: Banner")
-                    }
+    /*
+        fun showBanner() {
+            Log.e(TAG, "activity selection connection showBanner: ")
+            if (!isEnabled || !bannerEnabled)
+                binding.bannerSelectConnection.visibility = View.GONE
+            return
+            if (!banner_connection_Collapsible) {
+                AdsManager.loadAdaptorBanner(
+                    binding.bannerSelectConnection,
+                    this@ConnectionActivity,
+                    object : AdsManager.AdmobBannerAdListener {
+                        override fun onAdFailed() {
+                            Log.e(TAG, "onAdFailed: Banner")
+                        }
 
-                    override fun onAdLoaded() {
-                        Log.e(TAG, "onAdLoaded: Banner")
-                    }
-                },
-                AdIds.getSelectConnectionBannerId()
-            )?.let {
-                adView = it
-            }
-        } else {
-            AdsManager.loadCollapsibleBannerTop(
-                binding.bannerSelectConnection,
-                this@ConnectionActivity,
-                object : AdsManager.AdmobBannerAdListener {
-                    override fun onAdFailed() {
-                        Log.e(TAG, "onAdFailed: Banner")
-                    }
+                        override fun onAdLoaded() {
+                            Log.e(TAG, "onAdLoaded: Banner")
+                        }
+                    },
+                    AdIds.getSelectConnectionBannerId()
+                )?.let {
+                    adView = it
+                }
+            } else {
+                AdsManager.loadCollapsibleBannerTop(
+                    binding.bannerSelectConnection,
+                    this@ConnectionActivity,
+                    object : AdsManager.AdmobBannerAdListener {
+                        override fun onAdFailed() {
+                            Log.e(TAG, "onAdFailed: Banner")
+                        }
 
-                    override fun onAdLoaded() {
-                        Log.e(TAG, "onAdLoaded: Banner")
-                    }
-                },
-                AdIds.getSelectConnectionBannerId()
-            )?.let {
-                adView = it
+                        override fun onAdLoaded() {
+                            Log.e(TAG, "onAdLoaded: Banner")
+                        }
+                    },
+                    AdIds.getSelectConnectionBannerId()
+                )?.let {
+                    adView = it
+                }
             }
         }
-    }
-*/
+    */
 
     @SuppressLint("CommitTransaction")
     fun updateFragment(fragment: Fragment) {

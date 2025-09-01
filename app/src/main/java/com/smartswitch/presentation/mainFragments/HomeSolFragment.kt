@@ -29,6 +29,7 @@ import com.google.android.gms.ads.MobileAds
 import com.google.android.gms.ads.nativead.NativeAdOptions
 import com.google.android.gms.ads.nativead.NativeAdView
 import com.smartswitch.R
+import com.smartswitch.activities.ConnectionActivity
 import com.smartswitch.ads.PrefUtils
 import com.smartswitch.ads.inter_ads.InterstitialClass
 import com.smartswitch.databinding.DialogExitBinding
@@ -107,8 +108,6 @@ class HomeSolFragment : Fragment() {
             } else {
                 binding.nativeBannerPlaceHolder.visible()
                 loadNative(getString(R.string.native_home))
-
-
             }
 
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
@@ -242,7 +241,8 @@ class HomeSolFragment : Fragment() {
                             requireContext()
                         )
                     ) {
-                        findNavController().navigate(R.id.action_homeSendifyFragment_to_receiverScanDeviceSendifyFragment)
+                        startActivity(Intent(requireContext(),ConnectionActivity::class.java))
+//                        findNavController().navigate(R.id.action_homeSendifyFragment_to_receiverScanDeviceSendifyFragment)
                     } else {
                         InterstitialClass.request_interstitial(
                             requireContext(),
@@ -252,7 +252,8 @@ class HomeSolFragment : Fragment() {
                             isAlive {
                                 Handler(Looper.getMainLooper()).postDelayed({
                                     isAlive {
-                                        findNavController().navigate(R.id.action_homeSendifyFragment_to_receiverScanDeviceSendifyFragment)
+                                        startActivity(Intent(requireContext(),ConnectionActivity::class.java))
+//                                        findNavController().navigate(R.id.action_homeSendifyFragment_to_receiverScanDeviceSendifyFragment)
                                     }
                                 }, 200L)
                             }
@@ -308,12 +309,9 @@ class HomeSolFragment : Fragment() {
                         onDismissed = {
                         }
                     )
-
                 }
             }
-
             binding.videosBtn.setSafeOnClickListener {
-
                 if (permissionsGranted(activityContext)) {
 
                     if (PrefUtil(requireContext()).getBool(
@@ -435,7 +433,6 @@ class HomeSolFragment : Fragment() {
             }
 
             binding.appsBtn.setSafeOnClickListener {
-
                 if (permissionsGranted(activityContext)) {
                     if (PrefUtil(requireContext()).getBool(
                             "is_premium",
@@ -476,7 +473,6 @@ class HomeSolFragment : Fragment() {
             }
 
             binding.contactBtn.setSafeOnClickListener {
-
                 if (PermissionManager.hasContactPermission(activityContext)) {
                     if (PrefUtil(requireContext()).getBool(
                             "is_premium",
@@ -524,19 +520,14 @@ class HomeSolFragment : Fragment() {
             //navigateToMediaFragment(5) // Document tab
             Log.d("PermissionCheck", "permissionsGranted: ")
         } else {
-
             showPermissionDialog(
                 layoutResId = R.layout.notification_permission_dialog,
                 onAllowClicked = {
                     notificationPermissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS)
-
                 },
                 onDismissed = {
-
                 }
             )
-
-
         }
     }
 

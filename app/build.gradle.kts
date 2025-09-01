@@ -9,7 +9,6 @@ plugins {
     id("com.google.firebase.crashlytics")
 }
 
-
 android {
     namespace = "com.smartswitch"
     compileSdk = 35

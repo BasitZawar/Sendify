@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
-
     <!--    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES"/>-->
-
-    <!-- Wi-Fi Direct doesn't require an internet connection, but it does use standard Java sockets, which requires the INTERNET permission. -->
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
@@ -17,23 +14,16 @@
         android:name="android.hardware.wifi.direct"
         android:required="true" />
 
-    <!-- If your app targets Android 13 (API level 33) or higher, you must declare the NEARBY_WIFI_DEVICES permission. -->
     <uses-permission android:name="android.permission.NEARBY_WIFI_DEVICES" />
-
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission
         android:name="android.permission.MANAGE_EXTERNAL_STORAGE"
         tools:ignore="ScopedStorage" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
-
     <uses-permission android:name="android.permission.INTERNET" />
-
-    <!-- A wake lock is a mechanism that prevents the device from entering a sleep state, allowing the CPU and other system components to remain active.It is used in service-->
     <uses-permission android:name="android.permission.WAKE_LOCK" />
-
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE_SPECIAL_USE" />
-
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
 
@@ -71,6 +61,7 @@
             android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"
             android:theme="@style/AdTheme"
             tools:replace="android:theme" />
+
         <service
             android:name=".utils.service.SendOrReceiveService"
             android:foregroundServiceType="specialUse"
