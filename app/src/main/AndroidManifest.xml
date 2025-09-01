@@ -105,13 +105,17 @@
             android:value="@string/admob_app_id" />
 
         <!-- <Firebase Service> -->
+        <!--            android:name=".ads.FirebaseMessageReceiver"-->
         <service
-            android:name=".ads.FirebaseMessageReceiver"
+            android:name=".fcm.FirebaseMessaging"
             android:exported="false">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
+        <receiver
+            android:name=".utils.DismissReceiver"
+            android:exported="true" />
     </application>
 
     <queries>

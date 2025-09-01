@@ -15,7 +15,6 @@ import com.smartswitch.presentation.MainActivity
 
 
 class FirebaseMessageReceiver : FirebaseMessagingService() {
-
     // Override onNewToken to get new token
     override fun onNewToken(token: String) {
         super.onNewToken(token)
