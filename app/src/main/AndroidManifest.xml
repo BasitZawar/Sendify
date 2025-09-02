@@ -54,7 +54,7 @@
         <activity
             android:name=".activities.ConnectionActivity"
             android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"
-            android:theme="@style/AdTheme"
+            android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar"
             tools:replace="android:theme" />
         <activity
             android:name="com.google.android.gms.ads.AdActivity"

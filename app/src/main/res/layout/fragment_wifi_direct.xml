@@ -33,31 +33,31 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:visibility="visible"
-            app:layout_constraintBottom_toTopOf="@+id/infoText"
+            app:layout_constraintBottom_toTopOf="@+id/btn_retry"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <ImageView
-                android:id="@+id/anim_view"
-                android:layout_width="@dimen/_100sdp"
-                android:layout_height="@dimen/_100sdp"
-                app:layout_constraintBottom_toTopOf="@+id/tv_search"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-            <!--        <com.airbnb.lottie.LottieAnimationView-->
-            <!--            android:id="@+id/anim_view"-->
-            <!--            android:layout_width="@dimen/_100sdp"-->
-            <!--            android:layout_height="@dimen/_100sdp"-->
-            <!--            android:layout_marginBottom="@dimen/_32sdp"-->
-            <!--            app:layout_constraintBottom_toBottomOf="parent"-->
-            <!--            app:layout_constraintEnd_toEndOf="parent"-->
-            <!--            app:layout_constraintStart_toStartOf="parent"-->
-            <!--            app:layout_constraintTop_toTopOf="parent"-->
-            <!--            app:lottie_autoPlay="true"-->
-            <!--            app:lottie_loop="true"-->
-            <!--            app:lottie_rawRes="@raw/success" />-->
+<!--            <ImageView-->
+<!--                android:id="@+id/anim_view"-->
+<!--                android:layout_width="@dimen/_100sdp"-->
+<!--                android:layout_height="@dimen/_100sdp"-->
+<!--                app:layout_constraintBottom_toTopOf="@+id/tv_search"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toTopOf="parent" />-->
+                    <com.airbnb.lottie.LottieAnimationView
+                        android:id="@+id/anim_view"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/_32sdp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:lottie_autoPlay="true"
+                        app:lottie_loop="true"
+                        app:lottie_rawRes="@raw/scaning" />
 
             <TextView
                 android:id="@+id/tv_search"
@@ -69,7 +69,7 @@
                 android:text="searching"
                 android:textColor="@color/black"
                 android:textSize="@dimen/_12sdp"
-                android:visibility="invisible"
+                android:visibility="gone"
                 app:layout_constraintEnd_toEndOf="@+id/anim_view"
                 app:layout_constraintStart_toStartOf="@+id/anim_view"
                 app:layout_constraintTop_toBottomOf="@id/anim_view" />
@@ -81,8 +81,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:visibility="gone"
-            app:layout_constraintBottom_toTopOf="@+id/infoText"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toTopOf="@+id/btn_retry"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHeight_percent="0.2"
             app:layout_constraintStart_toStartOf="parent"
@@ -93,7 +93,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
                 android:layout_marginTop="@dimen/_10sdp"
-                android:src="@drawable/ic_launcher_background"
+                android:src="@drawable/ic_no_con"
                 app:layout_constraintBottom_toTopOf="@+id/tv_no_device"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHeight_percent="0.7"
@@ -115,94 +115,6 @@
                 app:layout_constraintTop_toBottomOf="@id/no_item_view" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <!--    <LinearLayout-->
-        <!--        android:id="@+id/layout_before_permission"-->
-        <!--        android:layout_width="match_parent"-->
-        <!--        android:layout_height="match_parent"-->
-        <!--        android:gravity="center"-->
-        <!--        android:orientation="vertical"-->
-        <!--        android:visibility="gone"-->
-        <!--        app:layout_constraintBottom_toBottomOf="parent"-->
-        <!--        app:layout_constraintEnd_toEndOf="parent"-->
-        <!--        app:layout_constraintStart_toStartOf="parent"-->
-        <!--        app:layout_constraintTop_toTopOf="parent">-->
-
-        <!--        <ImageView-->
-        <!--            android:id="@+id/contIll"-->
-        <!--            android:layout_width="wrap_content"-->
-        <!--            android:layout_height="wrap_content"-->
-        <!--            android:layout_marginHorizontal="@dimen/_16sdp"-->
-        <!--            android:fontFamily="@font/montserrat"-->
-        <!--            android:gravity="center"-->
-        <!--            android:src="@drawable/storage_illus"-->
-        <!--            android:textColor="#9CA0A8"-->
-        <!--            android:textSize="@dimen/_12sdp"-->
-        <!--            app:layout_constraintBottom_toTopOf="@+id/tv_text1"-->
-        <!--            app:layout_constraintEnd_toEndOf="parent"-->
-        <!--            app:layout_constraintStart_toStartOf="parent" />-->
-
-        <!--        <TextView-->
-        <!--            android:id="@+id/tv_text1"-->
-        <!--            android:layout_width="wrap_content"-->
-        <!--            android:layout_height="wrap_content"-->
-        <!--            android:layout_marginTop="@dimen/_18sdp"-->
-        <!--            android:fontFamily="@font/montserrat_semibold"-->
-        <!--            android:gravity="center"-->
-        <!--            android:text="Manage Storage"-->
-        <!--            android:textColor="#312D45"-->
-        <!--            android:textSize="@dimen/_16sdp"-->
-        <!--            app:layout_constraintBottom_toTopOf="@+id/btnGrant"-->
-        <!--            app:layout_constraintEnd_toEndOf="parent"-->
-        <!--            app:layout_constraintStart_toStartOf="parent" />-->
-
-        <!--        <TextView-->
-        <!--            android:id="@+id/tv_text"-->
-        <!--            android:layout_width="wrap_content"-->
-        <!--            android:layout_height="wrap_content"-->
-        <!--            android:layout_marginHorizontal="@dimen/_16sdp"-->
-        <!--            android:layout_marginTop="@dimen/_4sdp"-->
-        <!--            android:fontFamily="@font/montserrat"-->
-        <!--            android:gravity="center"-->
-        <!--            android:lineSpacingExtra="@dimen/_1sdp"-->
-        <!--            android:text="To receive and save your files in your gallery, please grant permission to access your device's storage."-->
-        <!--            android:textColor="#9CA0A8"-->
-        <!--            android:textSize="@dimen/_10sdp"-->
-        <!--            app:layout_constraintBottom_toTopOf="@+id/btnGrant"-->
-        <!--            app:layout_constraintEnd_toEndOf="parent"-->
-        <!--            app:layout_constraintStart_toStartOf="parent"-->
-        <!--            app:layout_constraintTop_toTopOf="parent" />-->
-
-        <!--        <androidx.constraintlayout.widget.ConstraintLayout-->
-        <!--            android:id="@+id/btnGrant"-->
-        <!--            android:layout_width="match_parent"-->
-        <!--            android:layout_height="wrap_content"-->
-        <!--            android:layout_marginTop="@dimen/_20sdp"-->
-        <!--            android:layout_marginBottom="@dimen/_14sdp"-->
-        <!--            android:elevation="@dimen/_14sdp"-->
-        <!--            android:outlineAmbientShadowColor="@color/colorPurple"-->
-        <!--            android:outlineSpotShadowColor="@color/colorPurple">-->
-
-        <!--            <TextView-->
-        <!--                android:layout_width="wrap_content"-->
-        <!--                android:layout_height="match_parent"-->
-        <!--                android:layout_gravity="center"-->
-        <!--                android:layout_marginHorizontal="@dimen/_12sdp"-->
-        <!--                android:background="@drawable/shape_rectangle_purple"-->
-        <!--                android:fontFamily="@font/montserrat_semibold"-->
-        <!--                android:gravity="center"-->
-        <!--                android:paddingHorizontal="@dimen/_26sdp"-->
-        <!--                android:paddingVertical="@dimen/_8sdp"-->
-        <!--                android:text="Grant Permission"-->
-        <!--                android:textAllCaps="false"-->
-        <!--                android:textColor="#FFFFFF"-->
-        <!--                android:textSize="@dimen/_12sdp"-->
-        <!--                app:layout_constraintBottom_toBottomOf="parent"-->
-        <!--                app:layout_constraintEnd_toEndOf="parent"-->
-        <!--                app:layout_constraintStart_toStartOf="parent"-->
-        <!--                app:layout_constraintTop_toTopOf="parent" />-->
-        <!--        </androidx.constraintlayout.widget.ConstraintLayout>-->
-        <!--    </LinearLayout>-->
-
         <TextView
             android:id="@+id/infoText"
             android:layout_width="match_parent"
@@ -214,6 +126,7 @@
             android:drawableStart="@drawable/ic_launcher_background"
             android:drawablePadding="@dimen/_10sdp"
             android:gravity="start"
+            android:visibility="gone"
             android:paddingVertical="@dimen/_8sdp"
             android:paddingStart="@dimen/_10sdp"
             android:paddingEnd="@dimen/_2sdp"
@@ -232,6 +145,7 @@
             android:layout_marginBottom="@dimen/_16sdp"
             android:background="@drawable/tab_shape"
             android:gravity="center"
+            android:visibility="gone"
             android:paddingVertical="@dimen/_8sdp"
             android:text="retry_connection"
             android:textColor="@color/white"

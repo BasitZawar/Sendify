@@ -33,7 +33,6 @@ import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.airbnb.lottie.LottieAnimationView
-import com.bumptech.glide.Glide
 import com.smartswitch.R
 import com.smartswitch.connection.MyClient
 import com.smartswitch.connection.MyServer
@@ -42,7 +41,6 @@ import com.smartswitch.interfaces.ClickInterface
 import com.smartswitch.interfaces.DeviceConnectionInterface
 import com.smartswitch.presentation.adapter.WifiDirectAdapter
 import java.net.InetAddress
-
 
 private const val KEY_USER = "key_user_type"
 private const val KEY_OPTIONAL = "key_user_type2"
@@ -70,7 +68,6 @@ class WifiDirectFragment : Fragment(), DeviceConnectionInterface {
     var attachedContext: Context? = null
     lateinit var attachedActivity: Activity
     var loader: LottieAnimationView? = null
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -103,16 +100,7 @@ class WifiDirectFragment : Fragment(), DeviceConnectionInterface {
 
         initView()
         initScanning()
-        if (fromScanner == "fromScanner") {
-            binding?.layoutConnecting?.visibility = View.VISIBLE
-            binding?.loader?.playAnimation()
-            binding?.layoutMain?.visibility = View.GONE
-        } else {
-            binding?.layoutConnecting?.visibility = View.GONE
-            binding?.loader?.pauseAnimation()
 
-            binding?.layoutMain?.visibility = View.VISIBLE
-        }
         Handler(Looper.getMainLooper()).postDelayed({
             if (devicesArrayList.isEmpty() && isAdded) {
                 scanDevices()
@@ -120,9 +108,8 @@ class WifiDirectFragment : Fragment(), DeviceConnectionInterface {
         }, 3000)
 
         binding?.btnRetry?.setOnClickListener {
-            binding?.layoutLoading?.visibility = View.GONE
             binding?.layoutNoDevice?.visibility = View.GONE
-                scanDevices()
+            scanDevices()
         }
     }
 
@@ -134,14 +121,9 @@ class WifiDirectFragment : Fragment(), DeviceConnectionInterface {
                     requestPairing(position)
                 }
             })
-            if (fromScanner == "fromScanner") {
-                Log.e("TAG", "initView: returned")
-                return
-            } else {
-                Log.e("TAG", "initView: not returned")
-                binding?.rv?.layoutManager = LinearLayoutManager(it)
-                binding?.rv?.adapter = adapter
-            }
+            Log.e("TESTTAG", "initView: not returned ${devicesArrayList}")
+            binding?.rv?.layoutManager = LinearLayoutManager(it)
+            binding?.rv?.adapter = adapter
         }
     }
 
@@ -182,31 +164,15 @@ class WifiDirectFragment : Fragment(), DeviceConnectionInterface {
     fun scanDevices() {
         Log.e(TAG, "scanDevices: called")
         attachedContext?.let {
-            if (fromScanner == "fromScanner") {
-                binding?.layoutConnecting?.visibility = View.VISIBLE
-                binding?.layoutMain?.visibility = View.GONE
-                binding?.loader?.playAnimation()
-
-            } else {
-//                showSearchingDialog()
-                binding?.layoutLoading?.visibility = View.VISIBLE
-                binding?.let { it1 ->
-                    Glide.with(attachedActivity).asGif().load(R.raw.scaning)
-                        .into(it1.animView)
-                }
-            }
-
-//            binding?.animView?.playAnimation()
-//            dialog = Dialog(it)
-//            dialog.setContentView(R.layout.scanning_dialog)
-//            dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-//            dialog.setCanceledOnTouchOutside(true)
-//            dialog.setCancelable(true)
-//            val loader: LottieAnimationView = dialog.findViewById(R.id.imageAgree)
-//            loader.playAnimation()
-//            dialog.show()
+            Log.e(TAG, "scanDevices: called 12")
+            binding?.layoutLoading?.visibility = View.VISIBLE
+//            binding?.loader?.playAnimation()
+//            binding?.animView.let { it1 ->
+//                Glide.with(attachedActivity).asGif().load(R.raw.scaning)
+//                    .into(it1)
+//            }
+            binding?.animView?.playAnimation()
         } ?: return
-
         if (attachedContext?.let {
                 ActivityCompat.checkSelfPermission(
                     it, Manifest.permission.ACCESS_FINE_LOCATION
@@ -230,7 +196,8 @@ class WifiDirectFragment : Fragment(), DeviceConnectionInterface {
             ) as WifiManager
             val wInfo: WifiInfo = wifiManager.getConnectionInfo()
             val macAddress: String = wInfo.getMacAddress()
-            wifiP2pManager?.setConnectionRequestResult(wifiP2PChannel,
+            wifiP2pManager?.setConnectionRequestResult(
+                wifiP2PChannel,
                 MacAddress.fromString(macAddress),
                 WifiP2pManager.CONNECTION_REQUEST_ACCEPT,
                 object : WifiP2pManager.ActionListener {
@@ -271,7 +238,8 @@ class WifiDirectFragment : Fragment(), DeviceConnectionInterface {
             }
 
             override fun onFailure(reason: Int) {
-                wifiP2pManager?.cancelConnect(wifiP2PChannel,
+                wifiP2pManager?.cancelConnect(
+                    wifiP2PChannel,
                     object : WifiP2pManager.ActionListener {
                         override fun onSuccess() {
                             pairingSuccess = true
@@ -324,7 +292,7 @@ class WifiDirectFragment : Fragment(), DeviceConnectionInterface {
             }
 
 
-//            binding?.animView?.pauseAnimation()
+            binding?.animView?.pauseAnimation()
             binding?.layoutLoading?.visibility = View.GONE
 //            if (searchingDialog!!.isShowing) {
 //                searchingDialog!!.dismiss()
