@@ -2,6 +2,9 @@ package com.smartswitch.presentation.sendData
 
 import android.annotation.SuppressLint
 import android.content.ContentValues
+import android.content.Context.MODE_PRIVATE
+import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -17,15 +20,19 @@ import com.google.android.gms.ads.AdView
 import com.google.android.material.imageview.ShapeableImageView
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
+import com.google.gson.Gson
 import com.smartswitch.R
+import com.smartswitch.activities.ConnectionActivity
 import com.smartswitch.ads.banner_ads.setupBannerAd
 import com.smartswitch.databinding.FragmentMediaSolBinding
+import com.smartswitch.domain.model.MediaInfoModel
 import com.smartswitch.presentation.adapter.ViewPagerAdapter
 import com.smartswitch.presentation.sendData.apps.AppsSolFragment
 import com.smartswitch.presentation.sendData.audios.AudiosSolFragment
 
 import com.smartswitch.subscriptions.Constants
 import com.smartswitch.subscriptions.PrefUtil
+import com.smartswitch.utils.Constant
 import com.smartswitch.utils.MyDialogBox
 import com.smartswitch.utils.SelectedListManager
 import com.smartswitch.utils.SelectedListManager.getSelectedContactsListSize
@@ -50,6 +57,7 @@ import kotlinx.coroutines.withContext
 class MediaSolFragment : Fragment(), OnMediaItemClickCallback {
     private var _binding: FragmentMediaSolBinding? = null
     private val binding get() = _binding!!
+    private lateinit var sharedPreferences: SharedPreferences
 
 
     override fun onCreateView(
@@ -63,6 +71,8 @@ class MediaSolFragment : Fragment(), OnMediaItemClickCallback {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        sharedPreferences = requireContext().getSharedPreferences(Constant.preferencefName, MODE_PRIVATE)
+
         isAlive { activityContext ->
             //setViewPager()
             CoroutineScope(Dispatchers.IO).launch {
@@ -86,10 +96,29 @@ class MediaSolFragment : Fragment(), OnMediaItemClickCallback {
                 if (SelectedListManager.getSelectedMediaList().isNotEmpty() ||
                     SelectedListManager.getSelectedContactsList().isNotEmpty()
                 ) {
+
+                    val selectedData = SelectedData(
+                        mediaList = SelectedListManager.getSelectedMediaList(),
+                        contactList = SelectedListManager.getSelectedContactsList()
+                    )
+
+                    val editor = sharedPreferences.edit()
+                    val gson = Gson()
+                    val mJson = gson.toJson(selectedData)
+                    editor.putString("selectedDataList", mJson)
+                    editor.apply()
+
                     val selectedItem =
                         SelectedListManager.getSelectedMediaList().size + SelectedListManager.getSelectedContactsList().size
-                    Log.d("TAG", "Send $selectedItem item")
-                    findNavController().navigate(R.id.action_mediaSendifyFragment_to_searchingDeviceSendifyFragment)
+                    Log.d("TAG", "Sending list is  ${SelectedListManager.getSelectedMediaList()}")
+                    startActivity(
+                        Intent(requireContext(), ConnectionActivity::class.java).putExtra(
+                            "user",
+                            "sender"
+                        )
+                    )
+
+//                    findNavController().navigate(R.id.action_mediaSendifyFragment_to_searchingDeviceSendifyFragment)
                 } else {
                     Toast.makeText(
                         context,
@@ -99,22 +128,22 @@ class MediaSolFragment : Fragment(), OnMediaItemClickCallback {
                 }
             }
 
-            if ( PrefUtil(requireContext()).getBool("is_premium", false)) {
+            if (PrefUtil(requireContext()).getBool("is_premium", false)) {
                 binding.adRel.gone()
             } else {
-                        var initialLayoutComplete = false
-                        binding.adViewContainer.apply {
-                            addView(AdView(activityContext))
-                            viewTreeObserver.addOnGlobalLayoutListener {
-                                if (!initialLayoutComplete) {
-                                    initialLayoutComplete = true
-                                    binding.adViewContainer.setupBannerAd(
-                                        activityContext,
-                                        getString(R.string.banner_all)
-                                    )
-                                }
-                            }
+                var initialLayoutComplete = false
+                binding.adViewContainer.apply {
+                    addView(AdView(activityContext))
+                    viewTreeObserver.addOnGlobalLayoutListener {
+                        if (!initialLayoutComplete) {
+                            initialLayoutComplete = true
+                            binding.adViewContainer.setupBannerAd(
+                                activityContext,
+                                getString(R.string.banner_all)
+                            )
                         }
+                    }
+                }
             }
         }
     }
@@ -144,7 +173,7 @@ class MediaSolFragment : Fragment(), OnMediaItemClickCallback {
                     val customTabView =
                         LayoutInflater.from(context).inflate(R.layout.custom_tab, null)
                     val tabIcon = customTabView.findViewById<ShapeableImageView>(R.id.tabIcon)
-                    val tabText = customTabView.findViewById<TextView>(R.  id.tabText)
+                    val tabText = customTabView.findViewById<TextView>(R.id.tabText)
 
                     // TODO : Set icons for tabs
                     when (position) {
@@ -258,38 +287,38 @@ class MediaSolFragment : Fragment(), OnMediaItemClickCallback {
         updateSendBtnUI()
     }
 
-/*
-    private fun updateSendBtnUI() {
-        if (getSelectedMediaListSize() > 0 || getSelectedContactsListSize() > 0) {
-            binding.sendButton.enable()
-            binding.sendButton.visible()
-            binding.selectedTextView.text =
-                "${getSelectedMediaListSize() + getSelectedContactsListSize()} ${getString(R.string.files)} / ${getTotalSize()}"
-        } else {
-            binding.sendButton.disable()
-            binding.sendButton.gone()
-            binding.selectedTextView.text =
-                "${getSelectedMediaListSize() + getSelectedContactsListSize()} ${getString(R.string.files)} / ${getTotalSize()}"
-        }
-//        binding.sendButton.text =
-//            "Share (${getSelectedMediaListSize() + getSelectedContactsListSize()})}"
-
-        binding.selectedTextView.setOnClickListener {
-            val mediaList = SelectedListManager.getSelectedMediaList()
-            val contactList = SelectedListManager.getSelectedContactsList()
-//            Log.d("checking",mediaList.toString())
-//            Log.d("checking","============================================================")
-
-            for (i in mediaList) {
-                Log.d("checking", i.toString())
+    /*
+        private fun updateSendBtnUI() {
+            if (getSelectedMediaListSize() > 0 || getSelectedContactsListSize() > 0) {
+                binding.sendButton.enable()
+                binding.sendButton.visible()
+                binding.selectedTextView.text =
+                    "${getSelectedMediaListSize() + getSelectedContactsListSize()} ${getString(R.string.files)} / ${getTotalSize()}"
+            } else {
+                binding.sendButton.disable()
+                binding.sendButton.gone()
+                binding.selectedTextView.text =
+                    "${getSelectedMediaListSize() + getSelectedContactsListSize()} ${getString(R.string.files)} / ${getTotalSize()}"
             }
-            Log.d("checking", "============================================================")
+    //        binding.sendButton.text =
+    //            "Share (${getSelectedMediaListSize() + getSelectedContactsListSize()})}"
 
-            // Log.d("checking",contactList.toString())
+            binding.selectedTextView.setOnClickListener {
+                val mediaList = SelectedListManager.getSelectedMediaList()
+                val contactList = SelectedListManager.getSelectedContactsList()
+    //            Log.d("checking",mediaList.toString())
+    //            Log.d("checking","============================================================")
 
+                for (i in mediaList) {
+                    Log.d("checking", i.toString())
+                }
+                Log.d("checking", "============================================================")
+
+                // Log.d("checking",contactList.toString())
+
+            }
         }
-    }
-*/
+    */
     private fun updateSendBtnUI() {
         val safeBinding = _binding ?: return
 
@@ -317,3 +346,7 @@ class MediaSolFragment : Fragment(), OnMediaItemClickCallback {
     }
 
 }
+data class SelectedData(
+    val mediaList: List<MediaInfoModel?>,
+    val contactList: List<MediaInfoModel?>   // replace ContactModel with your actual contact model type
+)

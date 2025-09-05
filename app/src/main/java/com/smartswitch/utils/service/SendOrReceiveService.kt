@@ -151,8 +151,6 @@ class SendOrReceiveService : Service() {
 //                        bind(null)
 //                        connect(InetSocketAddress(hostAddress, PORT_NUMBER), 30000)
 //                        keepAlive = true
-//
-//
 //                        Log.i(
 //                            "startSendingToReceiver",
 //                            "Socket successfully connected to receiver at $hostAddress on port $PORT_NUMBER"

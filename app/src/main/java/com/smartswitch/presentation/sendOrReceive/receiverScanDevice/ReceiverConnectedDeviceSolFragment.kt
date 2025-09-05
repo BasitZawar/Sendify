@@ -99,11 +99,9 @@ class ReceiverConnectedDeviceSolFragment : Fragment() {
                 findNavController().popBackStack()
             }
 
-
             if ( PrefUtil(requireContext()).getBool("is_premium", false)) {
                 binding.adRel.gone()
             } else {
-
                         var initialLayoutComplete = false
                         binding.adViewContainer.apply {
                             addView(AdView(act))
@@ -116,8 +114,6 @@ class ReceiverConnectedDeviceSolFragment : Fragment() {
                                     )
                                 }
                             }
-
-
                 }
             }
 
@@ -147,7 +143,6 @@ class ReceiverConnectedDeviceSolFragment : Fragment() {
 
 
     private fun observeWifiState() {
-
         lifecycleScope.launch {
             wifiDirectManager?.isWifiOn?.collect { isWifiEnabled ->
                 if (!isWifiEnabled) {
@@ -166,10 +161,7 @@ class ReceiverConnectedDeviceSolFragment : Fragment() {
         binding.apply {
             activity?.let { act ->
                 binding.btnStartSending.setOnClickListener {
-
                 }
-
-
                 disconnectedTextView.setOnClickListener {
                     Log.d("ReceiverFragment", "Disconnected text view clicked, stopping connection")
                     wifiDirectManager?.disconnect {
@@ -201,8 +193,6 @@ class ReceiverConnectedDeviceSolFragment : Fragment() {
             }
         }
     }
-
-
     private fun showSendFailDialog(layoutResId: Int,onAllowClicked: () -> Unit){
         context?.let { act->
             val dialogView=LayoutInflater.from(act).inflate(layoutResId,null)
@@ -264,7 +254,6 @@ class ReceiverConnectedDeviceSolFragment : Fragment() {
                 when (it.state) {
                     TransferState.INITIAL_STATE -> {
                         Log.d("TransferState", "State: INITIAL_STATE - Transfer initialized")
-
                     }
 
                     TransferState.STARTING_TRANSFER_STATE -> {
@@ -278,7 +267,6 @@ class ReceiverConnectedDeviceSolFragment : Fragment() {
                             ) {}.showDialogSafely(act)
                         }
                     }
-
                     TransferState.TRANSFERRING_STATE -> {
                         Log.d("TransferState", "State: TRANSFERRING_STATE - Transfer in progress")
                         isAlive { act ->
@@ -287,20 +275,15 @@ class ReceiverConnectedDeviceSolFragment : Fragment() {
                             findNavController().navigate(R.id.action_receiverConnectedDeviceSendifyFragment_to_receivingDataSendifyFragment)
                         }
                     }
-
                     TransferState.TRANSFER_COMPLETE_STATE -> {
                         Log.d("TransferState", "State: TRANSFER_COMPLETE_STATE - Transfer complete")
-
                     }
 
                     TransferState.TRANSFER_FAILED_STATE -> {
                         Log.e("TransferState", "State: TRANSFER_FAILED_STATE - Transfer failed")
                         isAlive { act ->
                             showSendFailDialog(R.layout.sendcanceldialog){
-
                             }
-
-
                         }
                     }
 
@@ -324,8 +307,6 @@ class ReceiverConnectedDeviceSolFragment : Fragment() {
                             "TransferState",
                             "State: TRANSFER_ASK_RECEIVER_STATE - Waiting for receiver"
                         )
-
-
                     }
 
                     TransferState.CONNECTION_TIMEOUT_STATE -> {

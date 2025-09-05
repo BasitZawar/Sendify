@@ -10,11 +10,8 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.view.WindowManager
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
-import com.google.android.gms.ads.AdView
-import com.google.android.material.tabs.TabLayout
 import com.smartswitch.R
 import com.smartswitch.databinding.ActivityConnectionBinding
 import com.smartswitch.presentation.PermissionFragment
@@ -57,13 +54,8 @@ class ConnectionActivity : BaseActivity(), WifiGpsStatusReceiver.StatusChangeLis
         sender_user = intent.getStringExtra("sender_user").toString()
         receiver_user = intent.getStringExtra("receiver_user").toString()
 
-        Log.e("TESTTAG", "ACTIVITY_SELECTION_CONNECTION user: $user") // sender
-        Log.e(
-            "TESTTAG", "ACTIVITY_SELECTION_CONNECTION sender_user: $sender_user"
-        ) // local_transfer_sender ,,  phone_clone_sender
-        Log.e(
-            "TESTTAG", "ACTIVITY_SELECTION_CONNECTION receiver_user: $receiver_user"
-        ) // local_transfer_receive ,, phone_clone_receiver
+        Log.e("TESTTAG", "ACTIVITY_SELECTION_CONNECTION user: $user")
+
         if (user == "sender") {
             binding.title.text = "Sender"
         } else {
@@ -133,7 +125,6 @@ class ConnectionActivity : BaseActivity(), WifiGpsStatusReceiver.StatusChangeLis
 
                 updateFragment(wifiDirectFragment)
 
-//                wifiDirectFragment.hideQrLayout()
             } else {
 //                wifiDirectFragment.showQrLayout()
 //                updateFragment(qrcodeFragment)

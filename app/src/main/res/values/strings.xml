@@ -5,7 +5,8 @@
     <!-- Splash Screen -->
     <string name="quickly_share_files_and_copy_data_between_devices_simple_and_fast">Quickly share files and copy data between devices. Simple and fast!</string>
     <string name="get_started">Get Started</string>
-
+    <string name="open_setting">Open Setting</string>
+    <string name="str_cancel">Cancel</string>
     <!-- Permission Screen -->
     <string name="smart_transfer_uses_these_permissions">Smart Transfer uses these \n<small>Permissions</small>!</string>
     <string name="location_service">Location Service</string>
@@ -22,7 +23,8 @@
     <string name="the_app_needs_the_following_permissions">The app needs the following permissions to function properly</string>
     <string name="please_grant_these_permissions">Please grant these permissions</string>
     <string name="grant">Grant</string>
-    <string name="cancel">Cancel</string>
+    <string name="cancel">Cancel Sending</string>
+    <string name="cancel_receiving">Cancel Receiving</string>
     <string name="permission_denied">Permission Denied</string>
     <string name="some_permissions_are_permanently_denied">Some permissions are permanently denied. You can enable them in the app settings.</string>
     <string name="go_to_settings">Go to Settings</string>

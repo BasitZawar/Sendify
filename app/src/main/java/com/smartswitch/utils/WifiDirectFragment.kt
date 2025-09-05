@@ -34,6 +34,8 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.airbnb.lottie.LottieAnimationView
 import com.smartswitch.R
+import com.smartswitch.activities.ReceivingActivity
+import com.smartswitch.activities.SendingActivity
 import com.smartswitch.connection.MyClient
 import com.smartswitch.connection.MyServer
 import com.smartswitch.databinding.FragmentWifiDirectBinding
@@ -383,21 +385,21 @@ class WifiDirectFragment : Fragment(), DeviceConnectionInterface {
 
     override fun onConnectionSuccessful() {
         if (userType == "sender") {
-//            startActivity(
-//                Intent(
-//                    attachedContext, SendActivity::class.java
-//                )
-//                    .putExtra("DeviceList", name1).putExtra("user", "Sender")
-//            )
-//            activity?.finish()
+            startActivity(
+                Intent(
+                    attachedContext, SendingActivity::class.java
+                )
+                    .putExtra("DeviceList", name1).putExtra("user", "Sender")
+            )
+            activity?.finish()
             Log.e("TAG", "onConnectionSuccessful: sender: $name")
         } else {
-//            startActivity(
-//                Intent(
-//                    attachedContext, ReceiverActivity::class.java
-//                ).putExtra("DeviceList", name).putExtra("user", "Receiver")
-//            )
-//            activity?.finish()
+            startActivity(
+                Intent(
+                    attachedContext, ReceivingActivity::class.java
+                ).putExtra("DeviceList", name).putExtra("user", "Receiver")
+            )
+            activity?.finish()
             Log.e("TAG", "onConnectionSuccessful: receiver: $name")
         }
     }

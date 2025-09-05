@@ -18,7 +18,7 @@ data class MediaInfoModel(
     val contactId: Long? = null,
     val contactNumber: String? = null,
     val apkPath: String? = null,
-    val appIcon: Drawable? = null,
+    @Transient val appIcon: Drawable? = null, // Gson ignores this
     val mediaType: MediaTypeEnum? = null,
     val isSend:Boolean = false,
     val isReceived:Boolean=false,
