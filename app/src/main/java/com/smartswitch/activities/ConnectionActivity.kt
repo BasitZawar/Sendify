@@ -9,13 +9,12 @@ import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.view.WindowManager
-import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.smartswitch.R
 import com.smartswitch.databinding.ActivityConnectionBinding
 import com.smartswitch.presentation.PermissionFragment
 import com.smartswitch.presentation.language.BaseActivity
+import com.smartswitch.utils.Constant.customSystemBars
 import com.smartswitch.utils.Constant.isGPSEnabled
 import com.smartswitch.utils.PermissionManager
 import com.smartswitch.utils.WifiDirectFragment
@@ -37,10 +36,9 @@ class ConnectionActivity : BaseActivity(), WifiGpsStatusReceiver.StatusChangeLis
         super.onCreate(savedInstanceState)
         binding = ActivityConnectionBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        val window = this.window
-        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
-        window.statusBarColor = ContextCompat.getColor(this, R.color.white)
-        window.navigationBarColor = ContextCompat.getColor(this, R.color.black)
+        customSystemBars(
+            this@ConnectionActivity, R.color.white, R.color.white, true
+        )
 
         locationManager = getSystemService(Context.LOCATION_SERVICE) as (LocationManager)
         wifiManager = applicationContext.getSystemService(WIFI_SERVICE) as WifiManager
@@ -56,11 +54,11 @@ class ConnectionActivity : BaseActivity(), WifiGpsStatusReceiver.StatusChangeLis
 
         Log.e("TESTTAG", "ACTIVITY_SELECTION_CONNECTION user: $user")
 
-        if (user == "sender") {
-            binding.title.text = "Sender"
-        } else {
-            binding.title.text = "Waiting for Connection"
-        }
+//        if (user == "sender") {
+//            binding.title.text = "Sender"
+//        } else {
+//            binding.title.text = "Waiting for Connection"
+//        }
 
         if (PermissionManager.hasLocationPermission(this)) {
             permissionFragment = PermissionFragment.newInstance(user) {

@@ -1,5 +1,6 @@
 package com.smartswitch.presentation.phoneClone
 
+import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -12,6 +13,7 @@ import androidx.navigation.fragment.findNavController
 import com.google.android.gms.ads.AdLoader
 import com.google.android.gms.ads.AdRequest
 import com.smartswitch.R
+import com.smartswitch.activities.ConnectionActivity
 import com.smartswitch.ads.inter_ads.InterstitialClass
 import com.smartswitch.databinding.FragmentCloneSolBinding
 import com.smartswitch.new_ads.nativeads.NativeTemplateStyle
@@ -77,7 +79,8 @@ class CloneSolFragment : Fragment() {
                         requireContext()
                     )
                 ) {
-                    findNavController().navigate(R.id.action_cloneSendifyFragment_to_receiverScanDeviceSendifyFragment)
+//                    findNavController().navigate(R.id.action_cloneSendifyFragment_to_receiverScanDeviceSendifyFragment)
+                    startActivity(Intent(requireContext(), ConnectionActivity::class.java))
                 } else {
                     InterstitialClass.request_interstitial(
                         requireContext(),
@@ -87,7 +90,8 @@ class CloneSolFragment : Fragment() {
                         isAlive {
                             Handler(Looper.getMainLooper()).postDelayed({
                                 isAlive {
-                                    findNavController().navigate(R.id.action_cloneSendifyFragment_to_receiverScanDeviceSendifyFragment)
+                                    startActivity(Intent(requireContext(),ConnectionActivity::class.java))
+//                                    findNavController().navigate(R.id.action_cloneSendifyFragment_to_receiverScanDeviceSendifyFragment)
                                 }
                             }, 200L)
                         }

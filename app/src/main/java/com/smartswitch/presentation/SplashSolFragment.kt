@@ -67,7 +67,7 @@ class SplashSolFragment : Fragment() {
         isAlive { activityContext ->
             animateProgressBar(binding.progressBar, 15000)
 
-            (activityContext as FragmentActivity).handleDoubleBackPressToExit {
+            (activityContext as FragmentActivity).handleDoubleBackPressToExit("Tap again to exit") {
                 activityContext.finishAffinity()
             }
 

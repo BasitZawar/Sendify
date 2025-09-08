@@ -1,6 +1,9 @@
 package com.smartswitch.presentation.phoneClone
 
 import android.content.ContentValues
+import android.content.Context.MODE_PRIVATE
+import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -14,13 +17,17 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.google.android.gms.ads.AdView
+import com.google.gson.Gson
 import com.smartswitch.R
+import com.smartswitch.activities.ConnectionActivity
 import com.smartswitch.ads.banner_ads.setupBannerAd
 import com.smartswitch.databinding.FragmentSelectDataToCloneSolBinding
 import com.smartswitch.domain.model.PhoneCloneItem
+import com.smartswitch.presentation.sendData.SelectedData
 
 import com.smartswitch.subscriptions.Constants
 import com.smartswitch.subscriptions.PrefUtil
+import com.smartswitch.utils.Constant
 import com.smartswitch.utils.MyDialogBox
 import com.smartswitch.utils.PermissionManager
 import com.smartswitch.utils.SelectedListManager
@@ -37,11 +44,13 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import androidx.core.content.edit
 
 @AndroidEntryPoint
 class SelectDataToCloneSolFragment : Fragment(), OnItemCheckBoxClickCallback {
     private var _binding: FragmentSelectDataToCloneSolBinding? = null
     private val binding get() = _binding!!
+    private lateinit var sharedPreferences: SharedPreferences
 
     val TAG = "PhoneCloneFragmentTAG"
 
@@ -60,6 +69,7 @@ class SelectDataToCloneSolFragment : Fragment(), OnItemCheckBoxClickCallback {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        sharedPreferences = requireContext().getSharedPreferences(Constant.preferencefName, MODE_PRIVATE)
 
         isAlive { activityContext ->
             //SelectedListManager.clearSelected()
@@ -81,7 +91,27 @@ class SelectDataToCloneSolFragment : Fragment(), OnItemCheckBoxClickCallback {
                 if (SelectedListManager.getSelectedMediaList().isNotEmpty() ||
                     SelectedListManager.getSelectedContactsList().isNotEmpty()
                 ) {
-                    findNavController().navigate(R.id.action_selectDataToCloneSendifyFragment_to_searchingDeviceSendifyFragment)
+                    val selectedData = SelectedData(
+                        mediaList = SelectedListManager.getSelectedMediaList(),
+                        contactList = SelectedListManager.getSelectedContactsList()
+                    )
+
+                    sharedPreferences.edit {
+                        val gson = Gson()
+                        val mJson = gson.toJson(selectedData)
+                        putString("selectedDataList", mJson)
+                    }
+
+                    val selectedItem =
+                        SelectedListManager.getSelectedMediaList().size + SelectedListManager.getSelectedContactsList().size
+                    Log.d("TAG", "Sending phone clone list is  ${selectedItem}")
+                    startActivity(
+                        Intent(requireContext(), ConnectionActivity::class.java).putExtra(
+                            "user",
+                            "sender"
+                        )
+                    )
+//                    findNavController().navigate(R.id.action_selectDataToCloneSendifyFragment_to_searchingDeviceSendifyFragment)
                 } else {
                     Toast.makeText(
                         context,
@@ -91,22 +121,22 @@ class SelectDataToCloneSolFragment : Fragment(), OnItemCheckBoxClickCallback {
                 }
             }
 
-            if ( PrefUtil(requireContext()).getBool("is_premium", false)) {
+            if (PrefUtil(requireContext()).getBool("is_premium", false)) {
                 binding.adRel.gone()
             } else {
 
-                        var initialLayoutComplete = false
-                        binding.adViewContainer.apply {
-                            addView(AdView(activityContext))
-                            viewTreeObserver.addOnGlobalLayoutListener {
-                                if (!initialLayoutComplete) {
-                                    initialLayoutComplete = true
-                                    binding.adViewContainer.setupBannerAd(
-                                        activityContext,
-                                        getString(R.string.banner_all)
-                                    )
-                                }
-                            }
+                var initialLayoutComplete = false
+                binding.adViewContainer.apply {
+                    addView(AdView(activityContext))
+                    viewTreeObserver.addOnGlobalLayoutListener {
+                        if (!initialLayoutComplete) {
+                            initialLayoutComplete = true
+                            binding.adViewContainer.setupBannerAd(
+                                activityContext,
+                                getString(R.string.banner_all)
+                            )
+                        }
+                    }
 
 
                 }
@@ -131,7 +161,7 @@ class SelectDataToCloneSolFragment : Fragment(), OnItemCheckBoxClickCallback {
 
                     // Update the UI after fetching data
                     updateUiOnDataFetch()
-                   // updateSendBtnUI()
+                    // updateSendBtnUI()
                 } else {
                     Log.i(TAG, "observeFetchingAllMedia: Data is still being fetched.")
                 }
@@ -157,7 +187,7 @@ class SelectDataToCloneSolFragment : Fragment(), OnItemCheckBoxClickCallback {
         handleSelectAllCheck()
     }
 
-//    private fun handleSelectAllCheck() {
+    //    private fun handleSelectAllCheck() {
 //        binding.apply {
 //            Log.d("awais","handleSelectAllCheck")
 //            checkboxSelectAll.setOnCheckedChangeListener { view, isChecked ->
@@ -211,7 +241,8 @@ class SelectDataToCloneSolFragment : Fragment(), OnItemCheckBoxClickCallback {
 
                 // Switch to main thread for UI updates
                 withContext(Dispatchers.Main) {
-                    val bgRes = if (isChecked) R.drawable.check_circle else R.drawable.uncheck_circle
+                    val bgRes =
+                        if (isChecked) R.drawable.check_circle else R.drawable.uncheck_circle
                     binding.checkboxSelectAll.setBackgroundResource(bgRes)
                     checkSendButtonState()
                     adapter?.updateCheckState(isChecked)
@@ -231,10 +262,12 @@ class SelectDataToCloneSolFragment : Fragment(), OnItemCheckBoxClickCallback {
             return
         }
 
-        Log.d("awais","handleSelectAllCheckState")
+        Log.d("awais", "handleSelectAllCheckState")
 
-        val allMediaSelected = SelectedListManager.getSelectedMediaListSize() == viewModel.allMedia.size
-        val allContactsSelected = SelectedListManager.getSelectedContactsList().size == viewModel.allContactsList.size
+        val allMediaSelected =
+            SelectedListManager.getSelectedMediaListSize() == viewModel.allMedia.size
+        val allContactsSelected =
+            SelectedListManager.getSelectedContactsList().size == viewModel.allContactsList.size
 
         binding.checkboxSelectAll.isChecked = allMediaSelected && allContactsSelected
 
@@ -252,8 +285,11 @@ class SelectDataToCloneSolFragment : Fragment(), OnItemCheckBoxClickCallback {
     }
 
     override fun onItemCheckBoxClicked(phoneCloneItem: PhoneCloneItem, isChecked: Boolean) {
-        itemStateOnCheckClicked(phoneCloneItem = phoneCloneItem, isChecked = isChecked){
-            Log.i(TAG, "onItemCheckBoxClicked: ${SelectedListManager.getSelectedContactsList().size}")
+        itemStateOnCheckClicked(phoneCloneItem = phoneCloneItem, isChecked = isChecked) {
+            Log.i(
+                TAG,
+                "onItemCheckBoxClicked: ${SelectedListManager.getSelectedContactsList().size}"
+            )
             Log.i(TAG, "onItemCheckBoxClicked: ${SelectedListManager.getSelectedMediaList().size}")
             handleSelectAllCheckState()
             checkSendButtonState()
@@ -293,6 +329,7 @@ class SelectDataToCloneSolFragment : Fragment(), OnItemCheckBoxClickCallback {
                         SelectedListManager.removeAllSelectedMedia(viewModel.allPhotos)
                     }
                 }
+
                 MediaTypeEnum.VIDEOS -> {
                     if (isChecked) {
                         SelectedListManager.addAllSelectedMedia(viewModel.allVideos)
@@ -300,6 +337,7 @@ class SelectDataToCloneSolFragment : Fragment(), OnItemCheckBoxClickCallback {
                         SelectedListManager.removeAllSelectedMedia(viewModel.allVideos)
                     }
                 }
+
                 MediaTypeEnum.AUDIOS -> {
                     if (isChecked) {
                         SelectedListManager.addAllSelectedMedia(viewModel.allAudios)
@@ -307,6 +345,7 @@ class SelectDataToCloneSolFragment : Fragment(), OnItemCheckBoxClickCallback {
                         SelectedListManager.removeAllSelectedMedia(viewModel.allAudios)
                     }
                 }
+
                 MediaTypeEnum.CONTACTS -> {
                     activity?.let { act ->
                         if (PermissionManager.hasContactPermission(act)) {
@@ -318,6 +357,7 @@ class SelectDataToCloneSolFragment : Fragment(), OnItemCheckBoxClickCallback {
                         }
                     }
                 }
+
                 MediaTypeEnum.DOCUMENTS -> {
                     if (isChecked) {
                         SelectedListManager.addAllSelectedMedia(viewModel.allDocuments)
@@ -325,6 +365,7 @@ class SelectDataToCloneSolFragment : Fragment(), OnItemCheckBoxClickCallback {
                         SelectedListManager.removeAllSelectedMedia(viewModel.allDocuments)
                     }
                 }
+
                 MediaTypeEnum.APPS -> {
                     if (isChecked) {
                         SelectedListManager.addAllSelectedMedia(viewModel.allApps)
@@ -332,6 +373,7 @@ class SelectDataToCloneSolFragment : Fragment(), OnItemCheckBoxClickCallback {
                         SelectedListManager.removeAllSelectedMedia(viewModel.allApps)
                     }
                 }
+
                 MediaTypeEnum.OTHER -> {
                 }
             }
@@ -404,13 +446,21 @@ class SelectDataToCloneSolFragment : Fragment(), OnItemCheckBoxClickCallback {
         if (SelectedListManager.getSelectedMediaListSize() > 0 || SelectedListManager.getSelectedContactsListSize() > 0) {
             binding.sendButton.enable()
             //binding.sendButton.visible()
-            binding.tvDataSize.text = "${getString(R.string.data_size)} : ${SelectedListManager.getTotalSize()}"
-            binding.tvSelectedFiles.text = "${getString(R.string.selected_files)} : ${SelectedListManager.getSelectedMediaListSize() + SelectedListManager.getSelectedContactsListSize()} ${getString(R.string.files)}"
+            binding.tvDataSize.text =
+                "${getString(R.string.data_size)} : ${SelectedListManager.getTotalSize()}"
+            binding.tvSelectedFiles.text =
+                "${getString(R.string.selected_files)} : ${SelectedListManager.getSelectedMediaListSize() + SelectedListManager.getSelectedContactsListSize()} ${
+                    getString(R.string.files)
+                }"
         } else {
             binding.sendButton.disable()
-           // binding.sendButton.gone()
-            binding.tvDataSize.text = "${getString(R.string.data_size)} : ${SelectedListManager.getTotalSize()}"
-            binding.tvSelectedFiles.text = "${getString(R.string.selected_files)} : ${SelectedListManager.getSelectedMediaListSize() + SelectedListManager.getSelectedContactsListSize()} ${getString(R.string.files)}"
+            // binding.sendButton.gone()
+            binding.tvDataSize.text =
+                "${getString(R.string.data_size)} : ${SelectedListManager.getTotalSize()}"
+            binding.tvSelectedFiles.text =
+                "${getString(R.string.selected_files)} : ${SelectedListManager.getSelectedMediaListSize() + SelectedListManager.getSelectedContactsListSize()} ${
+                    getString(R.string.files)
+                }"
         }
     }
 }

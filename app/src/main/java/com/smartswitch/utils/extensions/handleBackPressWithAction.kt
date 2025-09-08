@@ -17,17 +17,22 @@ fun FragmentActivity.handleBackPressWithAction(onBackPressedAction: () -> Unit) 
 }
 
 
-fun FragmentActivity.handleDoubleBackPressToExit(onExit: () -> Unit) {
-    var isBackPressedOnce = false
+fun FragmentActivity.handleDoubleBackPressToExit(
+    message: String,
+    onExit: () -> Unit
+) {
     val backPressCallback = object : OnBackPressedCallback(true) {
+        private var isBackPressedOnce = false
+
         override fun handleOnBackPressed() {
             if (isBackPressedOnce) {
                 onExit()
             } else {
                 isBackPressedOnce = true
-                Toast.makeText(this@handleDoubleBackPressToExit, "Tap again to exit", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@handleDoubleBackPressToExit, message, Toast.LENGTH_SHORT).show()
+
                 lifecycleScope.launch {
-                    delay(2000) // Resets the flag after 2 seconds
+                    delay(2000) // Reset after 2 sec
                     isBackPressedOnce = false
                 }
             }

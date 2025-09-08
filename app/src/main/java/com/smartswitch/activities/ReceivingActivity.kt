@@ -23,6 +23,7 @@ import com.smartswitch.databinding.ActivityReceivingBinding
 import com.smartswitch.presentation.language.BaseActivity
 import com.smartswitch.utils.Constant
 import com.smartswitch.utils.Constant.customSystemBars
+import com.smartswitch.utils.Constant.handleOnBackPress
 import com.smartswitch.utils.Constant.multiContactsFileName
 import com.smartswitch.utils.Constant.requestStoragePermission11
 import com.smartswitch.utils.Constant.showSnackBar
@@ -153,7 +154,7 @@ class ReceivingActivity : BaseActivity() {
                                 val totalFiles = dataInputStream.readInt()
                                 PHONE_CLONE = dataInputStream.readBoolean()
                                 val totalFileSize = dataInputStream.readLong()
-                                Log.e("TESTAG", "receiving contact list: ${totalFiles}")
+                                Log.e("TESTAG", "receiving list: ${totalFiles}")
                                 for (i in 0 until totalFiles) {
                                     this@ReceivingActivity.runOnUiThread {
                                         binding.totalFiless.text =
@@ -165,6 +166,12 @@ class ReceivingActivity : BaseActivity() {
                                         val fileLength = dataInputStream.readLong()
                                         Log.e(
                                             "TESTAG", "receivingUsingJob filePath: $filePath"
+                                        )
+                                        Log.e(
+                                            "TESTAG", "receivingUsingJob fileName: $fileName"
+                                        )
+                                        Log.e(
+                                            "TESTAG", "receivingUsingJob fileLength: $fileLength"
                                         )
                                         val fileExtension = getFileExtension(fileName)
                                         when {
@@ -642,6 +649,15 @@ class ReceivingActivity : BaseActivity() {
                             }
                         }
                         finish()
+                    }else {
+                        handleOnBackPress(this,"Press again to cancel Receiving"){
+                            socket?.let {
+                                if (it.isConnected) {
+                                    it.close()
+                                }
+                            }
+                            finish()
+                        }
                     }
                 }
             } else {
@@ -657,6 +673,15 @@ class ReceivingActivity : BaseActivity() {
                             }
                         }
                         finish()
+                    } else {
+                        handleOnBackPress(this,"Press again to cancel Receiving"){
+                            socket?.let {
+                                if (it.isConnected) {
+                                    it.close()
+                                }
+                            }
+                            finish()
+                        }
                     }
                 }
             } else {
@@ -670,6 +695,8 @@ class ReceivingActivity : BaseActivity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (Environment.isExternalStorageManager()) {
+            binding.finalLayout.visibility = View.VISIBLE
+            binding.layoutBeforePermission.visibility = View.GONE
         } else {
             binding.finalLayout.visibility = View.GONE
             binding.layoutBeforePermission.visibility = View.VISIBLE

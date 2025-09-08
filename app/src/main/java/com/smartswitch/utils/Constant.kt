@@ -19,6 +19,7 @@ import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
+import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -33,6 +34,8 @@ object Constant {
     const val multiContactsFileName = "_AllContacts_.zip"
     const val KEY_CONTACTS = "contacts"
     const val STORAGE_PERMISSION_CODE = 100
+    private var backPressedTime: Long = 0
+    private const val backPressInterval: Long = 2000 // 2 sec
 
 
     fun isGPSEnabled(locationManager: LocationManager): Boolean {
@@ -191,6 +194,7 @@ object Constant {
         intent.data = uri
         context.startActivity(intent)
     }
+
     fun customSystemBars(
         activity: Activity,
         statusBarColor: Int,
@@ -218,6 +222,17 @@ object Constant {
             }
         } catch (e: Exception) {
             e.printStackTrace()
+        }
+    }
+
+    fun handleOnBackPress(activity: Activity, message: String, onExit: () -> Unit): Boolean {
+        return if (backPressedTime + backPressInterval > System.currentTimeMillis()) {
+            onExit()
+             true
+        } else {
+            Toast.makeText(activity, message, Toast.LENGTH_SHORT).show()
+            backPressedTime = System.currentTimeMillis()
+            false
         }
     }
 }

@@ -152,4 +152,5 @@ dependencies {
     implementation(libs.billing)
     implementation(libs.androidx.multidex)
     implementation(libs.shimmer)
+    implementation("com.google.code.gson:gson:2.11.0")
 }
