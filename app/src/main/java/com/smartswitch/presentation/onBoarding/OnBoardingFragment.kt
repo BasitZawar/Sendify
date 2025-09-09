@@ -132,10 +132,13 @@ class OnBoardingFragment : Fragment() {
     private fun navigateNextDestination() {
         isAlive { activityContext ->
             findNavController().navigate(
-                OnBoardingFragmentDirections.actionOnBoardingFragmentToPermissionSendifyFragment(
-                    "intro"
-                )
+                OnBoardingFragmentDirections.actionOnBoardingFragmentToPremiumFragment("intro")
             )
+//            findNavController().navigate(
+//                OnBoardingFragmentDirections.actionOnBoardingFragmentToPermissionSendifyFragment(
+//                    "intro"
+//                )
+//            )
         }
     }
 

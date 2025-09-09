@@ -9,15 +9,14 @@
         android:id="@+id/settingsSendifyFragment"
         android:name="com.smartswitch.presentation.mainFragments.SettingsSolFragment"
         android:label="fragment_settings_sendify"
-        tools:layout="@layout/fragment_settings_sol" >
+        tools:layout="@layout/fragment_settings_sol">
         <action
             android:id="@+id/action_settingsSendifyFragment_to_historySendifyFragment"
             app:destination="@id/historySendifyFragment"
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_right"
-            />
+            app:popExitAnim="@anim/slide_out_right" />
         <action
             android:id="@+id/action_settingsSendifyFragment_to_languageFragment"
             app:destination="@id/languageFragment"
@@ -35,8 +34,7 @@
         android:id="@+id/homeSendifyFragment"
         android:name="com.smartswitch.presentation.mainFragments.HomeSolFragment"
         android:label="fragment_home_sendify"
-        tools:layout="@layout/fragment_home_sol"
-        >
+        tools:layout="@layout/fragment_home_sol">
         <action
             android:id="@+id/action_homeSendifyFragment_to_settingsSendifyFragment"
             app:destination="@id/settingsSendifyFragment"
@@ -71,16 +69,14 @@
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_right"
-            />
+            app:popExitAnim="@anim/slide_out_right" />
         <action
             android:id="@+id/action_homeSendifyFragment_to_cloneSendifyFragment"
             app:destination="@id/cloneSendifyFragment"
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_right"
-            />
+            app:popExitAnim="@anim/slide_out_right" />
         <action
             android:id="@+id/action_homeSendifyFragment_to_premiumFragment"
             app:destination="@id/premiumFragment"
@@ -93,7 +89,7 @@
         android:id="@+id/splashSendifyFragment"
         android:name="com.smartswitch.presentation.SplashSolFragment"
         android:label="fragment_splash_sendify"
-        tools:layout="@layout/fragment_splash_sol" >
+        tools:layout="@layout/fragment_splash_sol">
         <action
             android:id="@+id/action_splashSendifyFragment_to_homeSendifyFragment2"
             app:destination="@id/homeSendifyFragment"
@@ -120,7 +116,7 @@
         android:id="@+id/permissionSendifyFragment"
         android:name="com.smartswitch.presentation.PermissionSolFragment"
         android:label="fragment_permission_sendify"
-        tools:layout="@layout/fragment_permission_sol" >
+        tools:layout="@layout/fragment_permission_sol">
         <action
             android:id="@+id/action_permissionSendifyFragment_to_homeSendifyFragment"
             app:destination="@id/homeSendifyFragment"
@@ -174,27 +170,27 @@
         android:id="@+id/mediaSendifyFragment"
         android:name="com.smartswitch.presentation.sendData.MediaSolFragment"
         android:label="fragment_media_sendify"
-        tools:layout="@layout/fragment_media_sol" >
+        tools:layout="@layout/fragment_media_sol">
         <action
             android:id="@+id/action_mediaSendifyFragment_to_searchingDeviceSendifyFragment"
             app:destination="@id/searchingDeviceSendifyFragment"
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_right"  />
+            app:popExitAnim="@anim/slide_out_right" />
     </fragment>
     <fragment
         android:id="@+id/searchingDeviceSendifyFragment"
         android:name="com.smartswitch.presentation.sendOrReceive.senderScanDevice.SearchingDeviceSolFragment"
         android:label="fragment_searching_device_sendify"
-        tools:layout="@layout/fragment_searching_device_sol" >
+        tools:layout="@layout/fragment_searching_device_sol">
         <action
             android:id="@+id/action_searchingDeviceSendifyFragment_to_senderConnectedDeviceSendifyFragment"
             app:destination="@id/senderConnectedDeviceSendifyFragment"
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_right"  />
+            app:popExitAnim="@anim/slide_out_right" />
     </fragment>
     <fragment
         android:id="@+id/errorSendifyFragment"
@@ -205,50 +201,49 @@
         android:id="@+id/senderConnectedDeviceSendifyFragment"
         android:name="com.smartswitch.presentation.sendOrReceive.senderScanDevice.SenderConnectedDeviceSolFragment"
         android:label="fragment_sender_connected_device_sendify"
-        tools:layout="@layout/fragment_sender_connected_device_sol" >
+        tools:layout="@layout/fragment_sender_connected_device_sol">
         <action
             android:id="@+id/action_senderConnectedDeviceSendifyFragment_to_errorSendifyFragment"
             app:destination="@id/errorSendifyFragment"
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_right"  />
+            app:popExitAnim="@anim/slide_out_right" />
         <action
             android:id="@+id/action_senderConnectedDeviceSendifyFragment_to_sendingOrReceivingFragment4"
             app:destination="@id/SendingDataSendifyFragment"
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_right"  />
+            app:popExitAnim="@anim/slide_out_right" />
     </fragment>
 
     <fragment
         android:id="@+id/SendingDataSendifyFragment"
         android:name="com.smartswitch.presentation.sendOrReceive.senderScanDevice.SendingDataSolFragment"
         android:label="fragment_sending_or_receiving"
-        tools:layout="@layout/fragment_sending_or_receiving" >
+        tools:layout="@layout/fragment_sending_or_receiving">
         <action
             android:id="@+id/action_SendingDataSendifyFragment_to_sentDataSendifyFragment2"
             app:destination="@id/sendDataSendifyFragment"
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_right"  />
+            app:popExitAnim="@anim/slide_out_right" />
         <action
             android:id="@+id/action_SendingDataSendifyFragment_to_errorSendifyFragment"
             app:destination="@id/errorSendifyFragment"
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_right"
-            />
+            app:popExitAnim="@anim/slide_out_right" />
         <action
             android:id="@+id/action_SendingDataSendifyFragment_to_homeSendifyFragment"
             app:destination="@id/homeSendifyFragment"
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_right"  />
+            app:popExitAnim="@anim/slide_out_right" />
     </fragment>
     <fragment
         android:id="@+id/sendDataSendifyFragment"
@@ -261,72 +256,72 @@
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_right"  />
+            app:popExitAnim="@anim/slide_out_right" />
     </fragment>
     <fragment
         android:id="@+id/receiverScanDeviceSendifyFragment"
         android:name="com.smartswitch.presentation.sendOrReceive.receiverScanDevice.ReceiverScanDeviceSolFragment"
         android:label="fragment_receiver_scan_device_sendify"
-        tools:layout="@layout/fragment_receiver_scan_device_sol" >
+        tools:layout="@layout/fragment_receiver_scan_device_sol">
         <action
             android:id="@+id/action_receiverScanDeviceSendifyFragment_to_receiverConnectedDeviceSendifyFragment"
             app:destination="@id/receiverConnectedDeviceSendifyFragment"
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_right"  />
+            app:popExitAnim="@anim/slide_out_right" />
     </fragment>
     <fragment
         android:id="@+id/receiverConnectedDeviceSendifyFragment"
         android:name="com.smartswitch.presentation.sendOrReceive.receiverScanDevice.ReceiverConnectedDeviceSolFragment"
         android:label="fragment_receiver_connected_device_sendify"
-        tools:layout="@layout/fragment_receiver_connected_device_sol" >
+        tools:layout="@layout/fragment_receiver_connected_device_sol">
         <action
             android:id="@+id/action_receiverConnectedDeviceSendifyFragment_to_receivingDataSendifyFragment"
             app:destination="@id/receivingDataSendifyFragment"
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_right"  />
+            app:popExitAnim="@anim/slide_out_right" />
     </fragment>
     <fragment
         android:id="@+id/receivingDataSendifyFragment"
         android:name="com.smartswitch.presentation.sendOrReceive.receiverScanDevice.ReceivingDataSolFragment"
         android:label="fragment_receiving_data_sendify"
-        tools:layout="@layout/fragment_sending_or_receiving" >
+        tools:layout="@layout/fragment_sending_or_receiving">
         <action
             android:id="@+id/action_receivingDataSendifyFragment_to_receivedDataSendifyFragment"
             app:destination="@id/receivedDataSendifyFragment"
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_right"  />
+            app:popExitAnim="@anim/slide_out_right" />
         <action
             android:id="@+id/action_receivingDataSendifyFragment_to_homeSendifyFragment"
             app:destination="@id/homeSendifyFragment"
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_right"  />
+            app:popExitAnim="@anim/slide_out_right" />
     </fragment>
     <fragment
         android:id="@+id/receivedDataSendifyFragment"
         android:name="com.smartswitch.presentation.sendOrReceive.receiverScanDevice.ReceivedDataSolFragment"
         android:label="fragment_received_data_sendify"
-        tools:layout="@layout/fragment_received_data_sol" >
+        tools:layout="@layout/fragment_received_data_sol">
         <action
             android:id="@+id/action_receivedDataSendifyFragment_to_homeSendifyFragment"
             app:destination="@id/homeSendifyFragment"
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_right"  />
+            app:popExitAnim="@anim/slide_out_right" />
     </fragment>
     <fragment
         android:id="@+id/cloneSendifyFragment"
         android:name="com.smartswitch.presentation.phoneClone.CloneSolFragment"
         android:label="fragment_clone_sendify"
-        tools:layout="@layout/fragment_clone_sol" >
+        tools:layout="@layout/fragment_clone_sol">
         <action
             android:id="@+id/action_cloneSendifyFragment_to_selectDataToCloneSendifyFragment"
             app:destination="@id/selectDataToCloneSendifyFragment"
@@ -340,22 +335,20 @@
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_right"
-            />
+            app:popExitAnim="@anim/slide_out_right" />
     </fragment>
     <fragment
         android:id="@+id/selectDataToCloneSendifyFragment"
         android:name="com.smartswitch.presentation.phoneClone.SelectDataToCloneSolFragment"
         android:label="fragment_select_data_to_clone_sendify"
-        tools:layout="@layout/fragment_select_data_to_clone_sol" >
+        tools:layout="@layout/fragment_select_data_to_clone_sol">
         <action
             android:id="@+id/action_selectDataToCloneSendifyFragment_to_searchingDeviceSendifyFragment"
             app:destination="@id/searchingDeviceSendifyFragment"
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_right"
-            />
+            app:popExitAnim="@anim/slide_out_right" />
     </fragment>
     <fragment
         android:id="@+id/appsHistorySendifyFragment"
@@ -391,7 +384,7 @@
         android:id="@+id/languageFragment"
         android:name="com.smartswitch.presentation.language.LanguageFragment"
         android:label="fragment_language"
-        tools:layout="@layout/fragment_language" >
+        tools:layout="@layout/fragment_language">
         <action
             android:id="@+id/action_languageFragment_to_onBoardingFragment"
             app:destination="@id/onBoardingFragment"
@@ -421,10 +414,18 @@
         android:id="@+id/onBoardingFragment"
         android:name="com.smartswitch.presentation.onBoarding.OnBoardingFragment"
         android:label="fragment_on_boarding"
-        tools:layout="@layout/fragment_on_boarding" >
+        tools:layout="@layout/fragment_on_boarding">
         <action
             android:id="@+id/action_onBoardingFragment_to_permissionSendifyFragment"
             app:destination="@id/permissionSendifyFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+
+        <action
+            android:id="@+id/action_onBoardingFragment_to_premiumFragment"
+            app:destination="@id/premiumFragment"
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
@@ -434,7 +435,7 @@
         android:id="@+id/premiumLifeTimeFragment"
         android:name="com.smartswitch.presentation.mainFragments.PremiumLifeTimeFragment"
         android:label="fragment_premium_life_time"
-        tools:layout="@layout/fragment_premium_life_time" >
+        tools:layout="@layout/fragment_premium_life_time">
         <argument
             android:name="source"
             app:argType="string" />
@@ -443,7 +444,7 @@
         android:id="@+id/premiumFragment"
         android:name="com.smartswitch.PremiumFragment"
         android:label="fragment_premium"
-        tools:layout="@layout/fragment_premium" >
+        tools:layout="@layout/fragment_premium_new">
         <action
             android:id="@+id/action_premiumFragment_to_homeSendifyFragment"
             app:destination="@id/homeSendifyFragment"

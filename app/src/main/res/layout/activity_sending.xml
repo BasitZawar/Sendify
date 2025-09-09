@@ -204,7 +204,7 @@
         android:fontFamily="@font/roboto"
         android:gravity="center"
         android:paddingVertical="@dimen/_10sdp"
-        android:text="@string/cancel"
+        android:text="@string/cancel_sending"
         android:textColor="@color/white"
         android:textSize="@dimen/_12sdp"
         android:textStyle="bold"

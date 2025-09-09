@@ -1,16 +1,26 @@
 package com.smartswitch.presentation.sendData.photos
 
+import android.Manifest
+import android.annotation.SuppressLint
 import android.content.Context
+import android.content.Intent
+import android.content.pm.PackageManager
 import android.content.res.ColorStateList
+import android.os.Build
 import android.os.Bundle
+import android.os.Environment
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.GridLayoutManager
@@ -19,6 +29,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.smartswitch.R
 import com.smartswitch.databinding.FragmentPhotosSolBinding
 import com.smartswitch.domain.model.MediaInfoModel
+import com.smartswitch.utils.Constant.STORAGE_PERMISSION_CODE
+import com.smartswitch.utils.Constant.checkPermission
+import com.smartswitch.utils.Constant.requestStoragePermission11
+import com.smartswitch.utils.PermissionManager
+import com.smartswitch.utils.PermissionViewModel
 import com.smartswitch.utils.SelectedListManager
 import com.smartswitch.utils.callback.OnMediaItemClickCallback
 import com.smartswitch.utils.callback.OnMediaItemClickCallbackForDisplaying
@@ -27,18 +42,24 @@ import com.smartswitch.utils.extensions.gone
 import com.smartswitch.utils.extensions.isAlive
 import com.smartswitch.utils.extensions.openFileFromRecyclerView
 import com.smartswitch.utils.extensions.selectAllMedia
+import com.smartswitch.utils.extensions.setSafeOnClickListener
 import com.smartswitch.utils.extensions.visible
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 
 @AndroidEntryPoint
-class PhotosSolFragment : Fragment(), OnMediaItemClickCallbackForSelectAll,OnMediaItemClickCallbackForDisplaying {
+class PhotosSolFragment : Fragment(), OnMediaItemClickCallbackForSelectAll,
+    OnMediaItemClickCallbackForDisplaying {
     private var _binding: FragmentPhotosSolBinding? = null
     private val binding get() = _binding!!
-
+    private lateinit var permissionViewModel: PermissionViewModel
+    private lateinit var manageAllFilesPermissionLauncher: ActivityResultLauncher<Intent>
     private var isDataLoaded = false
+    var TAG = "TESTTAG"
     private val viewModel: PhotosSolFragmentViewModel by viewModels()
     private var adapter: PhotosAdapter? = null
 
@@ -67,17 +88,103 @@ class PhotosSolFragment : Fragment(), OnMediaItemClickCallbackForSelectAll,OnMed
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        permissionViewModel =
+            ViewModelProvider(requireActivity()).get(PermissionViewModel::class.java)
+        permissionViewModel.isPermissionGranted.observe(viewLifecycleOwner) { isGranted ->
+            if (isGranted) {
+                Log.e(TAG, "onViewCreated: observer Images $isGranted")
+                startObserving("0")
+            }
+        }
 
-        isAlive {
-            observeList()
-            initListener()
+        manageAllFilesPermissionLauncher = registerForActivityResult(
+            ActivityResultContracts.StartActivityForResult()
+        ) { result ->
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                if (Environment.isExternalStorageManager()) {
+                    permissionViewModel.setPermissionGranted(true)
+                    startObserving("1")
+                } else {
+                    Log.e(TAG, "onViewCreated: 11")
+                    binding.headerLayout.visibility = View.GONE
+                    binding.rvPhotos.visibility = View.GONE
+                    binding.storagePermissionCardView.visibility = View.VISIBLE
+
+                }
+            }
+        }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            if (Environment.isExternalStorageManager()) {
+                permissionViewModel.setPermissionGranted(true)
+                startObserving("2")
+            } else {
+                Log.e(TAG, "onViewCreated: 22")
+                binding.headerLayout.visibility = View.GONE
+                binding.rvPhotos.visibility = View.GONE
+                binding.storagePermissionCardView.visibility = View.VISIBLE
+            }
+        } else {
+            if (checkPermission(requireContext())) {
+                permissionViewModel.setPermissionGranted(true)
+                startObserving("3")
+            } else {
+                Log.e(TAG, "onViewCreated: 33")
+                binding.headerLayout.visibility = View.GONE
+                binding.rvPhotos.visibility = View.GONE
+                binding.storagePermissionCardView.visibility = View.VISIBLE
+            }
+        }
+        binding.allowButton.setSafeOnClickListener {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                if (!Environment.isExternalStorageManager()) {
+                    requestStoragePermission11(requireContext(), manageAllFilesPermissionLauncher)
+                }
+            } else {
+                if (!checkPermission(requireContext())) {
+                    requestPermissions(
+                        arrayOf(
+                            Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                            Manifest.permission.READ_EXTERNAL_STORAGE
+                        ), STORAGE_PERMISSION_CODE
+                    )
+                }
+            }
         }
     }
 
+    //    override fun onResume() {
+//        super.onResume()
+//        Log.e(TAG, "onResume: called isDataLoaded $isDataLoaded")
+//        if (!isDataLoaded) {
+//            fetchPhotos()
+//        }
+//    }
     override fun onResume() {
         super.onResume()
-        if (!isDataLoaded) {
-            fetchPhotos()
+        Log.e(TAG, "onResume: called isDataLoaded $isDataLoaded")
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            if (Environment.isExternalStorageManager()) {
+                if (!isDataLoaded) {
+                    permissionViewModel.setPermissionGranted(true)
+                    startObserving("onResume-R")
+                }
+            } else {
+                binding.headerLayout.visibility = View.GONE
+                binding.rvPhotos.visibility = View.GONE
+                binding.storagePermissionCardView.visibility = View.VISIBLE
+            }
+        } else {
+            if (checkPermission(requireContext())) {
+                if (!isDataLoaded) {
+                    permissionViewModel.setPermissionGranted(true)
+                    startObserving("onResume-Legacy")
+                }
+            } else {
+                binding.headerLayout.visibility = View.GONE
+                binding.rvPhotos.visibility = View.GONE
+                binding.storagePermissionCardView.visibility = View.VISIBLE
+            }
         }
     }
 
@@ -86,16 +193,14 @@ class PhotosSolFragment : Fragment(), OnMediaItemClickCallbackForSelectAll,OnMed
         _binding = null
     }
 
-
     private fun fetchPhotos() {
-        Log.d("fetch___", "fetchPhotos")
-        lifecycleScope.launch(Dispatchers.IO) {
-            activity?.let { _ ->
-                viewModel.getAllPhotos()
-            }
+        Log.d(TAG, "fetchPhotos called")
+        lifecycleScope.launch {   // 👉 stay on Main
+            viewModel.getAllPhotos()
         }
     }
 
+    @SuppressLint("RepeatOnLifecycleWrongUsage")
     private fun observeList() {
         lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
@@ -108,7 +213,8 @@ class PhotosSolFragment : Fragment(), OnMediaItemClickCallbackForSelectAll,OnMed
 
     private fun updateUi(isComplete: Boolean) {
         if (isComplete) {
-            binding.dateTextView.text = "${getString(R.string.photos)} (${viewModel.photoList.size})"
+            binding.dateTextView.text =
+                "${getString(R.string.photos)} (${viewModel.photoList.size})"
             setupRecyclerView(viewModel.photoList)
             isDataLoaded = true
         } else {
@@ -127,7 +233,7 @@ class PhotosSolFragment : Fragment(), OnMediaItemClickCallbackForSelectAll,OnMed
             binding.progressBar.gone()
             binding.headerLayout.gone()
         } else {
-            adapter = PhotosAdapter(list, this,this)
+            adapter = PhotosAdapter(list, this, this)
             val gridLayoutManager = GridLayoutManager(context, 3) // 3 columns for photos
             val linearLayoutManager = LinearLayoutManager(context)
             gridLayoutManager.spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
@@ -149,7 +255,8 @@ class PhotosSolFragment : Fragment(), OnMediaItemClickCallbackForSelectAll,OnMed
             // For Layout Toggle
 
             val gridListColor = ContextCompat.getColor(requireContext(), R.color.grid_list_color)
-            val gridListSelectedColor = ContextCompat.getColor(requireContext(), R.color.grid_list_selected_color)
+            val gridListSelectedColor =
+                ContextCompat.getColor(requireContext(), R.color.grid_list_selected_color)
 
             updateLayoutToggle(gridListSelectedColor, gridListColor, gridLayoutManager, true)
             binding.gridView.setOnClickListener {
@@ -158,6 +265,39 @@ class PhotosSolFragment : Fragment(), OnMediaItemClickCallbackForSelectAll,OnMed
 
             binding.listView.setOnClickListener {
                 updateLayoutToggle(gridListColor, gridListSelectedColor, linearLayoutManager, false)
+            }
+        }
+    }
+
+    @Deprecated("Deprecated in Java")
+    @RequiresApi(Build.VERSION_CODES.R)
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (Environment.isExternalStorageManager()) {
+            permissionViewModel.setPermissionGranted(true)
+            startObserving("5")
+        } else {
+            Log.e(TAG, "onActivityResult: 55")
+            binding.headerLayout.visibility = View.GONE
+            binding.rvPhotos.visibility = View.GONE
+            binding.storagePermissionCardView.visibility = View.VISIBLE
+        }
+    }
+
+    @Deprecated("Deprecated in Java")
+    override fun onRequestPermissionsResult(
+        requestCode: Int, permissions: Array<String>, grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if (requestCode == STORAGE_PERMISSION_CODE) {
+            if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                permissionViewModel.setPermissionGranted(true)
+                startObserving("4")
+            } else {
+                Log.e(TAG, "onRequestPermissionsResult: 44")
+                binding.headerLayout.visibility = View.GONE
+                binding.rvPhotos.visibility = View.GONE
+                binding.storagePermissionCardView.visibility = View.VISIBLE
             }
         }
     }
@@ -182,7 +322,7 @@ class PhotosSolFragment : Fragment(), OnMediaItemClickCallbackForSelectAll,OnMed
         binding.apply {
             checkboxSelectAll.setOnCheckedChangeListener { _, isChecked ->
                 if (!binding.checkboxSelectAll.isPressed) return@setOnCheckedChangeListener
-                adapter?.selectAllMedia(isChecked, viewModel.photoList, lifecycleScope){
+                adapter?.selectAllMedia(isChecked, viewModel.photoList, lifecycleScope) {
                     onMediaItemClickCallback.onMediaItemClicked()
                     updateSelectAllState(isChecked)
                 }
@@ -194,24 +334,45 @@ class PhotosSolFragment : Fragment(), OnMediaItemClickCallbackForSelectAll,OnMed
         binding.checkboxSelectAll.setBackgroundResource(
             if (isChecked) R.drawable.check_circle else R.drawable.uncheck_circle
         )
-        binding.selectTv.text = if (isChecked) getString(R.string.de_select_all) else getString(R.string.select_all)
+        binding.selectTv.text =
+            if (isChecked) getString(R.string.de_select_all) else getString(R.string.select_all)
         binding.selectTv.setTextColor(resources.getColor(R.color.sub_heading_text_color, null))
     }
 
     override fun onMediaItemClickedForSelectAll() {
         onMediaItemClickCallback.onMediaItemClicked()
-        val allSelected = SelectedListManager.getSelectedMediaList().containsAll(viewModel.photoList )
+        val allSelected =
+            SelectedListManager.getSelectedMediaList().containsAll(viewModel.photoList)
         updateSelectAllState(allSelected)
         binding.checkboxSelectAll.isChecked = allSelected
     }
 
     override fun onMediaItemClickedForDisplaying(mediaInfoModel: MediaInfoModel) {
         // openFullViewWallpaper(mediaInfoModel.name.toString(), mediaInfoModel.uri.toString())
-
         requireContext().openFileFromRecyclerView(mediaInfoModel.uri.toString())
-
-
     }
+
+    private fun startObserving(source: String) {
+        Log.e(TAG, "startObserving from: $source")
+
+        viewLifecycleOwner.lifecycleScope.launch {
+            // Always start observing first
+            observeList()
+            initListener()
+
+            // Then trigger fetching (if not already loaded)
+            if (!isDataLoaded) {
+                fetchPhotos()
+            }
+
+            // UI updates must run on Main
+            binding.headerLayout.visibility = View.VISIBLE
+            binding.rvPhotos.visibility = View.VISIBLE
+            binding.storagePermissionCardView.visibility = View.GONE
+        }
+    }
+
+
 //    private fun showPhoto(photoUri: String) {
 //        // Path to your image file
 //        val imageFile = File(photoUri)

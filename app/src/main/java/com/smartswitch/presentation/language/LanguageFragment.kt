@@ -137,13 +137,9 @@ class LanguageFragment : Fragment() {
                 binding.adRel.gone()
             } else {
                isAlive {
-
                    displayNativeAd()
                }
-
             }
-
-
             // Set up the toolbar's back navigation
             binding.headerLayout.setNavigationOnClickListener {
                 findNavController().navigateUp()

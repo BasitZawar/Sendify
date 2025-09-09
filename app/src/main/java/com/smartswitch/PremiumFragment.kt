@@ -62,14 +62,11 @@ class PremiumFragment : Fragment(), SubscriptionPurchaseInterface {
     private var _binding: FragmentPremiumNewBinding? = null
     private val binding get() = _binding!!
     private val args: PremiumFragmentArgs by navArgs()
-
-
     private var billingClient: BillingClient? = null
     private val arrayList = ArrayList<ProductDetails>()
 
     @Inject
     lateinit var sharedPreferences: SharedPreferences
-
     private var mSharePrefHelper: SharedPreferencesClass? = null
     private var check: String = ""
     private val oneWeak: String = "Weekly"
@@ -77,7 +74,6 @@ class PremiumFragment : Fragment(), SubscriptionPurchaseInterface {
     private var productDetailsList: ArrayList<ProductDetails> = ArrayList()
     private var retryCount = 1
     private val TAG = "PremiumActivityTAG"
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -89,7 +85,7 @@ class PremiumFragment : Fragment(), SubscriptionPurchaseInterface {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        Log.e(TAG, "onViewCreated: arg $args")
         isAlive { activityContext ->
             (activityContext as FragmentActivity).handleBackPressWithAction {
                 onCrossButtonClick()
@@ -131,11 +127,13 @@ class PremiumFragment : Fragment(), SubscriptionPurchaseInterface {
             }
         }
     }
+
     private fun setupUI() {
 
         Glide.with(this).load(R.drawable.gif_new_premium).into(binding.mainGif)
 
     }
+
     private fun initializeBillingClient() {
         billingClient = BillingClient.newBuilder(requireContext())
             .enablePendingPurchases(
@@ -160,7 +158,10 @@ class PremiumFragment : Fragment(), SubscriptionPurchaseInterface {
         Log.d(TAG, "Attempting to establish billing connection...")
         billingClient?.startConnection(object : BillingClientStateListener {
             override fun onBillingSetupFinished(billingResult: BillingResult) {
-                Log.d(TAG, "Billing setup finished: ${billingResult.responseCode} - ${billingResult.debugMessage}")
+                Log.d(
+                    TAG,
+                    "Billing setup finished: ${billingResult.responseCode} - ${billingResult.debugMessage}"
+                )
                 if (billingResult.responseCode == BillingClient.BillingResponseCode.OK) {
                     Log.d(TAG, "Billing connection successful, querying products...")
                     getProducts()
@@ -176,6 +177,7 @@ class PremiumFragment : Fragment(), SubscriptionPurchaseInterface {
             }
         })
     }
+
     private fun retryConnection() {
         if (retryCount <= 3) {
             lifecycleScope.launch {
@@ -185,49 +187,50 @@ class PremiumFragment : Fragment(), SubscriptionPurchaseInterface {
             }
         }
     }
-/*
-    private fun getProducts() {
-        lifecycleScope.launch {
-            try {
-                val productList = listOf(
-                    QueryProductDetailsParams.Product.newBuilder()
-                        .setProductId("weekly_freetrial")
-                        .setProductType(BillingClient.ProductType.SUBS)
+
+    /*
+        private fun getProducts() {
+            lifecycleScope.launch {
+                try {
+                    val productList = listOf(
+                        QueryProductDetailsParams.Product.newBuilder()
+                            .setProductId("weekly_freetrial")
+                            .setProductType(BillingClient.ProductType.SUBS)
+                            .build()
+                    )
+
+                    val params = QueryProductDetailsParams.newBuilder()
+                        .setProductList(productList)
                         .build()
-                )
 
-                val params = QueryProductDetailsParams.newBuilder()
-                    .setProductList(productList)
-                    .build()
-
-                val result = suspendCancellableCoroutine<Pair<BillingResult, List<ProductDetails>?>> { continuation ->
-                    billingClient?.queryProductDetailsAsync(params) { billingResult, productDetailsResult ->
-                        continuation.resume(
-                            billingResult to productDetailsResult.productDetailsList
-                        )
-                    }
-                }
-
-                val (billingResult, productDetails) = result
-
-                if (billingResult.responseCode == BillingClient.BillingResponseCode.OK) {
-                    productDetails?.let { details ->
-                        Log.d(TAG, "Fetched products: ${details.map { it.productId }}")
-                        productDetailsList.clear()
-                        productDetailsList.addAll(details)
-                        withContext(Dispatchers.Main) {
-                            updateWeeklyPrice()
+                    val result = suspendCancellableCoroutine<Pair<BillingResult, List<ProductDetails>?>> { continuation ->
+                        billingClient?.queryProductDetailsAsync(params) { billingResult, productDetailsResult ->
+                            continuation.resume(
+                                billingResult to productDetailsResult.productDetailsList
+                            )
                         }
                     }
-                } else {
-                    Log.e(TAG, "Product query failed: ${billingResult.debugMessage}")
+
+                    val (billingResult, productDetails) = result
+
+                    if (billingResult.responseCode == BillingClient.BillingResponseCode.OK) {
+                        productDetails?.let { details ->
+                            Log.d(TAG, "Fetched products: ${details.map { it.productId }}")
+                            productDetailsList.clear()
+                            productDetailsList.addAll(details)
+                            withContext(Dispatchers.Main) {
+                                updateWeeklyPrice()
+                            }
+                        }
+                    } else {
+                        Log.e(TAG, "Product query failed: ${billingResult.debugMessage}")
+                    }
+                } catch (e: Exception) {
+                    Log.e(TAG, "Error querying products", e)
                 }
-            } catch (e: Exception) {
-                Log.e(TAG, "Error querying products", e)
             }
         }
-    }
-*/
+    */
     private fun getProducts() {
         lifecycleScope.launch {
             try {
@@ -242,18 +245,19 @@ class PremiumFragment : Fragment(), SubscriptionPurchaseInterface {
                     .setProductList(productList)
                     .build()
 
-                val result = suspendCancellableCoroutine<Pair<BillingResult, List<ProductDetails>?>> { continuation ->
-                    billingClient?.queryProductDetailsAsync(params) { billingResult, productDetailsResult ->
-                        val token = continuation.tryResume(
-                            billingResult to productDetailsResult.productDetailsList
-                        )
-                        if (token != null) {
-                            continuation.completeResume(token)
-                        } else {
-                            Log.w(TAG, "Continuation already resumed — skipping extra callback")
+                val result =
+                    suspendCancellableCoroutine<Pair<BillingResult, List<ProductDetails>?>> { continuation ->
+                        billingClient?.queryProductDetailsAsync(params) { billingResult, productDetailsResult ->
+                            val token = continuation.tryResume(
+                                billingResult to productDetailsResult.productDetailsList
+                            )
+                            if (token != null) {
+                                continuation.completeResume(token)
+                            } else {
+                                Log.w(TAG, "Continuation already resumed — skipping extra callback")
+                            }
                         }
                     }
-                }
 
                 val (billingResult, productDetails) = result
 
@@ -285,7 +289,10 @@ class PremiumFragment : Fragment(), SubscriptionPurchaseInterface {
 
         val weeklyProduct = productDetailsList.firstOrNull { it.productId == "weekly_freetrial" }
         if (weeklyProduct == null) {
-            Log.e(TAG, "Weekly product not found in list. Available products: ${productDetailsList.map { it.productId }}")
+            Log.e(
+                TAG,
+                "Weekly product not found in list. Available products: ${productDetailsList.map { it.productId }}"
+            )
             binding.WeeklyPrice.text = getString(R.string.price_unavailable)
             return
         }
@@ -308,11 +315,12 @@ class PremiumFragment : Fragment(), SubscriptionPurchaseInterface {
         val firstPricingPhase = pricingPhases.first()
         val realPricingPhase = pricingPhases.find { phase -> phase.priceAmountMicros > 0 }
         val weeklyPriceStr = realPricingPhase?.formattedPrice ?: ""
-       // val weeklyPriceStr = firstPricingPhase.formattedPrice ?: ""
+        // val weeklyPriceStr = firstPricingPhase.formattedPrice ?: ""
 
         if (weeklyPriceStr.isNotEmpty()) {
             Log.d(TAG, "Weekly price found: $weeklyPriceStr")
-            binding.WeeklyPrice.text = "${getString(R.string.just)} $weeklyPriceStr ${getString(R.string.aweek)}"
+            binding.WeeklyPrice.text =
+                "${getString(R.string.just)} $weeklyPriceStr ${getString(R.string.aweek)}"
             weaklyPrice = weeklyPriceStr
         } else {
             Log.e(TAG, "Weekly price is empty")
@@ -348,6 +356,7 @@ class PremiumFragment : Fragment(), SubscriptionPurchaseInterface {
             }
         }
     }
+
     private fun handleSubscribeClick() {
         if (!isNetworkAvailable(requireContext())) {
             Toast.makeText(requireContext(), "No Internet", Toast.LENGTH_SHORT).show()
@@ -409,6 +418,7 @@ class PremiumFragment : Fragment(), SubscriptionPurchaseInterface {
             e.printStackTrace()
         }
     }
+
     override fun onDestroy() {
         super.onDestroy()
         billingClient?.endConnection()
@@ -423,7 +433,10 @@ class PremiumFragment : Fragment(), SubscriptionPurchaseInterface {
 
                 "language" -> {
                     // TODO : Goto Home
-                    if ( PrefUtil(requireContext()).getBool("is_premium", false) || !InterstitialClass.isInternetAvailable(
+                    if (PrefUtil(requireContext()).getBool(
+                            "is_premium",
+                            false
+                        ) || !InterstitialClass.isInternetAvailable(
                             requireContext()
                         )
                     ) {
@@ -443,8 +456,11 @@ class PremiumFragment : Fragment(), SubscriptionPurchaseInterface {
                     }
                 }
 
-                "permission" -> {
-                    if ( PrefUtil(requireContext()).getBool("is_premium", false) || !InterstitialClass.isInternetAvailable(
+                "intro" -> {
+                    if (PrefUtil(requireContext()).getBool(
+                            "is_premium",
+                            false
+                        ) || !InterstitialClass.isInternetAvailable(
                             requireContext()
                         )
                     ) {
@@ -472,7 +488,6 @@ class PremiumFragment : Fragment(), SubscriptionPurchaseInterface {
     }
 
 
-
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
@@ -498,6 +513,7 @@ class PremiumFragment : Fragment(), SubscriptionPurchaseInterface {
             }
         }
     }
+
     private fun isNetworkAvailable(context: Context): Boolean {
         val connectivityManager =
             context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager

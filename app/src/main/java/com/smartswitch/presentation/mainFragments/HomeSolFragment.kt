@@ -193,39 +193,38 @@ class HomeSolFragment : Fragment() {
             }
 
             binding.sendBtn.setSafeOnClickListener {
-                if (PermissionManager.hasLocationPermission(activityContext) && PermissionManager.hasNearbyPermission(
-                        activityContext
-                    ) && PermissionManager.hasStorageAccessPermission(activityContext)
-                ) {
-                    if (PrefUtil(requireContext()).getBool(
-                            "is_premium",
-                            false
-                        ) || !InterstitialClass.isInternetAvailable(
-                            requireContext()
-                        )
-                    ) {
-                        findNavController().navigate(R.id.action_homeSendifyFragment_to_mediaSendifyFragment)
-                    } else {
-                        InterstitialClass.request_interstitial(
-                            requireContext(),
-                            requireActivity(),
-                            getString(R.string.inter_send_receive_button)
-                        ) {
-                            Handler(Looper.getMainLooper()).postDelayed({
-                                isAlive {
-                                    findNavController().navigate(R.id.action_homeSendifyFragment_to_mediaSendifyFragment)
-                                }
-                            }, 200L)
-                        }
-                    }
-                } else {
-
-                    findNavController().navigate(
-                        HomeSolFragmentDirections.actionHomeSendifyFragmentToPermissionSendifyFragment(
-                            "home"
-                        )
+//                if (PermissionManager.hasLocationPermission(activityContext) && PermissionManager.hasNearbyPermission(
+//                        activityContext
+//                    ) && PermissionManager.hasStorageAccessPermission(activityContext)
+//                ) {
+                if (PrefUtil(requireContext()).getBool(
+                        "is_premium",
+                        false
+                    ) || !InterstitialClass.isInternetAvailable(
+                        requireContext()
                     )
+                ) {
+                    findNavController().navigate(R.id.action_homeSendifyFragment_to_mediaSendifyFragment)
+                } else {
+                    InterstitialClass.request_interstitial(
+                        requireContext(),
+                        requireActivity(),
+                        getString(R.string.inter_send_receive_button)
+                    ) {
+                        Handler(Looper.getMainLooper()).postDelayed({
+                            isAlive {
+                                findNavController().navigate(R.id.action_homeSendifyFragment_to_mediaSendifyFragment)
+                            }
+                        }, 200L)
+                    }
                 }
+//                } else {
+//                    findNavController().navigate(
+//                        HomeSolFragmentDirections.actionHomeSendifyFragmentToPermissionSendifyFragment(
+//                            "home"
+//                        )
+//                    )
+//                }
             }
 
             binding.receiveBtn.setSafeOnClickListener {
@@ -241,7 +240,7 @@ class HomeSolFragment : Fragment() {
                             requireContext()
                         )
                     ) {
-                        startActivity(Intent(requireContext(),ConnectionActivity::class.java))
+                        startActivity(Intent(requireContext(), ConnectionActivity::class.java))
 //                        findNavController().navigate(R.id.action_homeSendifyFragment_to_receiverScanDeviceSendifyFragment)
                     } else {
                         InterstitialClass.request_interstitial(
@@ -252,7 +251,12 @@ class HomeSolFragment : Fragment() {
                             isAlive {
                                 Handler(Looper.getMainLooper()).postDelayed({
                                     isAlive {
-                                        startActivity(Intent(requireContext(),ConnectionActivity::class.java))
+                                        startActivity(
+                                            Intent(
+                                                requireContext(),
+                                                ConnectionActivity::class.java
+                                            )
+                                        )
 //                                        findNavController().navigate(R.id.action_homeSendifyFragment_to_receiverScanDeviceSendifyFragment)
                                     }
                                 }, 200L)
@@ -275,165 +279,161 @@ class HomeSolFragment : Fragment() {
 
             binding.imagesBtn.setSafeOnClickListener {
 
-                if (permissionsGranted(activityContext)) {
+//                if (permissionsGranted(activityContext)) {
 
-                    if (PrefUtil(requireContext()).getBool(
-                            "is_premium",
-                            false
-                        ) || !InterstitialClass.isInternetAvailable(
-                            requireContext()
-                        )
-                    ) {
-                        navigateToMediaFragment(1)
-                    } else {
-                        InterstitialClass.request_interstitial(
-                            requireContext(),
-                            requireActivity(),
-                            getString(R.string.inter_all)
-                        ) {
-                            Handler(Looper.getMainLooper()).postDelayed({
-                                Log.d("PermissionCheck", "permissionsGranted: ")
-                                isAlive {
-                                    navigateToMediaFragment(1)
-                                }
-                            }, 200L)
-                        }
-                    }
-                } else {
-                    showPermissionDialog(
-                        layoutResId = R.layout.photo_permission_dialog,
-                        onAllowClicked = {
-                            storagePermission()
-
-                        },
-                        onDismissed = {
-                        }
+                if (PrefUtil(requireContext()).getBool(
+                        "is_premium",
+                        false
+                    ) || !InterstitialClass.isInternetAvailable(
+                        requireContext()
                     )
+                ) {
+                    navigateToMediaFragment(1)
+                } else {
+                    InterstitialClass.request_interstitial(
+                        requireContext(),
+                        requireActivity(),
+                        getString(R.string.inter_all)
+                    ) {
+                        Handler(Looper.getMainLooper()).postDelayed({
+                            Log.d("PermissionCheck", "permissionsGranted: ")
+                            isAlive {
+                                navigateToMediaFragment(1)
+                            }
+                        }, 200L)
+                    }
                 }
+//                } else {
+//                    showPermissionDialog(
+//                        layoutResId = R.layout.photo_permission_dialog,
+//                        onAllowClicked = {
+//                            storagePermission()
+//
+//                        },
+//                        onDismissed = {
+//                        }
+//                    )
+//                }
             }
             binding.videosBtn.setSafeOnClickListener {
-                if (permissionsGranted(activityContext)) {
+//                if (permissionsGranted(activityContext)) {
 
-                    if (PrefUtil(requireContext()).getBool(
-                            "is_premium",
-                            false
-                        ) || !InterstitialClass.isInternetAvailable(
-                            requireContext()
-                        )
-                    ) {
-                        navigateToMediaFragment(2) // Document tab
-                    } else {
-                        InterstitialClass.request_interstitial(
-                            requireContext(),
-                            requireActivity(),
-                            getString(R.string.inter_all)
-                        ) {
-                            Handler(Looper.getMainLooper()).postDelayed({
-                                Log.d("PermissionCheck", "permissionsGranted: ")
-                                isAlive {
-                                    navigateToMediaFragment(2) // Document tab
-                                }
-                            }, 200L)
-                        }
-                    }
-                } else {
-                    showPermissionDialog(
-                        layoutResId = R.layout.video_permission_dialog,
-                        onAllowClicked = {
-                            storagePermission()
-
-                        },
-                        onDismissed = {
-                        }
+                if (PrefUtil(requireContext()).getBool(
+                        "is_premium",
+                        false
+                    ) || !InterstitialClass.isInternetAvailable(
+                        requireContext()
                     )
-
+                ) {
+                    navigateToMediaFragment(2) // Document tab
+                } else {
+                    InterstitialClass.request_interstitial(
+                        requireContext(),
+                        requireActivity(),
+                        getString(R.string.inter_all)
+                    ) {
+                        Handler(Looper.getMainLooper()).postDelayed({
+                            Log.d("PermissionCheck", "permissionsGranted: ")
+                            isAlive {
+                                navigateToMediaFragment(2) // Document tab
+                            }
+                        }, 200L)
+                    }
                 }
+//                } else {
+//                    showPermissionDialog(
+//                        layoutResId = R.layout.video_permission_dialog,
+//                        onAllowClicked = {
+//                            storagePermission()
+//
+//                        },
+//                        onDismissed = {
+//                        }
+//                    )
+//
+//                }
             }
 
             binding.audiosBtn.setSafeOnClickListener {
-
-                if (permissionsGranted(activityContext)) {
-                    if (PrefUtil(requireContext()).getBool(
-                            "is_premium",
-                            false
-                        ) || !InterstitialClass.isInternetAvailable(
-                            requireContext()
-                        )
-                    ) {
-                        navigateToMediaFragment(3) // Document tab
-                    } else {
-                        InterstitialClass.request_interstitial(
-                            requireContext(),
-                            requireActivity(),
-                            getString(R.string.inter_all)
-                        ) {
-                            Handler(Looper.getMainLooper()).postDelayed({
-                                isAlive {
-                                    Log.d("PermissionCheck", "permissionsGranted: ")
-                                    navigateToMediaFragment(3) // Document tab
-
-                                }
-                            }, 200L)
-
-                        }
-                    }
-                } else {
-                    showPermissionDialog(
-                        layoutResId = R.layout.audio_permission_dialog,
-                        onAllowClicked = {
-                            storagePermission()
-
-                        },
-                        onDismissed = {
-                        }
+//                if (permissionsGranted(activityContext)) {
+                if (PrefUtil(requireContext()).getBool(
+                        "is_premium",
+                        false
+                    ) || !InterstitialClass.isInternetAvailable(
+                        requireContext()
                     )
+                ) {
+                    navigateToMediaFragment(3) // Document tab
+                } else {
+                    InterstitialClass.request_interstitial(
+                        requireContext(),
+                        requireActivity(),
+                        getString(R.string.inter_all)
+                    ) {
+                        Handler(Looper.getMainLooper()).postDelayed({
+                            isAlive {
+                                Log.d("PermissionCheck", "permissionsGranted: ")
+                                navigateToMediaFragment(3) // Document tab
 
+                            }
+                        }, 200L)
+
+                    }
                 }
+//                } else {
+//                    showPermissionDialog(
+//                        layoutResId = R.layout.audio_permission_dialog,
+//                        onAllowClicked = {
+//                            storagePermission()
+//
+//                        },
+//                        onDismissed = {
+//                        }
+//                    )
+//
+//                }
             }
 
             binding.docsBtn.setSafeOnClickListener {
-
-                if (permissionsGranted(activityContext)) {
-                    if (PrefUtil(requireContext()).getBool(
-                            "is_premium",
-                            false
-                        ) || !InterstitialClass.isInternetAvailable(
-                            requireContext()
-                        )
-                    ) {
-                        navigateToMediaFragment(4) // Document tab
-                    } else {
-                        InterstitialClass.request_interstitial(
-                            requireContext(),
-                            requireActivity(),
-                            getString(R.string.inter_all)
-                        ) {
-                            Handler(Looper.getMainLooper()).postDelayed({
-
-                                isAlive {
-                                    navigateToMediaFragment(4) // Document tab
-                                    Log.d("PermissionCheck", "permissionsGranted: ")
-                                }
-                            }, 200L)
-                        }
-                    }
-                } else {
-                    showPermissionDialog(
-                        layoutResId = R.layout.document_permission_dialog,
-                        onAllowClicked = {
-                            storagePermission()
-
-                        },
-                        onDismissed = {
-
-                        }
+//                if (permissionsGranted(activityContext)) {
+                if (PrefUtil(requireContext()).getBool(
+                        "is_premium",
+                        false
+                    ) || !InterstitialClass.isInternetAvailable(
+                        requireContext()
                     )
-
+                ) {
+                    navigateToMediaFragment(4) // Document tab
+                } else {
+                    InterstitialClass.request_interstitial(
+                        requireContext(),
+                        requireActivity(),
+                        getString(R.string.inter_all)
+                    ) {
+                        Handler(Looper.getMainLooper()).postDelayed({
+                            isAlive {
+                                navigateToMediaFragment(4) // Document tab
+                                Log.d("PermissionCheck", "permissionsGranted: ")
+                            }
+                        }, 200L)
+                    }
                 }
+//                } else {
+//                    showPermissionDialog(
+//                        layoutResId = R.layout.document_permission_dialog,
+//                        onAllowClicked = {
+//                            storagePermission()
+//
+//                        },
+//                        onDismissed = {
+//
+//                        }
+//                    )
+//                }
             }
 
             binding.appsBtn.setSafeOnClickListener {
-                if (permissionsGranted(activityContext)) {
+//                if (permissionsGranted(activityContext)) {
                     if (PrefUtil(requireContext()).getBool(
                             "is_premium",
                             false
@@ -458,22 +458,22 @@ class HomeSolFragment : Fragment() {
                             }
                         }
                     }
-                } else {
-                    showPermissionDialog(
-                        layoutResId = R.layout.app_permission_dialog,
-                        onAllowClicked = {
-                            storagePermission()
-
-                        },
-                        onDismissed = {
-                        }
-                    )
-
-                }
+//                } else {
+//                    showPermissionDialog(
+//                        layoutResId = R.layout.app_permission_dialog,
+//                        onAllowClicked = {
+//                            storagePermission()
+//
+//                        },
+//                        onDismissed = {
+//                        }
+//                    )
+//
+//                }
             }
 
             binding.contactBtn.setSafeOnClickListener {
-                if (PermissionManager.hasContactPermission(activityContext)) {
+//                if (PermissionManager.hasContactPermission(activityContext)) {
                     if (PrefUtil(requireContext()).getBool(
                             "is_premium",
                             false
@@ -496,18 +496,18 @@ class HomeSolFragment : Fragment() {
                             }, 200L)
                         }
                     }
-                } else {
-                    showPermissionDialog(
-                        layoutResId = R.layout.contacts_permission_dialog,
-                        onAllowClicked = {
-                            contactPermissionLauncher.launch(Manifest.permission.READ_CONTACTS)
-
-                        },
-                        onDismissed = {
-                        }
-                    )
-
-                }
+//                } else {
+//                    showPermissionDialog(
+//                        layoutResId = R.layout.contacts_permission_dialog,
+//                        onAllowClicked = {
+//                            contactPermissionLauncher.launch(Manifest.permission.READ_CONTACTS)
+//
+//                        },
+//                        onDismissed = {
+//                        }
+//                    )
+//
+//                }
             }
 
             getStorageStatus()

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white_bg"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".presentation.sendData.apps.AppsSolFragment">
 
     <RelativeLayout
@@ -13,6 +13,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:paddingVertical="@dimen/_8sdp"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -32,13 +33,12 @@
             android:id="@+id/grid_list_container"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_5sdp"
+            android:layout_toEndOf="@id/dateTextView"
             android:background="@drawable/rounded_grid_list_btn"
             android:backgroundTint="@color/grid_list_color"
             android:orientation="horizontal"
-            android:padding="@dimen/_4sdp"
-            android:layout_toEndOf="@id/dateTextView"
-            android:layout_marginStart="@dimen/_5sdp"
-            >
+            android:padding="@dimen/_4sdp">
 
             <LinearLayout
                 android:id="@+id/grid_view"
@@ -64,8 +64,8 @@
                 android:background="@drawable/rounded_grid_list_btn"
                 android:backgroundTint="@color/grid_list_color"
                 android:paddingHorizontal="@dimen/_12sdp"
-                android:paddingVertical="@dimen/_3sdp"
-                >
+                android:paddingVertical="@dimen/_3sdp">
+
                 <ImageView
                     android:layout_width="@dimen/_8sdp"
                     android:layout_height="@dimen/_8sdp"
@@ -79,12 +79,12 @@
             android:id="@+id/select_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/sub_heading_text_color"
-            android:fontFamily="@font/roboto_medium"
-            android:textSize="@dimen/_10ssp"
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
-            android:layout_marginEnd="@dimen/_35sdp"/>
+            android:layout_marginEnd="@dimen/_35sdp"
+            android:fontFamily="@font/roboto_medium"
+            android:textColor="@color/sub_heading_text_color"
+            android:textSize="@dimen/_10ssp" />
 
 
         <CheckBox
@@ -102,6 +102,7 @@
         android:id="@+id/rvApps"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:visibility="gone"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/headerLayout"
@@ -145,5 +146,78 @@
 
     </LinearLayout>
 
+    <androidx.cardview.widget.CardView
+        android:id="@+id/storagePermissionCardView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/activity_horizontal_margin"
+        android:visibility="visible"
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="@dimen/_14sdp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/_14sdp">
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:src="@drawable/apps" />
+
+
+            <com.google.android.material.textview.MaterialTextView
+                style="@style/mediumTextViewStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:text="@string/allow_your_apps"
+                android:textSize="@dimen/_14ssp" />
+
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/detectAppTextView"
+                style="@style/RegularTextViewStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:gravity="center_horizontal"
+                android:text="@string/storage_permission_Text"
+                android:textColor="@color/sub_text_color"
+                android:textSize="@dimen/_9ssp" />
+
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/allowButton"
+                android:layout_width="@dimen/_148sdp"
+                android:layout_height="@dimen/_30sdp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/activity_horizontal_margin"
+                android:backgroundTint="@color/colorPrimary"
+                android:fontFamily="@font/roboto_medium"
+                android:insetLeft="0dp"
+                android:insetTop="0dp"
+                android:insetRight="0dp"
+                android:insetBottom="0dp"
+                android:letterSpacing="0"
+                android:text="@string/allow"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_11ssp"
+                app:cornerRadius="@dimen/_23sdp"
+                app:rippleColor="?attr/colorControlHighlight" />
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

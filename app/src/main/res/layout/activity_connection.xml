@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
     android:background="@color/white"
+    android:fitsSystemWindows="true"
     tools:context=".activities.ConnectionActivity">
 
     <FrameLayout
@@ -45,9 +45,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_16sdp"
+            android:fontFamily="@font/roboto_bold"
             android:text="Waiting for connection"
             android:textColor="@color/black"
-            android:fontFamily="@font/roboto_bold"
             android:textSize="@dimen/_14sdp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -55,7 +55,6 @@
             app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 
     <View
         android:id="@+id/view3"
@@ -89,9 +88,9 @@
         android:layout_height="0dp"
         android:layout_marginTop="@dimen/_4sdp"
         android:layout_marginBottom="@dimen/_12sdp"
-        app:layout_constraintTop_toBottomOf="@+id/textConnectionDesc"
         android:visibility="visible"
-        app:layout_constraintBottom_toBottomOf="parent" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textConnectionDesc" />
     <!--permission-->
     <LinearLayout
         android:id="@+id/layout_before_permission"
@@ -111,7 +110,7 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/_16sdp"
             android:gravity="center"
-            android:src="@drawable/ic_launcher_background"
+            android:src="@drawable/ic_locations"
             android:textColor="#9CA0A8"
             android:textSize="@dimen/_12sdp"
             app:layout_constraintBottom_toTopOf="@+id/tv_text1"
@@ -139,7 +138,7 @@
             android:layout_marginTop="@dimen/_4sdp"
             android:gravity="center"
             android:lineSpacingExtra="@dimen/_1sdp"
-            android:text="location_string1"
+            android:text="@string/allow_location_access_to_find_nearby_devices"
             android:textColor="#9CA0A8"
             android:textSize="@dimen/_10sdp"
             app:layout_constraintBottom_toTopOf="@+id/btnGrant"
@@ -147,31 +146,27 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/btnGrant"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_20sdp"
-            android:layout_marginBottom="@dimen/_14sdp"
-            android:elevation="@dimen/_14sdp">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_gravity="center"
-                android:layout_marginHorizontal="@dimen/_12sdp"
-                android:gravity="center"
-                android:paddingHorizontal="@dimen/_26sdp"
-                android:paddingVertical="@dimen/_8sdp"
-                android:text="grant_permission"
-                android:textAllCaps="false"
-                android:textColor="#FFFFFF"
-                android:textSize="@dimen/_12sdp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/allowButton"
+            android:layout_width="@dimen/_148sdp"
+            android:layout_height="@dimen/_30sdp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/activity_horizontal_margin"
+            android:backgroundTint="@color/colorPrimary"
+            android:fontFamily="@font/roboto_medium"
+            android:insetLeft="0dp"
+            android:insetTop="0dp"
+            android:insetRight="0dp"
+            android:gravity="center"
+            android:insetBottom="0dp"
+            android:letterSpacing="0"
+            android:text="@string/allow_location"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_11ssp"
+            app:cornerRadius="@dimen/_23sdp"
+            app:rippleColor="?attr/colorControlHighlight" />
     </LinearLayout>
 
     <LinearLayout
