@@ -1,5 +1,6 @@
 package com.smartswitch.activities
 
+import android.Manifest
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.IntentFilter
@@ -9,11 +10,13 @@ import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import com.smartswitch.R
 import com.smartswitch.databinding.ActivityConnectionBinding
 import com.smartswitch.presentation.PermissionFragment
 import com.smartswitch.presentation.language.BaseActivity
+import com.smartswitch.utils.Constant
 import com.smartswitch.utils.Constant.customSystemBars
 import com.smartswitch.utils.Constant.isGPSEnabled
 import com.smartswitch.utils.PermissionManager
@@ -25,6 +28,7 @@ class ConnectionActivity : BaseActivity(), WifiGpsStatusReceiver.StatusChangeLis
     private lateinit var binding: ActivityConnectionBinding
     private lateinit var user: String
     private lateinit var locationManager: LocationManager
+
     private lateinit var wifiManager: WifiManager
     private var permissionFragment: PermissionFragment? = null
     private lateinit var wifiDirectFragment: WifiDirectFragment
@@ -64,7 +68,6 @@ class ConnectionActivity : BaseActivity(), WifiGpsStatusReceiver.StatusChangeLis
             permissionFragment = PermissionFragment.newInstance(user) {
                 checkAndUpdateFragment()
             }
-//            showBanner()
         } else {
             binding.frameConnection.visibility = View.GONE
             binding.layoutBeforePermission.visibility = View.VISIBLE
@@ -74,6 +77,26 @@ class ConnectionActivity : BaseActivity(), WifiGpsStatusReceiver.StatusChangeLis
         binding.imgBack.setOnClickListener {
             onBackPressed()
         }
+        binding.allowButton.setOnClickListener {
+            requestLocationPermission()
+        }
+    }
+
+    private fun requestLocationPermission() {
+        val permissions = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            arrayOf(
+                Manifest.permission.NEARBY_WIFI_DEVICES,
+                Manifest.permission.ACCESS_COARSE_LOCATION,
+                Manifest.permission.ACCESS_FINE_LOCATION
+            )
+        } else {
+            arrayOf(
+                Manifest.permission.ACCESS_COARSE_LOCATION,
+                Manifest.permission.ACCESS_FINE_LOCATION
+            )
+        }
+
+        locationPermissionLauncher.launch(permissions)
     }
 
     override fun onResume() {
@@ -141,6 +164,26 @@ class ConnectionActivity : BaseActivity(), WifiGpsStatusReceiver.StatusChangeLis
             updateFragment(wifiDirectFragment)
         }
     }
+
+    private val locationPermissionLauncher =
+        registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) { permissions ->
+            val granted = permissions.all { it.value } // all permissions granted?
+            if (granted) {
+                binding.layoutBeforePermission.visibility = View.GONE
+                binding.frameConnection.visibility = View.VISIBLE
+                permissionFragment = PermissionFragment.newInstance(user) {
+                    checkAndUpdateFragment()
+                }
+            } else {
+                permissions.filter { !it.value }.forEach { denied ->
+                    Log.e("TESTTAG deniedPermissions", denied.key)
+                }
+                Constant.showSnackBar(
+                    this,
+                    "Location Permissions required!",
+                )
+            }
+        }
 
     @SuppressLint("CommitTransaction")
     fun updateFragment(fragment: Fragment) {

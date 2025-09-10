@@ -393,7 +393,7 @@
 
     <string name="all_permission_allow">All permission allow </string>
     <string name="unlock_your_full_potential">Unlock Your Full\n Potential</string>
-    <string name="you_can_try_the_premium_version_for_3_days_for_free_after_that_it_s"> You can try the premium version for <b><font color="#747B81">3- days</font></b> for free! After that, it’s</string>
+    <string name="you_can_try_the_premium_version_for_3_days_for_free_after_that_it_s"> You can try the premium version for <b><font color="#747B81">3- days</font></b> for free!</string>
     <string name="feel_free_to_cancel_anytime">Feel free to cancel anytime.</string>
     <string name="features_you_get">Features You Get</string>
     <string name="send_and_receive_files">Send and receive files</string>

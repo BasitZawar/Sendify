@@ -110,7 +110,7 @@ class PremiumFragment : Fragment(), SubscriptionPurchaseInterface {
             onCrossButtonClick()
         }
         binding.noPaymentNow.setSafeOnClickListener {
-            onCrossButtonClick()
+//            onCrossButtonClick()
         }
         binding.btnContinue.setOnClickListener {
             handleSubscribeClick()
@@ -319,8 +319,9 @@ class PremiumFragment : Fragment(), SubscriptionPurchaseInterface {
 
         if (weeklyPriceStr.isNotEmpty()) {
             Log.d(TAG, "Weekly price found: $weeklyPriceStr")
-            binding.WeeklyPrice.text =
-                "${getString(R.string.just)} $weeklyPriceStr ${getString(R.string.aweek)}"
+            binding.btnContinue.text= "$weeklyPriceStr / week after free 3-days trial"
+//            binding.WeeklyPrice.text =
+//                "${getString(R.string.just)} $weeklyPriceStr ${getString(R.string.aweek)}"
             weaklyPrice = weeklyPriceStr
         } else {
             Log.e(TAG, "Weekly price is empty")
