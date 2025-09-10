@@ -215,6 +215,20 @@ public class InterstitialClass {
                     isInterstitalIsShowing = false;
                     performAction();
                 }
+
+                @Override
+                public void onAdShowedFullScreenContent() {
+                    super.onAdShowedFullScreenContent();
+//                    new Handler().postDelayed(new Runnable() {
+//                        @Override
+//                        public void run() {
+//                            performAction();
+//                        }
+//                    }, 1000);
+
+
+
+                }
             });
         } else {
             performAction();

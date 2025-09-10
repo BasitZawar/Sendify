@@ -3,6 +3,7 @@ package com.smartswitch.activities
 import android.Manifest
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.Intent
 import android.content.IntentFilter
 import android.location.LocationManager
 import android.net.wifi.WifiManager
@@ -79,6 +80,9 @@ class ConnectionActivity : BaseActivity(), WifiGpsStatusReceiver.StatusChangeLis
         }
         binding.allowButton.setOnClickListener {
             requestLocationPermission()
+        }
+        binding.tvInvite.setOnClickListener {
+            startActivity(Intent(this, InvitationActivity::class.java))
         }
     }
 

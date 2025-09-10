@@ -302,7 +302,7 @@
     <string name="location_permission_is_required">Location permission is required. Please grant permissions.</string>
     <string name="this_is_old_phone">This is Old Phone</string>
     <string name="select_data_on_the_next_screen_to_transfer_from_your_old_phone_to_the_new_phone">Select data on the next screen to transfer from your old phone to the new phone.</string>
-    <string name="or">Or</string>
+    <string name="or">OR</string>
     <string name="this_is_new_phone">This is New Phone</string>
     <string name="select_data_on_the_next_screen_to_transfer_from_your_new_phone_to_the_old_phone">Select data on the next screen to transfer from your new phone to the old phone.</string>
 
@@ -409,9 +409,11 @@
     <string name="price_unavailable">price unavailable</string>
     <string name="receive_files">Receive Files</string>
     <string name="here_s_your_reward">Here’s your Reward</string>
-    <string name="to_get_your_reward_upgrade_to_premium_watch_a_video_ad_to_unlock">To get your reward upgrade to Premium\n watch a VIDEO AD to unlock</string>
-    <string name="upgrade_now">Upgrade Now</string>
-    <string name="watch_ad">Watch AD</string>
+    <string name="to_get_your_reward_upgrade_to_premium_watch_a_video_ad_to_unlock">To get your reward upgrade to <b>PREMIUM</b>\n watch a <b>VIDEO AD</b> to unlock</string>
+    <string name="upgrade_now">Upgrade to premium</string>
+    <string name="watch_ad">Watch Video AD</string>
     <string name="send_files">Send Files</string>
+    <string name="invite_to_all">Invite To All</string>
+    <string name="invite"><u>Invite</u></string>
 
 </resources>

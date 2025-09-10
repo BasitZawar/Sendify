@@ -8,11 +8,17 @@ import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
 
+
 fun Fragment.isAlive(callback: (Activity) -> Unit) {
     if (activity != null && isAdded && !isDetached) {
-        activity?.let { it.isActivityAlive { activity -> callback(activity) } }
+        activity?.let { act ->
+            act.runOnUiThread {
+                callback(act)
+            }
+        }
     }
 }
+
 //  TODO : My Addition (1)
 //fun Fragment.isAlive(callback: () -> Unit) {
 //    // Check if the fragment is added and not detached, and if the activity is alive

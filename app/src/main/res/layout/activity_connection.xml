@@ -67,14 +67,16 @@
         app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
     <TextView
-        android:id="@+id/textConnectionDesc"
+        android:id="@+id/tvInvite"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/_8sdp"
         android:layout_marginTop="@dimen/_12sdp"
         android:layout_marginEnd="@dimen/_12sdp"
+        android:fontFamily="@font/roboto_bold"
         android:gravity="start"
-        android:text=""
+        android:text="@string/invite"
+        android:textColor="@color/gnt_blue"
         android:textSize="@dimen/_10sdp"
         android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
@@ -90,7 +92,7 @@
         android:layout_marginBottom="@dimen/_12sdp"
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textConnectionDesc" />
+        app:layout_constraintTop_toBottomOf="@+id/tvInvite" />
     <!--permission-->
     <LinearLayout
         android:id="@+id/layout_before_permission"
@@ -155,10 +157,10 @@
             android:layout_marginTop="@dimen/activity_horizontal_margin"
             android:backgroundTint="@color/colorPrimary"
             android:fontFamily="@font/roboto_medium"
+            android:gravity="center"
             android:insetLeft="0dp"
             android:insetTop="0dp"
             android:insetRight="0dp"
-            android:gravity="center"
             android:insetBottom="0dp"
             android:letterSpacing="0"
             android:text="@string/allow_location"

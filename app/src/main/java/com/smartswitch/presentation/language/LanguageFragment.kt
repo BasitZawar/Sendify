@@ -126,7 +126,7 @@ class LanguageFragment : Fragment() {
                                 updateLanguage()
                                 navigate()
                             }
-                        }, 200L)
+                        }, 100L)
                     }
 
 

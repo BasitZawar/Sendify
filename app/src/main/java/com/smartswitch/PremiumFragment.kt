@@ -452,7 +452,7 @@ class PremiumFragment : Fragment(), SubscriptionPurchaseInterface {
                                 isAlive {
                                     findNavController().navigate(R.id.action_premiumFragment_to_homeSendifyFragment)
                                 }
-                            }, 200L)
+                            }, 100L)
                         }
                     }
                 }
