@@ -20,6 +20,7 @@ import com.smartswitch.databinding.ActivitySendingBinding
 import com.smartswitch.domain.model.MediaInfoModel
 import com.smartswitch.presentation.language.BaseActivity
 import com.smartswitch.presentation.sendData.SelectedData
+import com.smartswitch.setupPortraitWithWindowInsets
 import com.smartswitch.utils.Constant
 import com.smartswitch.utils.Constant.customSystemBars
 import com.smartswitch.utils.Constant.handleOnBackPress
@@ -56,6 +57,8 @@ class SendingActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+        setupPortraitWithWindowInsets(R.id.main)
+
         customSystemBars(
             this@SendingActivity, R.color.white, R.color.white, true
         )
@@ -275,7 +278,7 @@ class SendingActivity : BaseActivity() {
     }
 
     override fun onBackPressed() {
-        if (binding.cancel.text == "Back to Home") {
+        if (binding.cancel.text == "Complete" || binding.cancel.text == "Go Back") {
             socket?.let {
                 if (it.isConnected) {
                     it.close()
@@ -283,7 +286,7 @@ class SendingActivity : BaseActivity() {
             }
             finish()
         } else {
-            handleOnBackPress(this,"Press again to cancel Sending"){
+            handleOnBackPress(this, "Press again to cancel Sending") {
                 socket?.let {
                     if (it.isConnected) {
                         it.close()
@@ -467,7 +470,7 @@ class SendingActivity : BaseActivity() {
                             }
                         } catch (ex: Exception) {
                             this@SendingActivity.runOnUiThread {
-                                binding.cancel.text = "Back to Home"
+                                binding.cancel.text = "Go Back"
                             }
                             Constant.showSnackBar(
                                 this@SendingActivity,
@@ -485,7 +488,7 @@ class SendingActivity : BaseActivity() {
                     if (sendingJob?.isActive == true) {
                         this@SendingActivity.runOnUiThread {
                             criticalDialog?.takeIf { it.isShowing }?.dismiss()
-                            binding.cancel.text = "Back to Home"
+                            binding.cancel.text = "Complete"
                         }
                     }
                 } catch (ex: Exception) {

@@ -17,6 +17,7 @@ import com.smartswitch.R
 import com.smartswitch.databinding.ActivityConnectionBinding
 import com.smartswitch.presentation.PermissionFragment
 import com.smartswitch.presentation.language.BaseActivity
+import com.smartswitch.setupPortraitWithWindowInsets
 import com.smartswitch.utils.Constant
 import com.smartswitch.utils.Constant.customSystemBars
 import com.smartswitch.utils.Constant.isGPSEnabled
@@ -29,7 +30,6 @@ class ConnectionActivity : BaseActivity(), WifiGpsStatusReceiver.StatusChangeLis
     private lateinit var binding: ActivityConnectionBinding
     private lateinit var user: String
     private lateinit var locationManager: LocationManager
-
     private lateinit var wifiManager: WifiManager
     private var permissionFragment: PermissionFragment? = null
     private lateinit var wifiDirectFragment: WifiDirectFragment
@@ -41,6 +41,7 @@ class ConnectionActivity : BaseActivity(), WifiGpsStatusReceiver.StatusChangeLis
         super.onCreate(savedInstanceState)
         binding = ActivityConnectionBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        setupPortraitWithWindowInsets(R.id.main)
         customSystemBars(
             this@ConnectionActivity, R.color.white, R.color.white, true
         )

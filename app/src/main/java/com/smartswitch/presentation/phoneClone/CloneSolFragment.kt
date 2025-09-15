@@ -61,11 +61,11 @@ class CloneSolFragment : Fragment() {
                         getString(R.string.inter_all)
                     ) {
                         isAlive {
-//                            Handler(Looper.getMainLooper()).postDelayed({
+                            Handler(Looper.getMainLooper()).postDelayed({
                                 isAlive {
                                     findNavController().navigate(R.id.action_cloneSendifyFragment_to_selectDataToCloneSendifyFragment)
                                 }
-//                            }, 200L)
+                            }, 100L)
                         }
                     }
                 }

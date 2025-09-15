@@ -21,6 +21,7 @@ import com.smartswitch.R
 import com.smartswitch.connection.SocketHandler
 import com.smartswitch.databinding.ActivityReceivingBinding
 import com.smartswitch.presentation.language.BaseActivity
+import com.smartswitch.setupPortraitWithWindowInsets
 import com.smartswitch.utils.Constant
 import com.smartswitch.utils.Constant.customSystemBars
 import com.smartswitch.utils.Constant.handleOnBackPress
@@ -74,6 +75,7 @@ class ReceivingActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+        setupPortraitWithWindowInsets(R.id.main)
         customSystemBars(
             this@ReceivingActivity, R.color.white, R.color.white, true
         )
@@ -309,7 +311,7 @@ class ReceivingActivity : BaseActivity() {
                                     } catch (ex: Exception) {
                                         this@ReceivingActivity.runOnUiThread {
 //                                            showCancelDialog(this@ReceiverActivity, socket)
-                                            binding.cancel.text = "Back to Home"
+                                            binding.cancel.text = "Go Back"
                                         }
                                         showSnackBar(
                                             this@ReceivingActivity,
@@ -331,7 +333,7 @@ class ReceivingActivity : BaseActivity() {
                                         } catch (e: Exception) {
                                             this@ReceivingActivity.runOnUiThread {
 //                                                showCancelDialog(this@ReceiverActivity, socket)
-                                                binding.cancel.text = "Back to Home"
+                                                binding.cancel.text = "Go Back"
                                             }
                                             showSnackBar(
                                                 this@ReceivingActivity,
@@ -346,7 +348,7 @@ class ReceivingActivity : BaseActivity() {
                                 }
                                 if (coroutineJob.isActive) {
                                     this@ReceivingActivity.runOnUiThread {
-                                        binding.cancel.text = "Back to Home"
+                                        binding.cancel.text = "Complete"
                                         binding.title.text = "Complete"
                                         if (criticalDialog != null && criticalDialog!!.isShowing && !isFinishing && !isDestroyed) {
                                             criticalDialog!!.dismiss()
@@ -355,7 +357,7 @@ class ReceivingActivity : BaseActivity() {
                                 }
                             } catch (ex: Exception) {
                                 this@ReceivingActivity.runOnUiThread {
-                                    binding.cancel.text = "Back to Home"
+                                    binding.cancel.text = "Go Back"
                                 }
                                 showSnackBar(
                                     this@ReceivingActivity,
@@ -370,7 +372,7 @@ class ReceivingActivity : BaseActivity() {
                     } catch (e: Exception) {
                         this@ReceivingActivity.runOnUiThread {
 //                            showCancelDialog(this@ReceiverActivity, socket)
-                            binding.cancel.text = "Back to Home"
+                            binding.cancel.text = "Go Back"
                         }
                         showSnackBar(
                             this@ReceivingActivity,
@@ -642,7 +644,7 @@ class ReceivingActivity : BaseActivity() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
             if (Environment.isExternalStorageManager()) {
                 if (binding.layoutProgress.isVisible) {
-                    if (binding.cancel.text == "Back to Home") {
+                    if (binding.cancel.text == "Complete" || binding.cancel.text == "Go Back") {
                         socket?.let {
                             if (it.isConnected) {
                                 it.close()
@@ -666,7 +668,7 @@ class ReceivingActivity : BaseActivity() {
         } else {
             if (Constant.checkPermission(this)) {
                 if (binding.layoutProgress.isVisible) {
-                    if (binding.cancel.text == "Back to Home") {
+                    if (binding.cancel.text == "Complete" || binding.cancel.text == "Go Back") {
                         socket?.let {
                             if (it.isConnected) {
                                 it.close()

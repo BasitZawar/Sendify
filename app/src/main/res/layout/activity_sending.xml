@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/grey"
     android:fillViewport="true"
+    android:id="@+id/main"
     android:fitsSystemWindows="true"
     tools:context=".activities.SendingActivity">
 

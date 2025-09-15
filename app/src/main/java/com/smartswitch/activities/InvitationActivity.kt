@@ -11,6 +11,7 @@ import androidx.core.view.WindowInsetsCompat
 import com.smartswitch.R
 import com.smartswitch.databinding.ActivityInvitationBinding
 import com.smartswitch.databinding.ActivityReceivingBinding
+import com.smartswitch.setupPortraitWithWindowInsets
 import java.io.File
 
 class InvitationActivity : AppCompatActivity() {
@@ -20,6 +21,7 @@ class InvitationActivity : AppCompatActivity() {
         binding = ActivityInvitationBinding.inflate(layoutInflater)
         enableEdgeToEdge()
         setContentView(binding.root)
+        setupPortraitWithWindowInsets(R.id.main)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)

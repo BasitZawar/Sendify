@@ -129,16 +129,35 @@ class OnBoardingFragment : Fragment() {
         }
     }
 
+//    private fun navigateNextDestination() {
+//        isAlive { activityContext ->
+//            findNavController().navigate(
+//                OnBoardingFragmentDirections.actionOnBoardingFragmentToPremiumFragment("intro")
+//            )
+////            findNavController().navigate(
+////                OnBoardingFragmentDirections.actionOnBoardingFragmentToPermissionSendifyFragment(
+////                    "intro"
+////                )
+////            )
+//        }
+//    }
     private fun navigateNextDestination() {
         isAlive { activityContext ->
-            findNavController().navigate(
-                OnBoardingFragmentDirections.actionOnBoardingFragmentToPremiumFragment("intro")
-            )
-//            findNavController().navigate(
-//                OnBoardingFragmentDirections.actionOnBoardingFragmentToPermissionSendifyFragment(
-//                    "intro"
-//                )
+            val navController = findNavController()
+            val currentId = navController.currentDestination?.id
+
+            if (currentId == R.id.onBoardingFragment) {
+                navController.navigate(
+                    OnBoardingFragmentDirections
+                        .actionOnBoardingFragmentToPremiumFragment("intro")
+                )
+            }
+//        else if (currentId == R.id.onBoardingFragment) {
+//            navController.navigate(
+//                OnBoardingFragmentDirections
+//                    .actionOnBoardingFragmentToPermissionSendifyFragment("intro")
 //            )
+//        }
         }
     }
 
