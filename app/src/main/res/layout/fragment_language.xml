@@ -1,41 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/white"
     tools:context=".presentation.language.LanguageFragment">
 
     <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/headerLayout"
         android:layout_width="match_parent"
-        android:layout_height="?actionBarSize"
-        app:navigationIcon="@drawable/ic_back_press"
-        app:navigationIconTint="@color/black"
-        app:titleTextAppearance="@style/mediumTextViewStyle"
+        android:layout_height="@dimen/_54sdp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:title="@string/language"
-        app:subtitle="@string/select_language"
+        app:layout_constraintTop_toTopOf="parent"
+        app:navigationIcon="@drawable/ic_back_press"
+        app:navigationIconTint="@color/black"
         app:rippleColor="?attr/colorControlHighlight"
-        app:layout_constraintTop_toTopOf="parent">
+        app:subtitle="@string/select_language"
+        app:title="@string/language"
+        app:titleTextAppearance="@style/mediumTextViewStyle">
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnDone"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="end"
             android:layout_marginHorizontal="@dimen/_10sdp"
             android:backgroundTint="@color/colorPrimary"
             android:fontFamily="@font/roboto_medium"
             android:text="@string/done"
-            android:visibility="invisible"
             android:textAllCaps="false"
-            android:layout_gravity="end"
             android:textColor="@color/white"
             android:textSize="@dimen/_10ssp"
+            android:visibility="invisible"
             app:cornerRadius="@dimen/_23sdp"
-            app:rippleColor="@color/ripple_color"/>
+            app:rippleColor="@color/ripple_color" />
 
     </com.google.android.material.appbar.MaterialToolbar>
 
@@ -43,12 +43,11 @@
         android:id="@+id/rvLanguage"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_marginBottom="@dimen/_2sdp"
+        app:layout_constraintBottom_toTopOf="@id/adRel"
         app:layout_constraintTop_toBottomOf="@id/headerLayout"
         app:rippleColor="@color/colorPrimary"
-        tools:listitem="@layout/select_language_item"
-        app:layout_constraintBottom_toTopOf="@id/adRel"
-        android:layout_marginBottom="@dimen/_2sdp"
-        />
+        tools:listitem="@layout/select_language_item" />
 
     <RelativeLayout
         android:id="@+id/adRel"
@@ -68,7 +67,6 @@
 
         </com.smartswitch.new_ads.nativeads.TemplateView>
     </RelativeLayout>
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

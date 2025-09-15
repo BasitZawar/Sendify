@@ -321,7 +321,9 @@ class PhotosSolFragment : Fragment(), OnMediaItemClickCallbackForSelectAll,
         updateSelectAllState(false)
         binding.apply {
             checkboxSelectAll.setOnCheckedChangeListener { _, isChecked ->
-                if (!binding.checkboxSelectAll.isPressed) return@setOnCheckedChangeListener
+                if (!checkboxSelectAll.isPressed) {
+                    return@setOnCheckedChangeListener
+                }
                 adapter?.selectAllMedia(isChecked, viewModel.photoList, lifecycleScope) {
                     onMediaItemClickCallback.onMediaItemClicked()
                     updateSelectAllState(isChecked)

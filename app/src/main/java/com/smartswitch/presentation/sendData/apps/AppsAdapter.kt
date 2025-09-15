@@ -1,14 +1,10 @@
 package com.smartswitch.presentation.sendData.apps
 
 import android.app.AlertDialog
-import android.content.ActivityNotFoundException
 import android.content.Context
-import android.content.Intent
-import android.net.Uri
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.core.content.FileProvider
 import androidx.recyclerview.widget.RecyclerView
 import com.smartswitch.R
 import com.smartswitch.databinding.ItemAppsBinding
@@ -20,7 +16,6 @@ import com.smartswitch.utils.callback.OnMediaItemClickCallbackForSelectAll
 import com.smartswitch.utils.extensions.formatFileSize
 import com.smartswitch.utils.extensions.gone
 import com.smartswitch.utils.extensions.loadImage30by30
-import java.io.File
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
@@ -53,9 +48,7 @@ class AppsAdapter(
                     subTextView.gone()
                     checkbox.setOnCheckedChangeListener { buttonView, isChecked ->
                         if (!binding.checkbox.isPressed && !isRootChecked) {
-
                             return@setOnCheckedChangeListener
-
                         }
                         isRootChecked = false
                         if (isChecked) {

@@ -262,7 +262,7 @@ class AppsSolFragment : Fragment(), OnMediaItemClickCallbackForSelectAll {
     }
 
     private fun setupRecyclerView(list: List<MediaInfoModel>) {
-        Log.d("setRecyclerView", "setupRecyclerView")
+        Log.d("setRecyclerView", "setupRecyclerView  apps list size ${list.size}")
         if (list.isEmpty()) {
             binding.tvNoData.visible()
             binding.rvApps.gone()

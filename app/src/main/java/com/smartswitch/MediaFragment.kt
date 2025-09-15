@@ -180,7 +180,7 @@ class MediaFragment : Fragment(), OnMediaItemClickCallback {
                 findNavController().navigateUp()
             }
         } else {
-            findNavController().navigateUp()
+            findNavController().popBackStack()
         }
     }
 

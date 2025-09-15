@@ -319,7 +319,7 @@ class PremiumFragment : Fragment(), SubscriptionPurchaseInterface {
 
         if (weeklyPriceStr.isNotEmpty()) {
             Log.d(TAG, "Weekly price found: $weeklyPriceStr")
-            binding.btnContinue.text= "$weeklyPriceStr / week after free 3-days trial"
+            binding.textPrice.text = "$weeklyPriceStr / week after free 3-days trial"
 //            binding.WeeklyPrice.text =
 //                "${getString(R.string.just)} $weeklyPriceStr ${getString(R.string.aweek)}"
             weaklyPrice = weeklyPriceStr

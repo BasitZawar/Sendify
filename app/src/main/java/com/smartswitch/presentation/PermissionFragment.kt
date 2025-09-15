@@ -20,11 +20,13 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.smartswitch.databinding.FragmentPermissionBinding
 import com.smartswitch.utils.Constant.isGPSEnabled
 import com.smartswitch.utils.Constant.isNetworkEnabled
+import com.smartswitch.utils.Constant.showSnackBar
 
 private const val KEY_USER_TYPE = "key_user_types"
 private const val ARG_PARAM2 = "param2"
@@ -170,6 +172,8 @@ class PermissionFragment : Fragment() {
                                 }
                             }
                         }
+                        showSnackBar(requireActivity(), "GPS is already enabled")
+
                     }
                 } catch (e: Exception) {
                 }
@@ -194,6 +198,7 @@ class PermissionFragment : Fragment() {
                         startActivity(Intent(Settings.ACTION_WIFI_SETTINGS))
                     } else {
                         activity?.runOnUiThread {
+                            showSnackBar(requireActivity(), "WIFI is already enabled")
                             if (wifiManager.isWifiEnabled) {
                                 binding?.switchWifi?.isChecked = true
                             }

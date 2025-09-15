@@ -9,6 +9,7 @@ import android.os.Build
 import android.os.Bundle
 import android.os.Environment
 import android.provider.Settings
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -18,12 +19,15 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.google.android.material.snackbar.Snackbar
 import com.smartswitch.R
+import com.smartswitch.activities.ConnectionActivity
 import com.smartswitch.ads.PrefUtils
 import com.smartswitch.databinding.FragmentPermissionSolBinding
+import com.smartswitch.presentation.mainFragments.HomeSolFragmentDirections
 import com.smartswitch.subscriptions.Constants
 import com.smartswitch.subscriptions.PrefUtil
 import com.smartswitch.utils.PermissionManager
@@ -56,20 +60,16 @@ class PermissionSolFragment : Fragment() {
         //val navigationType = arguments?.getString("navigationType")
 
         isAlive { activityContext ->
-
+            Log.e("TAG", "onViewCreated 1214: ${args.from}")
             when (args.from) {
-                "home" -> binding.skipButton.invisible()
+                "home_receive" -> binding.skipButton.invisible()
+                "home_phone_clone" -> binding.skipButton.invisible()
                 "intro" -> binding.skipButton.visible()
                 else -> binding.skipButton.visible()
             }
-
-
             binding.apply {
-
                 (activityContext as FragmentActivity).handleBackPressWithAction {
-
                     findNavController().navigate(PermissionSolFragmentDirections.actionPermissionSendifyFragmentToHomeSendifyFragment())
-
                 }
 
                 skipButton.setSafeOnClickListener {
@@ -101,14 +101,43 @@ class PermissionSolFragment : Fragment() {
                     ) {
                         // All permissions granted - proceed with navigation
                         when (args.from) {
-                            "home" -> {
-                                findNavController().navigateUp()
+                            "home_receive" -> {
+                                findNavController().popBackStack(R.id.permissionSendifyFragment, true) // remove from backstack
+                                startActivity(
+                                    Intent(
+                                        requireContext(),
+                                        ConnectionActivity::class.java
+                                    )
+                                )
+//                                findNavController().navigateUp()
                             }
+
                             "intro" -> {
                                 navigateToDashboard()
                             }
+
+                            "home_phone_clone" -> {
+                                    val navOptions = NavOptions.Builder()
+                                        .setPopUpTo(R.id.permissionSendifyFragment, true) // remove PermissionSolFragment from back stack
+                                        .build()
+
+                                    findNavController().navigate(
+                                        PermissionSolFragmentDirections.actionPermissionSendifyFragmentToCloneSendifyFragment(),
+                                        navOptions
+                                    )
+
+
+//                                findNavController().navigate(
+//                                    PermissionSolFragmentDirections.actionPermissionSendifyFragmentToCloneSendifyFragment(
+//                                    )
+//                                )
+
+                            }
+
                             else -> {
-                                navigateToDashboard()
+                                findNavController().navigateUp()
+
+//                                navigateToDashboard()
                             }
                         }
                     } else {
@@ -117,60 +146,64 @@ class PermissionSolFragment : Fragment() {
                     }
                 }
 
-            /*    getStartedBtn.setSafeOnClickListener {
-                    // Check if all permissions are granted
-                    if (PermissionManager.hasLocationPermission(requireContext()) &&
-                        PermissionManager.hasNearbyPermission(requireContext()) &&
-                        PermissionManager.hasStorageAccessPermission(requireContext())
-                    ) {
-                        // Navigate based on the navigation type (send or receive)
-                        when (args.from) {
-                            "home" -> {
-                                findNavController().navigateUp()
-                            }
+                /*    getStartedBtn.setSafeOnClickListener {
+                        // Check if all permissions are granted
+                        if (PermissionManager.hasLocationPermission(requireContext()) &&
+                            PermissionManager.hasNearbyPermission(requireContext()) &&
+                            PermissionManager.hasStorageAccessPermission(requireContext())
+                        ) {
+                            // Navigate based on the navigation type (send or receive)
+                            when (args.from) {
+                                "home" -> {
+                                    findNavController().navigateUp()
+                                }
 
-                            "intro" -> {
-                                navigateToDashboard()
-                            }
+                                "intro" -> {
+                                    navigateToDashboard()
+                                }
 
-                            else -> {
-                                navigateToDashboard()
+                                else -> {
+                                    navigateToDashboard()
+                                }
                             }
+                        } else {
+                            if (!PermissionManager.hasLocationPermission(activityContext)) {
+                                requestPermissionsLocation()
+                            }
+                            if (!PermissionManager.hasNearbyPermission(activityContext)) {
+                                requestPermissionsNearBy()
+                            }
+                            if (!PermissionManager.hasStorageAccessPermission(activityContext)) {
+                                requestPermissionStorage()
+                            }
+                            Snackbar.make(
+                                binding.root,
+                                resources.getString(R.string.please_allow_all_permissions),
+                                Snackbar.LENGTH_SHORT
+                            ).show()
                         }
-                    } else {
-                        if (!PermissionManager.hasLocationPermission(activityContext)) {
-                            requestPermissionsLocation()
-                        }
-                        if (!PermissionManager.hasNearbyPermission(activityContext)) {
-                            requestPermissionsNearBy()
-                        }
-                        if (!PermissionManager.hasStorageAccessPermission(activityContext)) {
-                            requestPermissionStorage()
-                        }
-                        Snackbar.make(
-                            binding.root,
-                            resources.getString(R.string.please_allow_all_permissions),
-                            Snackbar.LENGTH_SHORT
-                        ).show()
-                    }
-                }*/
+                    }*/
             }
         }
     }
+
     private fun requestPermissionsSequentially() {
         when {
             !PermissionManager.hasLocationPermission(requireContext()) -> {
                 requestPermissionsLocation()
             }
+
             !PermissionManager.hasNearbyPermission(requireContext()) -> {
                 requestPermissionsNearBy()
             }
+
             !PermissionManager.hasStorageAccessPermission(requireContext()) -> {
                 requestPermissionStorage()
             }
+
             else -> {
                 // All permissions granted - proceed with navigation
-                
+
                 when (args.from) {
                     "home" -> {
                         findNavController().navigateUp()
@@ -181,13 +214,20 @@ class PermissionSolFragment : Fragment() {
                     }
 
                     else -> {
-                        navigateToDashboard()
+                        findNavController().navigateUp()
+
+//                        navigateToDashboard()
                     }
                 }
             }
         }
     }
-    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
             // After one permission is granted, check for next one
@@ -200,6 +240,7 @@ class PermissionSolFragment : Fragment() {
             ).show()
         }
     }
+
     private fun navigateToDashboard() {
         PrefUtils.setBoolean(requireContext(), "is_first_time_launch1", true)
 //        findNavController().navigate(R.id.action_permissionSendifyFragment_to_homeSendifyFragment)

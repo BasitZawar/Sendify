@@ -176,7 +176,7 @@ class HomeSolFragment : Fragment() {
                     } else {
                         findNavController().navigate(
                             HomeSolFragmentDirections.actionHomeSendifyFragmentToPermissionSendifyFragment(
-                                "home"
+                                "home_phone_clone"
                             )
                         )
                     }
@@ -200,7 +200,7 @@ class HomeSolFragment : Fragment() {
                                         Log.e(TAG, "onViewCreated: 4")
                                         findNavController().navigate(
                                             HomeSolFragmentDirections.actionHomeSendifyFragmentToPermissionSendifyFragment(
-                                                "home"
+                                                "home_phone_clone"
                                             )
                                         )
                                     }
@@ -302,7 +302,7 @@ class HomeSolFragment : Fragment() {
 
                     findNavController().navigate(
                         HomeSolFragmentDirections.actionHomeSendifyFragmentToPermissionSendifyFragment(
-                            "home"
+                            "home_receive"
                         )
                     )
                 }

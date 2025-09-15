@@ -409,7 +409,7 @@
     <string name="price_unavailable">price unavailable</string>
     <string name="receive_files">Receive Files</string>
     <string name="here_s_your_reward">Here’s your Reward</string>
-    <string name="to_get_your_reward_upgrade_to_premium_watch_a_video_ad_to_unlock">To get your reward upgrade to <b>PREMIUM</b>\n watch a <b>VIDEO AD</b> to unlock</string>
+    <string name="to_get_your_reward_upgrade_to_premium_watch_a_video_ad_to_unlock">To get your reward upgrade to <b>PREMIUM</b>\n or Watch a <b>VIDEO AD</b> to unlock</string>
     <string name="upgrade_now">Upgrade to premium</string>
     <string name="watch_ad">Watch Video AD</string>
     <string name="send_files">Send Files</string>

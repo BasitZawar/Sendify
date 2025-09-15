@@ -74,8 +74,8 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="@dimen/_10sdp"
-                    android:maxLines="1"
                     android:gravity="center"
+                    android:maxLines="1"
                     android:text="@string/you_can_try_the_premium_version_for_3_days_for_free_after_that_it_s"
                     android:textColor="#9419222A"
                     android:textSize="@dimen/_10ssp"
@@ -137,7 +137,7 @@
         android:layout_marginBottom="@dimen/_10sdp"
         android:background="@drawable/ic_bg_new_premium_features"
         android:padding="@dimen/_15sdp"
-        app:layout_constraintBottom_toTopOf="@id/constraintBottom"
+        app:layout_constraintBottom_toTopOf="@id/textPrice"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
@@ -158,9 +158,9 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/_10sdp"
             android:text="@string/pro"
-            android:textStyle="bold"
             android:textColor="@color/new_dark_black"
             android:textSize="@dimen/_11ssp"
+            android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -338,6 +338,18 @@
             app:layout_constraintTop_toTopOf="@+id/vip_support" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+    <TextView
+        android:id="@+id/textPrice"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:layout_marginBottom="@dimen/_4sdp"
+        android:fontFamily="@font/roboto"
+        android:gravity="center"
+        app:layout_constraintBottom_toTopOf="@+id/constraintBottom"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintBottom"
         android:layout_width="match_parent"
@@ -347,6 +359,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
+
         <com.facebook.shimmer.ShimmerFrameLayout
             android:id="@+id/shimmer_overlay"
             android:layout_width="match_parent"
