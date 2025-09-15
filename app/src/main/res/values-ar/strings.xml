@@ -398,4 +398,7 @@
     <string name="upgrade_now">قم بالترقية الآن</string>
     <string name="watch_ad">مشاهدة إعلان</string>
     <string name="send_files">إرسال الملفات</string>
+    <string name="invite"><u>دعوة</u></string>
+    <string name="weekly_price_after_trial">أسبوع بعد التجربة المجانية لمدة 3 أيام</string>
+
 </resources>

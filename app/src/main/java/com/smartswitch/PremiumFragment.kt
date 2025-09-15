@@ -2,6 +2,7 @@
 
 package com.smartswitch
 
+import android.annotation.SuppressLint
 import android.content.ActivityNotFoundException
 import android.content.Context
 import android.content.Intent
@@ -280,6 +281,7 @@ class PremiumFragment : Fragment(), SubscriptionPurchaseInterface {
     }
 
     // only update weekly price
+    @SuppressLint("SetTextI18n")
     private fun updateWeeklyPrice() {
         if (productDetailsList.isEmpty()) {
             Log.e(TAG, "Product details list is empty")
@@ -319,7 +321,10 @@ class PremiumFragment : Fragment(), SubscriptionPurchaseInterface {
 
         if (weeklyPriceStr.isNotEmpty()) {
             Log.d(TAG, "Weekly price found: $weeklyPriceStr")
-            binding.textPrice.text = "$weeklyPriceStr / week after free 3-days trial"
+//            binding.textPrice.text = "$weeklyPriceStr / week after free 3-days trial"
+            binding.textPrice.text =
+                "${weeklyPriceStr}/ ${getString(R.string.weekly_price_after_trial)}"
+
 //            binding.WeeklyPrice.text =
 //                "${getString(R.string.just)} $weeklyPriceStr ${getString(R.string.aweek)}"
             weaklyPrice = weeklyPriceStr

@@ -6,6 +6,8 @@
     <!-- Splash Screen -->
     <string name="quickly_share_files_and_copy_data_between_devices_simple_and_fast">Condividi rapidamente file e copia dati tra dispositivi. Semplice e veloce!</string>
     <string name="get_started">Inizia</string>
+    <string name="invite"><u>Invitare</u></string>
+    <string name="weekly_price_after_trial">settimana dopo la prova gratuita di 3 giorni</string>
 
     <!-- Permission Screen -->
     <string name="smart_transfer_uses_these_permissions">Smart Transfer utilizza queste \n<small>autorizzazioni</small>!</string>

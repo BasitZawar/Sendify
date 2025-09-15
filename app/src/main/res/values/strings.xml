@@ -415,5 +415,7 @@
     <string name="send_files">Send Files</string>
     <string name="invite_to_all">Invite To All</string>
     <string name="invite"><u>Invite</u></string>
+    <string name="weekly_price_after_trial">week after free 3-days trial</string>
+
 
 </resources>

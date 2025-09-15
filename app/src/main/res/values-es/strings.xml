@@ -7,6 +7,7 @@
     <!-- Splash Screen -->
     <string name="quickly_share_files_and_copy_data_between_devices_simple_and_fast">¡Comparte archivos rápidamente y copia datos entre dispositivos de manera simple y rápida!</string>
     <string name="get_started">Comenzar</string>
+    <string name="invite"><u>Invitar</u></string>
 
     <!-- Permission Screen -->
     <string name="smart_transfer_uses_these_permissions">Smart Transfer utiliza estos \n<small>Permisos</small>!</string>
@@ -49,6 +50,7 @@
     <string name="we_d_greatly_appreciate_if_you_can_rate_us">Apreciaríamos mucho si pudieras calificarnos.</string>
     <string name="the_best_we_can_get">Lo mejor que podemos recibir :)</string>
     <string name="feedback">Comentarios</string>
+    <string name="weekly_price_after_trial">semana después de la prueba gratuita de 3 días</string>
 
     <string name="sad_title">¡Terrible!</string>
     <string name="sad_des">Realmente necesitamos tus comentarios para mejorar.</string>

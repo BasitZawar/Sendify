@@ -6,6 +6,8 @@
     <!-- स्प्लैश स्क्रीन -->
     <string name="quickly_share_files_and_copy_data_between_devices_simple_and_fast">फाइल्स जल्दी शेयर करें और डिवाइसों के बीच डेटा कॉपी करें। सरल और तेज़!</string>
     <string name="get_started">शुरू करें</string>
+    <string name="invite"><u>निमंत्रण</u></string>
+    <string name="weekly_price_after_trial">3-दिन की निःशुल्क परीक्षण के बाद सप्ताह</string>
 
     <!-- परमिशन स्क्रीन -->
     <string name="smart_transfer_uses_these_permissions">स्मार्ट ट्रांसफर इन \n<small>परमिशन्स</small> का उपयोग करता है!</string>

@@ -394,4 +394,7 @@
     <string name="upgrade_now">Jetzt upgraden</string>
     <string name="watch_ad">Anzeige ansehen</string>
     <string name="send_files">Dateien senden</string>
+    <string name="invite"><u>Einladen</u></string>
+    <string name="weekly_price_after_trial">Woche nach der kostenlosen 3-Tage-Testversion</string>
+
 </resources>

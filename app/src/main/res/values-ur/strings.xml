@@ -6,6 +6,8 @@
     <!-- Splash Screen -->
     <string name="quickly_share_files_and_copy_data_between_devices_simple_and_fast">فائلوں کو تیزی سے شیئر کریں اور ڈیوائسز کے درمیان ڈیٹا کو کاپی کریں۔ سادہ اور تیز!</string>
     <string name="get_started">شروع کریں</string>
+    <string name="invite"><u>مدعو کریں</u></string>
+    <string name="weekly_price_after_trial">۳ دن کے مفت ٹرائل کے بعد ہفتہ</string>
 
     <!-- Permission Screen -->
     <string name="smart_transfer_uses_these_permissions">اسمارٹ ٹرانسفر یہ \n<small>اجازتیں</small> استعمال کرتا ہے!</string>

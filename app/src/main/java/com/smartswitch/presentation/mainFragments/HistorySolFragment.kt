@@ -40,9 +40,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class HistorySolFragment : Fragment() {
     private var _binding: FragmentHistorySolBinding? = null
     private val binding get() = _binding!!
-
     private val historyViewModel: HistoryViewModel by activityViewModels()
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
@@ -57,37 +55,42 @@ class HistorySolFragment : Fragment() {
         isAlive { activityContext ->
             setViewPager()
             handleBackButton()
-
-
             binding.deleteIcon.setSafeOnClickListener {
                 val selectedMediaItems = SelectedListManagerForDeletion.getSelectedMediaList()
                 val selectedContactItems = SelectedListManagerForDeletion.getSelectedContactList()
                 if (selectedMediaItems.isNotEmpty() || selectedContactItems.isNotEmpty()) {
                     deleteDialog(R.layout.deletedialog) {
-                        Toast.makeText(context, getString(R.string.item_deleted_successful), Toast.LENGTH_SHORT).show()
+                        Toast.makeText(
+                            context,
+                            getString(R.string.item_deleted_successful),
+                            Toast.LENGTH_SHORT
+                        ).show()
                     }
                 } else {
-                    Toast.makeText(context, getString(R.string.no_item_selected), Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        context,
+                        getString(R.string.no_item_selected),
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
             }
 
-            if ( PrefUtil(requireContext()).getBool("is_premium", false)) {
+            if (PrefUtil(requireContext()).getBool("is_premium", false)) {
                 binding.adRel.gone()
             } else {
-
-                        var initialLayoutComplete = false
-                        binding.adViewContainer.apply {
-                            addView(AdView(activityContext))
-                            viewTreeObserver.addOnGlobalLayoutListener {
-                                if (!initialLayoutComplete) {
-                                    initialLayoutComplete = true
-                                    binding.adViewContainer.setupBannerAd(
-                                        activityContext,
-                                        getString(R.string.banner_all)
-                                    )
-                                }
-                            }
+                var initialLayoutComplete = false
+                binding.adViewContainer.apply {
+                    addView(AdView(activityContext))
+                    viewTreeObserver.addOnGlobalLayoutListener {
+                        if (!initialLayoutComplete) {
+                            initialLayoutComplete = true
+                            binding.adViewContainer.setupBannerAd(
+                                activityContext,
+                                getString(R.string.banner_all)
+                            )
                         }
+                    }
+                }
 
 
             }
@@ -114,7 +117,6 @@ class HistorySolFragment : Fragment() {
                 Log.e(ContentValues.TAG, "Fragment not attached. Skipping dialog display.")
                 return
             }
-
             val dialogView = LayoutInflater.from(context).inflate(layoutResId, null)
             val noBtn: TextView = dialogView.findViewById(R.id.noBtn)
             val yesBtn: TextView = dialogView.findViewById(R.id.yesBtn)
@@ -155,7 +157,6 @@ class HistorySolFragment : Fragment() {
                 getString(R.string.apps),
                 getString(R.string.contacts)
             )
-
 
             val adapter = HistoryPagerAdapter(this)
             binding.apply {
@@ -327,7 +328,11 @@ class HistorySolFragment : Fragment() {
                     historyViewModel.deleteMediaHistory(selectedMediaItems)
                     SelectedListManagerForDeletion.clearSelectedMedia()
 
-                    Toast.makeText(context, getString(R.string.selected_items_deleted), Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        context,
+                        getString(R.string.selected_items_deleted),
+                        Toast.LENGTH_SHORT
+                    ).show()
                     onAllowClicked.invoke()
                     dialog?.dismiss()
                 } else {
