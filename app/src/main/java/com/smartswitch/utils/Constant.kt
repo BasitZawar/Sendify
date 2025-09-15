@@ -38,6 +38,18 @@ object Constant {
     private const val backPressInterval: Long = 2000 // 2 sec
 
 
+    val imagesExtensions: ArrayList<String> =
+        ArrayList(listOf("JPG", "PNG", "TIFF", "JPEG", "jpg", "png", "TIFF", "jpeg", "gif", "svg"))
+    val videosExtensions: ArrayList<String> = ArrayList(listOf("mwv", "avi", "mkv", "mp4"))
+    val audiosExtensions: ArrayList<String> =
+        ArrayList(listOf("aif", "weba", "mid", "mp3", "ogg", "wav", "m4a"))
+    val pdfExtensions: ArrayList<String> = ArrayList(listOf("pdf"))
+    val zipExtensions: ArrayList<String> = ArrayList(listOf("zip", "rar"))
+    val apkExtensions: ArrayList<String> = ArrayList(listOf("aab", "apk"))
+    val docsExtensions: ArrayList<String> = ArrayList(
+        listOf("etf", "docx", "txt", "json", "xml", "ppt", "word")
+    )
+
     fun isGPSEnabled(locationManager: LocationManager): Boolean {
         try {
             return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)
@@ -228,7 +240,7 @@ object Constant {
     fun handleOnBackPress(activity: Activity, message: String, onExit: () -> Unit): Boolean {
         return if (backPressedTime + backPressInterval > System.currentTimeMillis()) {
             onExit()
-             true
+            true
         } else {
             Toast.makeText(activity, message, Toast.LENGTH_SHORT).show()
             backPressedTime = System.currentTimeMillis()
@@ -236,4 +248,41 @@ object Constant {
         }
     }
 
+    fun getFileType(path: String): FileEnum {
+        val extension = path.substring(path.lastIndexOf(".") + 1)
+        when {
+            imagesExtensions.contains(extension.lowercase()) -> {
+                return FileEnum.Image
+            }
+
+            videosExtensions.contains(extension.lowercase()) -> {
+                return FileEnum.Video
+            }
+
+            audiosExtensions.contains(extension.lowercase()) -> {
+                return FileEnum.Audio
+            }
+
+            docsExtensions.contains(extension.lowercase()) -> {
+                return FileEnum.Document
+            }
+
+            else -> {
+                return FileEnum.AllFiles
+
+            }
+        }
+    }
+
+}
+
+enum class FileEnum {
+    Image,
+    Video,
+    Audio,
+    Document,
+    Pdf,
+    Rar,
+    AllFiles,
+    Apk
 }

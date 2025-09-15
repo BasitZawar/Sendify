@@ -18,6 +18,7 @@ import com.smartswitch.R
 import com.smartswitch.connection.SocketHandler.Companion.getSocket
 import com.smartswitch.databinding.ActivitySendingBinding
 import com.smartswitch.domain.model.MediaInfoModel
+import com.smartswitch.domain.model.ShowFileModel
 import com.smartswitch.presentation.language.BaseActivity
 import com.smartswitch.presentation.sendData.SelectedData
 import com.smartswitch.setupPortraitWithWindowInsets
@@ -25,6 +26,7 @@ import com.smartswitch.utils.Constant
 import com.smartswitch.utils.Constant.customSystemBars
 import com.smartswitch.utils.Constant.handleOnBackPress
 import com.smartswitch.utils.Constant.multiContactsFileName
+import com.smartswitch.utils.PaperDB
 import com.smartswitch.utils.WifiDirectFragment
 import com.smartswitch.utils.enums.MediaTypeEnum
 import kotlinx.coroutines.CoroutineScope
@@ -466,6 +468,11 @@ class SendingActivity : BaseActivity() {
                                         }
                                     }
                                 }
+                                PaperDB.addSentHistory(
+                                    ShowFileModel(
+                                        currentFile.path, "Sent"
+                                    )
+                                )
                                 objOutputStream?.flush()
                             }
                         } catch (ex: Exception) {

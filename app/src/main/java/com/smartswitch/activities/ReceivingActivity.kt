@@ -20,6 +20,7 @@ import androidx.core.view.isVisible
 import com.smartswitch.R
 import com.smartswitch.connection.SocketHandler
 import com.smartswitch.databinding.ActivityReceivingBinding
+import com.smartswitch.domain.model.ShowFileModel
 import com.smartswitch.presentation.language.BaseActivity
 import com.smartswitch.setupPortraitWithWindowInsets
 import com.smartswitch.utils.Constant
@@ -28,6 +29,7 @@ import com.smartswitch.utils.Constant.handleOnBackPress
 import com.smartswitch.utils.Constant.multiContactsFileName
 import com.smartswitch.utils.Constant.requestStoragePermission11
 import com.smartswitch.utils.Constant.showSnackBar
+import com.smartswitch.utils.PaperDB
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -442,14 +444,13 @@ class ReceivingActivity : BaseActivity() {
         fileOutputStream.close()
         val file = File(folder, "$newFileName.$extension")
         Log.e("TESTAG", "Received file.absolutePath: ${file.absolutePath}")
-        /*
-        for later use
+
         PaperDB.addReceiveHistory(
             ShowFileModel(
                 file.path, "Received"
             )
         )
-        */
+
         val filePathsToScan = listOf(file.absolutePath)
         Log.d("MediaScanner", "filePathsToScan $filePathsToScan")
         scanMediaFiles(this@ReceivingActivity, filePathsToScan)
@@ -507,14 +508,13 @@ class ReceivingActivity : BaseActivity() {
         fileOutputStream.close()
         val file = File(folder, "$newFileName$extension")
         Log.e("TESTAG", "Received file.absolutePath: ${file.absolutePath}")
-        /*
-        for later use
+
          PaperDB.addReceiveHistory(
              ShowFileModel(
                  file.path, "Received"
              )
          )
-          */
+
         val filePathsToScan = listOf(file.absolutePath)
         Log.d("MediaScanner", "filePathsToScan $filePathsToScan")
         scanMediaFiles(this@ReceivingActivity, filePathsToScan)
@@ -583,13 +583,12 @@ class ReceivingActivity : BaseActivity() {
             ) { path, uri ->
                 Log.d("MediaScanner", "Scanned file $path")
             }
-            /*
-            for later use
+
             PaperDB.addReceiveHistory(
                 ShowFileModel(
                     vcfFile.path, "Received"
                 )
-            )*/
+            )
         }
     }
 

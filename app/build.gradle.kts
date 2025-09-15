@@ -4,6 +4,7 @@ plugins {
     id("kotlin-kapt")
     id("dagger.hilt.android.plugin")
     id("kotlin-android")
+    id("kotlin-parcelize")
     id("androidx.navigation.safeargs")
     id("com.google.gms.google-services")
     id("com.google.firebase.crashlytics")
@@ -136,6 +137,9 @@ dependencies {
     implementation("androidx.room:room-runtime:2.6.1")
     implementation("androidx.room:room-ktx:2.6.1")
     kapt("androidx.room:room-compiler:2.6.1")
+//    paper
+    implementation("io.github.pilgr:paperdb:2.7.2")
+//Paper DB
     //lottie
     implementation(libs.lottie)
     implementation("androidx.work:work-runtime-ktx:2.9.1")
