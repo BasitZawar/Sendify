@@ -6,6 +6,8 @@ import android.app.Activity
 import android.app.AlertDialog
 import android.app.Dialog
 import android.content.Intent
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
@@ -19,6 +21,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.Window
+import android.view.WindowManager
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
@@ -37,6 +40,7 @@ import com.smartswitch.R
 import com.smartswitch.activities.ConnectionActivity
 import com.smartswitch.ads.PrefUtils
 import com.smartswitch.ads.inter_ads.InterstitialClass
+import com.smartswitch.ads.native_ads.NativeAdsManager
 import com.smartswitch.databinding.DialogExitBinding
 import com.smartswitch.databinding.FragmentHomeSolBinding
 import com.smartswitch.new_ads.RewardedAd_Manager
@@ -62,6 +66,8 @@ class HomeSolFragment : Fragment() {
     private val binding get() = _binding!!
     private var rewardedDialog: Dialog? = null
     var TAG = "HomeSolFragment"
+    private var doubleBackToExitPressedOnce = false
+    private val backPressHandler = Handler(Looper.getMainLooper())
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -126,10 +132,30 @@ class HomeSolFragment : Fragment() {
 
 
             (activityContext as FragmentActivity).handleBackPressWithAction {
-                showExitDialog {
-                    activityContext.finishAffinity()
-
+                if (doubleBackToExitPressedOnce) {
+                    InterstitialClass.request_interstitial(
+                        requireContext(),
+                        requireActivity(),
+                        getString(R.string.inter_all)
+                    ) {
+                        showExitDialog {
+                            activityContext.finishAffinity()
+                            binding.nativeBannerPlaceHolder.visibility = View.GONE
+                        }
+                    }
+                } else {
+                    doubleBackToExitPressedOnce = true
+                    Toast.makeText(
+                        requireContext(),
+                        "Press again to exit",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                    backPressHandler.postDelayed(
+                        { doubleBackToExitPressedOnce = false },
+                        2000
+                    )
                 }
+
             }
 
             binding.toolbar.setNavigationOnClickListener {
@@ -858,7 +884,25 @@ class HomeSolFragment : Fragment() {
             val dialog = MyDialogBox.getInstance(act as Activity)
                 ?.setContentViewWithDismissCallBack(binding.root, true, 0.85f) {
                 }?.showDialog()
-
+            // ✅ Make dialog fullscreen
+            dialog?.window?.setLayout(
+                WindowManager.LayoutParams.MATCH_PARENT,
+                WindowManager.LayoutParams.MATCH_PARENT
+            )
+            dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT)) // optional
+            NativeAdsManager.loadAndShowNativeAd(
+                requireContext(),
+                getString(R.string.native_home),
+                binding.adRel,
+                binding.adTemplateView,
+                binding.shimmerLayout,
+                binding.exitBtnContainer
+            )
+            Handler(Looper.getMainLooper()).postDelayed({
+                if (binding.exitBtnContainer.visibility == View.INVISIBLE) {
+                    binding.exitBtnContainer.visibility = View.VISIBLE
+                }
+            }, 4000)
             binding.allowBtn.setOnClickListener {
                 onAllowClicked.invoke()
                 dialog?.dismiss()

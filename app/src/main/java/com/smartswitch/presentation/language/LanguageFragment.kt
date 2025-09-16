@@ -54,6 +54,7 @@ class LanguageFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
+
         savedInstanceState: Bundle?,
     ): View {
         _binding = FragmentLanguageBinding.inflate(inflater, container, false)

@@ -19,15 +19,21 @@ import com.google.android.gms.ads.AdLoader
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.FullScreenContentCallback
 import com.google.android.gms.ads.LoadAdError
+import com.google.android.gms.ads.MobileAds
 import com.google.android.gms.ads.appopen.AppOpenAd
 import com.google.android.gms.ads.nativead.NativeAd
+import com.google.android.gms.ads.nativead.NativeAdOptions
+import com.google.android.gms.ads.nativead.NativeAdView
 import com.smartswitch.R
 import com.smartswitch.ads.GoogleMobileAdsConsentManager
 import com.smartswitch.databinding.FragmentSplashSolBinding
+import com.smartswitch.new_ads.nativeads.NativeAdsUtil
 import com.smartswitch.subscriptions.PrefUtil
 import com.smartswitch.utils.PermissionManager
+import com.smartswitch.utils.extensions.gone
 import com.smartswitch.utils.extensions.handleDoubleBackPressToExit
 import com.smartswitch.utils.extensions.isAlive
+import com.smartswitch.utils.extensions.visible
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
@@ -77,29 +83,29 @@ class SplashSolFragment : Fragment() {
         }
     }
 
-/*
-    private fun showNextProcedureData() {
-        CoroutineScope(Dispatchers.Main).launch {
-            val isPremium = withContext(Dispatchers.IO) {
-                PrefUtil(requireContext()).getBool(
-                    "is_premium",
-                    false
-                )
-            }
-            if (isPremium) {
-                animateProgressBar(binding.progressBar, 3000)
-                delay(3000)
-                intentbutton()
-                Log.d("TEGSPLAH", "is_premium")
-            } else {
-                animateProgressBar(binding.progressBar, 16000)
-                requestConsent()
-                Log.d("TEGSPLAH", "requestConsent delay")
+    /*
+        private fun showNextProcedureData() {
+            CoroutineScope(Dispatchers.Main).launch {
+                val isPremium = withContext(Dispatchers.IO) {
+                    PrefUtil(requireContext()).getBool(
+                        "is_premium",
+                        false
+                    )
+                }
+                if (isPremium) {
+                    animateProgressBar(binding.progressBar, 3000)
+                    delay(3000)
+                    intentbutton()
+                    Log.d("TEGSPLAH", "is_premium")
+                } else {
+                    animateProgressBar(binding.progressBar, 16000)
+                    requestConsent()
+                    Log.d("TEGSPLAH", "requestConsent delay")
 
+                }
             }
         }
-    }
-*/
+    */
     private fun showNextProcedureData() {
         viewLifecycleOwner.lifecycleScope.launch {
             val ctx = context ?: return@launch
@@ -158,28 +164,29 @@ class SplashSolFragment : Fragment() {
             }
         }
     }
-/*
-    private fun requestConsent() {
-        Log.d("TEGSPLAH", "requestConsent")
-        googleMobileAdsConsentManager = GoogleMobileAdsConsentManager.getInstance(requireContext())
-        googleMobileAdsConsentManager.gatherConsent(requireActivity()) { consentError ->
-            if (consentError != null) {
-                Log.e("TESTSPLASH", "consentError:   ")
-                initializeMobileAdsSdkOther()
+
+    /*
+        private fun requestConsent() {
+            Log.d("TEGSPLAH", "requestConsent")
+            googleMobileAdsConsentManager = GoogleMobileAdsConsentManager.getInstance(requireContext())
+            googleMobileAdsConsentManager.gatherConsent(requireActivity()) { consentError ->
+                if (consentError != null) {
+                    Log.e("TESTSPLASH", "consentError:   ")
+                    initializeMobileAdsSdkOther()
+                }
+                if (googleMobileAdsConsentManager.canRequestAds) {
+                    initializeMobileAdsSdkOther()
+                }
+                if (googleMobileAdsConsentManager.isPrivacyOptionsRequired) {
+                    // Regenerate the options menu to include a privacy setting.
+                    invalidateOptionsMenu(requireActivity())
+                }
             }
             if (googleMobileAdsConsentManager.canRequestAds) {
                 initializeMobileAdsSdkOther()
             }
-            if (googleMobileAdsConsentManager.isPrivacyOptionsRequired) {
-                // Regenerate the options menu to include a privacy setting.
-                invalidateOptionsMenu(requireActivity())
-            }
         }
-        if (googleMobileAdsConsentManager.canRequestAds) {
-            initializeMobileAdsSdkOther()
-        }
-    }
-*/
+    */
     private fun requestConsent() {
         Log.d("TEGSPLAH", "requestConsent")
         val safeContext = context ?: return
@@ -211,7 +218,6 @@ class SplashSolFragment : Fragment() {
                 false
             )
         ) return
-
         val adLoader = AdLoader.Builder(requireContext(), adId)
             .forNativeAd { nativeAd ->
                 // Cache the native ad
@@ -225,7 +231,7 @@ class SplashSolFragment : Fragment() {
 
     }
 
-//    private fun initializeMobileAdsSdkOther() {
+    //    private fun initializeMobileAdsSdkOther() {
 //        if (isMobileAdsInitializeCalled.getAndSet(true)) {
 //            return
 //        }
@@ -265,9 +271,12 @@ class SplashSolFragment : Fragment() {
         val ctx = context ?: return
 
         if (PrefUtil(ctx).getBool("is_premium", false)) {
+            binding.nativeBannerPlaceHolder.gone()
             intentbutton()
             Log.d("TEGSPLAH", "is_premium2")
         } else {
+            binding.nativeBannerPlaceHolder.visible()
+            loadNative(getString(R.string.native_splash))
             loadNativeLangAd(getString(R.string.language_screen_native))
             loadSplashOpenAd()
 
@@ -353,6 +362,12 @@ class SplashSolFragment : Fragment() {
             override fun onAdFailedToShowFullScreenContent(p0: AdError) {
                 if (isAdded) intentbutton()
             }
+
+            override fun onAdShowedFullScreenContent() {
+                super.onAdShowedFullScreenContent()
+                binding.progressBar.visibility = View.GONE
+                binding.nativeBannerPlaceHolder.visibility = View.GONE
+            }
         }
 
         openAd?.fullScreenContentCallback = fullScreenContentCallback
@@ -361,7 +376,26 @@ class SplashSolFragment : Fragment() {
         }
     }
 
+    private fun loadNative(adId: String) {
 
+        // if (PrefUtil(this@SplashActivity).getBool("is_premium", false)) return
+        MobileAds.initialize(requireContext())
+        NativeAdsUtil.loadNativeAd(
+            requireContext(),
+            1,
+            adId,
+            NativeAdOptions.ADCHOICES_TOP_LEFT
+        ) { nativeAd ->
+            isAlive {
+                val adView = layoutInflater.inflate(
+                    R.layout.ads_google_small_native, null
+                ) as NativeAdView
+                NativeAdsUtil.populateUnifiedNativeAdView(nativeAd, adView)
+                binding.nativeAd.removeAllViews()
+                binding.nativeAd.addView(adView)
+            }
+        }
+    }
 
 
     override fun onDestroyView() {

@@ -1,14 +1,17 @@
 package com.smartswitch.ads.native_ads
 
 import android.app.Activity
+import android.content.Context
 import android.util.Log
 import android.view.View
+import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.RatingBar
 import android.widget.TextView
 import com.airbnb.lottie.LottieAnimationView
+import com.facebook.shimmer.ShimmerFrameLayout
 import com.google.android.gms.ads.AdListener
 import com.google.android.gms.ads.AdLoader
 import com.google.android.gms.ads.AdRequest
@@ -20,88 +23,146 @@ import com.google.android.gms.ads.nativead.NativeAd
 import com.google.android.gms.ads.nativead.NativeAdOptions
 import com.google.android.gms.ads.nativead.NativeAdView
 import com.smartswitch.R
+import com.smartswitch.new_ads.nativeads.NativeTemplateStyle
+import com.smartswitch.new_ads.nativeads.TemplateView
+import com.smartswitch.subscriptions.PrefUtil
 
 object NativeAdsManager {
 
     var mNativeAd: NativeAd? = null
 
+    fun loadAndShowNativeAd(
+        context: Context,
+        adId: String,
+        adContainer: ViewGroup,
+        adTemplateView: TemplateView,
+        shimmerLayout: ShimmerFrameLayout,
+        buttonsContainer: ViewGroup
+    ) {
+        val isPremium = PrefUtil(context).getBool("is_premium", false)
+        buttonsContainer.visibility = View.INVISIBLE
+
+        if (isPremium) {
+            adContainer.visibility = View.GONE
+            buttonsContainer.visibility = View.VISIBLE
+            return
+        }
+        shimmerLayout.startShimmer()
+        shimmerLayout.visibility = View.VISIBLE
+        adTemplateView.visibility = View.GONE
+
+        val adLoader = AdLoader.Builder(context, adId)
+            .forNativeAd { nativeAd ->
+                // Destroy old ad if already available
+                mNativeAd?.destroy()
+                mNativeAd = nativeAd
+                shimmerLayout.stopShimmer()
+                shimmerLayout.visibility = View.GONE
+                val styles = NativeTemplateStyle.Builder().build()
+                adTemplateView.visibility = View.VISIBLE
+                adTemplateView.setStyles(styles)
+                adTemplateView.setNativeAd(nativeAd)
+                adContainer.visibility = View.VISIBLE
+                buttonsContainer.visibility = View.VISIBLE
+
+            }
+            .withAdListener(object : AdListener() {
+                override fun onAdFailedToLoad(error: LoadAdError) {
+                    Log.e("NativeAdUtil", "Failed to load: ${error.message}")
+                    adContainer.visibility = View.GONE
+                    shimmerLayout.stopShimmer()
+                    shimmerLayout.visibility = View.GONE
+                    if (buttonsContainer.visibility == View.INVISIBLE) {
+                        buttonsContainer.visibility = View.VISIBLE
+                    }
+                }
+            })
+            .build()
+
+        adLoader.loadAd(AdRequest.Builder().build())
+    }
+
+    fun destroyAd() {
+        mNativeAd?.destroy()
+        mNativeAd = null
+    }
 
     const val medium = "medium"
 
-/**    fun loadNativeAd(
-        activity: Activity,
-        nativeShimmerEffect: LottieAnimationView,
-        frameLayout: LinearLayout,
-        adType: String
+    /**    fun loadNativeAd(
+    activity: Activity,
+    nativeShimmerEffect: LottieAnimationView,
+    frameLayout: LinearLayout,
+    adType: String
     ) {
-        Log.e("MYADS", "Loading native ad...")
+    Log.e("MYADS", "Loading native ad...")
 
-        val adUnitId = activity.getString(R.string.native_ad_id)
+    val adUnitId = activity.getString(R.string.native_ad_id)
 
-        if (adUnitId.isEmpty()) {
-            Log.e("MYADS", "Ad unit ID is empty.")
-            return
-        }
+    if (adUnitId.isEmpty()) {
+    Log.e("MYADS", "Ad unit ID is empty.")
+    return
+    }
 
-        val adView = when (adType) {
-            medium -> {
-                activity.layoutInflater.inflate(R.layout.native_medium, frameLayout, false) as NativeAdView
-            }
-            else -> {
-                activity.layoutInflater.inflate(R.layout.native_medium, frameLayout, false) as NativeAdView
-            }
-        }
+    val adView = when (adType) {
+    medium -> {
+    activity.layoutInflater.inflate(R.layout.native_medium, frameLayout, false) as NativeAdView
+    }
+    else -> {
+    activity.layoutInflater.inflate(R.layout.native_medium, frameLayout, false) as NativeAdView
+    }
+    }
 
-        if (mNativeAd == null) {
-            Log.e("MYADS", "No cached native ad, requesting a new one...")
+    if (mNativeAd == null) {
+    Log.e("MYADS", "No cached native ad, requesting a new one...")
 
-            val builder = AdLoader.Builder(activity, adUnitId)
-            builder.forNativeAd { nativeAd: NativeAd? ->
-                Log.e("MYADS", "Native ad loaded successfully.")
-                if (mNativeAd != null) {
-                    mNativeAd?.destroy()
-                }
-                mNativeAd = nativeAd
-                frameLayout.removeAllViews()
-                frameLayout.addView(adView)
-                mNativeAd?.let { populateNativeAdView(it, adView) }
-                nativeShimmerEffect.visibility = View.GONE // Hide shimmer when ad is loaded
-            }.withNativeAdOptions(
-                NativeAdOptions.Builder()
-                    .setAdChoicesPlacement(NativeAdOptions.ADCHOICES_TOP_RIGHT)
-                    .build()
-            )
+    val builder = AdLoader.Builder(activity, adUnitId)
+    builder.forNativeAd { nativeAd: NativeAd? ->
+    Log.e("MYADS", "Native ad loaded successfully.")
+    if (mNativeAd != null) {
+    mNativeAd?.destroy()
+    }
+    mNativeAd = nativeAd
+    frameLayout.removeAllViews()
+    frameLayout.addView(adView)
+    mNativeAd?.let { populateNativeAdView(it, adView) }
+    nativeShimmerEffect.visibility = View.GONE // Hide shimmer when ad is loaded
+    }.withNativeAdOptions(
+    NativeAdOptions.Builder()
+    .setAdChoicesPlacement(NativeAdOptions.ADCHOICES_TOP_RIGHT)
+    .build()
+    )
 
-            val videoOptions = VideoOptions.Builder()
-                .setStartMuted(true)
-                .build()
-            val adOptions = NativeAdOptions.Builder()
-                .setVideoOptions(videoOptions)
-                .build()
+    val videoOptions = VideoOptions.Builder()
+    .setStartMuted(true)
+    .build()
+    val adOptions = NativeAdOptions.Builder()
+    .setVideoOptions(videoOptions)
+    .build()
 
-            builder.withNativeAdOptions(adOptions)
+    builder.withNativeAdOptions(adOptions)
 
-            val adLoader = builder.withAdListener(object : AdListener() {
-                override fun onAdFailedToLoad(loadAdError: LoadAdError) {
-                    Log.e("MYADS", "Ad failed to load: ${loadAdError.message}")
-                    mNativeAd = null
-                    nativeShimmerEffect.visibility = View.GONE // Hide shimmer effect
-                }
+    val adLoader = builder.withAdListener(object : AdListener() {
+    override fun onAdFailedToLoad(loadAdError: LoadAdError) {
+    Log.e("MYADS", "Ad failed to load: ${loadAdError.message}")
+    mNativeAd = null
+    nativeShimmerEffect.visibility = View.GONE // Hide shimmer effect
+    }
 
-                override fun onAdLoaded() {
-                    Log.e("MYADS", "Ad loaded successfully.")
-                    nativeShimmerEffect.visibility = View.GONE // Hide shimmer when ad is loaded
-                }
-            }).build()
+    override fun onAdLoaded() {
+    Log.e("MYADS", "Ad loaded successfully.")
+    nativeShimmerEffect.visibility = View.GONE // Hide shimmer when ad is loaded
+    }
+    }).build()
 
-            adLoader.loadAd(AdRequest.Builder().build())
-        } else {
-            Log.e("MYADS", "Using cached native ad.")
-            frameLayout.removeAllViews()
-            frameLayout.addView(adView)
-            nativeShimmerEffect.visibility = View.GONE
-            populateNativeAdView(mNativeAd!!, adView)
-        }
+    adLoader.loadAd(AdRequest.Builder().build())
+    } else {
+    Log.e("MYADS", "Using cached native ad.")
+    frameLayout.removeAllViews()
+    frameLayout.addView(adView)
+    nativeShimmerEffect.visibility = View.GONE
+    populateNativeAdView(mNativeAd!!, adView)
+    }
     }*/
 
 

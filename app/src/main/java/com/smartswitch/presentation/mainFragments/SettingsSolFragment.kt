@@ -25,7 +25,11 @@ import com.smartswitch.utils.extensions.setSafeOnClickListener
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 import androidx.core.content.edit
+import com.google.android.gms.ads.AdView
+import com.smartswitch.ads.banner_ads.setupBannerAd
 import com.smartswitch.presentation.history.HistoryActivity
+import com.smartswitch.subscriptions.PrefUtil
+import com.smartswitch.utils.extensions.gone
 
 @AndroidEntryPoint
 class SettingsSolFragment : Fragment() {
@@ -51,7 +55,23 @@ class SettingsSolFragment : Fragment() {
             (activityContext as FragmentActivity).handleBackPressWithAction {
                 findNavController().popBackStack()
             }
-
+            if (PrefUtil(requireContext()).getBool("is_premium", false)) {
+                binding.adRel.gone()
+            } else {
+                var initialLayoutComplete = false
+                binding.adViewContainer.apply {
+                    addView(AdView(activityContext))
+                    viewTreeObserver.addOnGlobalLayoutListener {
+                        if (!initialLayoutComplete) {
+                            initialLayoutComplete = true
+                            binding.adViewContainer.setupBannerAd(
+                                activityContext,
+                                getString(R.string.banner_all)
+                            )
+                        }
+                    }
+                }
+            }
             // Handle toolbar back button press
             binding.headerLayout.setNavigationOnClickListener {
                 findNavController().navigateUp()
