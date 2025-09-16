@@ -9,11 +9,11 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout6"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/_40sdp"
         android:layout_margin="@dimen/_8sdp"
         android:background="@drawable/tab_shape"
         android:elevation="4dp"
-        android:padding="@dimen/_4sdp"
+        android:padding="@dimen/_1sdp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -21,18 +21,17 @@
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tabLayout"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_32sdp"
-            android:layout_margin="@dimen/_4sdp"
+            android:layout_height="match_parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:tabBackground="@drawable/tab_shape"
-            app:tabIndicatorColor="@color/white"
+            app:tabIndicatorColor="@color/gnt_blue"
             app:tabIndicatorFullWidth="false"
+            android:padding="@dimen/_2sdp"
             app:tabIndicatorHeight="0dp"
-            app:tabSelectedTextColor="@color/white"
-            app:tabTextColor="@color/black">
+            app:tabTextColor="@color/tab_text_color">
 
             <com.google.android.material.tabs.TabItem
                 android:layout_width="wrap_content"
@@ -72,8 +71,9 @@
 
         <ImageView
             android:id="@+id/imgNoItem"
-            android:layout_width="@dimen/_160sdp"
-            android:layout_height="@dimen/_140sdp"
+            android:layout_width="@dimen/_130sdp"
+            android:layout_height="@dimen/_130sdp"
+            android:padding="@dimen/_12sdp"
             android:src="@drawable/ic_no_files"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -83,13 +83,15 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10sdp"
             android:fontFamily="@font/roboto"
             android:text="@string/no_files_found"
             android:textColor="@color/black"
             android:textSize="@dimen/_12sdp"
             app:layout_constraintBottom_toBottomOf="@+id/imgNoItem"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imgNoItem" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout

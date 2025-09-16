@@ -25,6 +25,7 @@ import com.smartswitch.utils.extensions.setSafeOnClickListener
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 import androidx.core.content.edit
+import com.smartswitch.presentation.history.HistoryActivity
 
 @AndroidEntryPoint
 class SettingsSolFragment : Fragment() {
@@ -70,14 +71,22 @@ class SettingsSolFragment : Fragment() {
             binding.rateUsCardView.setOnClickListener {
                 try {
                     val rateIntent =
-                        Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=${activityContext.packageName}"))
+                        Intent(
+                            Intent.ACTION_VIEW,
+                            Uri.parse("market://details?id=${activityContext.packageName}")
+                        )
                     startActivity(rateIntent)
                 } catch (e: Exception) {
                     try {
-                        val uriUrl = Uri.parse("https://market.android.com/details?id=${activityContext.packageName}")
+                        val uriUrl =
+                            Uri.parse("https://market.android.com/details?id=${activityContext.packageName}")
                         startActivity(Intent(Intent.ACTION_VIEW, uriUrl))
                     } catch (e: Exception) {
-                        Toast.makeText(activityContext, "No Application Found to open link", Toast.LENGTH_SHORT)
+                        Toast.makeText(
+                            activityContext,
+                            "No Application Found to open link",
+                            Toast.LENGTH_SHORT
+                        )
                             .show()
                     }
                 }
@@ -89,21 +98,33 @@ class SettingsSolFragment : Fragment() {
                 try {
                     startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(url)))
                 } catch (e: ActivityNotFoundException) {
-                    Toast.makeText(activityContext, "Couldn't launch the market", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        activityContext,
+                        "Couldn't launch the market",
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
             }
 
             binding.moreAppCardView.setOnClickListener {
                 try {
                     val rateIntent =
-                        Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/dev?id=5121071137067556477"))
+                        Intent(
+                            Intent.ACTION_VIEW,
+                            Uri.parse("https://play.google.com/store/apps/dev?id=5121071137067556477")
+                        )
                     startActivity(rateIntent)
                 } catch (e: Exception) {
                     try {
-                        val uriUrl = Uri.parse("https://play.google.com/store/apps/dev?id=5121071137067556477")
+                        val uriUrl =
+                            Uri.parse("https://play.google.com/store/apps/dev?id=5121071137067556477")
                         startActivity(Intent(Intent.ACTION_VIEW, uriUrl))
                     } catch (e: Exception) {
-                        Toast.makeText(activityContext, "No Application Found to open link", Toast.LENGTH_SHORT)
+                        Toast.makeText(
+                            activityContext,
+                            "No Application Found to open link",
+                            Toast.LENGTH_SHORT
+                        )
                             .show()
                     }
                 }
@@ -111,11 +132,12 @@ class SettingsSolFragment : Fragment() {
 
 
             setupClickListeners(activityContext)
-            bindSwitchToPreference(binding.themeSwitch)        }
+            bindSwitchToPreference(binding.themeSwitch)
+        }
     }
 
     private fun bindSwitchToPreference(switch: SwitchCompat) {
-        Log.d("theme",sharedPreferences.getBoolean(Theme_STATUS_PREFERENCE_KEY, false).toString())
+        Log.d("theme", sharedPreferences.getBoolean(Theme_STATUS_PREFERENCE_KEY, false).toString())
         switch.isChecked = sharedPreferences.getBoolean(Theme_STATUS_PREFERENCE_KEY, false)
         switch.setOnCheckedChangeListener { _, isChecked ->
             //savePreferencesValue(key, isChecked)
@@ -134,17 +156,22 @@ class SettingsSolFragment : Fragment() {
 
     private fun setupClickListeners(activityContext: FragmentActivity) {
         binding.languageCardView.setSafeOnClickListener {
-            findNavController().navigate(SettingsSolFragmentDirections.actionSettingsSendifyFragmentToLanguageFragment("setting"))
+            findNavController().navigate(
+                SettingsSolFragmentDirections.actionSettingsSendifyFragmentToLanguageFragment(
+                    "setting"
+                )
+            )
         }
 
-        
+
 //        binding.profileCardView.setSafeOnClickListener {
 //            //findNavController().navigate(R.id.action_settingsSendifyFragment_to_profileSendifyFragment)
 //            //ThemeSelectionDialog(requireContext()).show()
 //        }
 
         binding.historyCardView.setSafeOnClickListener {
-            findNavController().navigate(R.id.action_settingsSendifyFragment_to_historySendifyFragment)
+            startActivity(Intent(requireContext(), HistoryActivity::class.java))
+//            findNavController().navigate(R.id.action_settingsSendifyFragment_to_historySendifyFragment)
         }
 
     }

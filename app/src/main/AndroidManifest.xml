@@ -98,6 +98,11 @@
             android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar"
             tools:replace="android:theme" />
         <activity
+            android:name=".presentation.history.HistoryActivity"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"
+            android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar"
+            tools:replace="android:theme" />
+        <activity
             android:name="com.google.android.gms.ads.AdActivity"
             android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"
             android:theme="@style/AdTheme"

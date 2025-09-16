@@ -41,6 +41,7 @@ import com.smartswitch.databinding.DialogExitBinding
 import com.smartswitch.databinding.FragmentHomeSolBinding
 import com.smartswitch.new_ads.RewardedAd_Manager
 import com.smartswitch.new_ads.nativeads.NativeAdsUtil
+import com.smartswitch.presentation.history.HistoryActivity
 import com.smartswitch.subscriptions.PrefUtil
 import com.smartswitch.utils.Dialogs
 import com.smartswitch.utils.MyDialogBox
@@ -151,11 +152,13 @@ class HomeSolFragment : Fragment() {
              }*/
 
             binding.historyBtn.setSafeOnClickListener {
+                startActivity(Intent(requireContext(), HistoryActivity::class.java))
+
                 val navController = findNavController()
                 val currentId = navController.currentDestination?.id
 
                 if (currentId == R.id.homeSendifyFragment) {
-                    navController.navigate(R.id.action_homeSendifyFragment_to_historySendifyFragment)
+//                    navController.navigate(R.id.action_homeSendifyFragment_to_historySendifyFragment)
                 } else {
                     Log.w("NavigationWarning", "Tried to navigate from wrong fragment: $currentId")
                 }
@@ -206,7 +209,7 @@ class HomeSolFragment : Fragment() {
                                     }
                                 }
                             }
-                            Log.e(TAG, "onViewCreated: 444", )
+                            Log.e(TAG, "onViewCreated: 444")
                             if (rewardedDialog!!.isShowing)
                                 rewardedDialog?.dismiss()
                         },

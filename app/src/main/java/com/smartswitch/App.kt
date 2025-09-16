@@ -13,6 +13,7 @@ import com.zeugmasolutions.localehelper.LocaleAwareApplication
 import com.zeugmasolutions.localehelper.LocaleHelper
 import com.zeugmasolutions.localehelper.LocaleHelperApplicationDelegate
 import dagger.hilt.android.HiltAndroidApp
+import io.paperdb.Paper
 import javax.inject.Inject
 import kotlin.system.exitProcess
 
@@ -37,6 +38,7 @@ class App : LocaleAwareApplication() {
     lateinit var sharedPreferences: SharedPreferences
     override fun onCreate() {
         super.onCreate()
+        Paper.init(this@App)
         FirebaseApp.initializeApp(this)
         initFirebaseNotification()
         if (sharedPreferences.getBoolean(SettingsSolFragment.Theme_STATUS_PREFERENCE_KEY, false)) {

@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.smartswitch.R
 import com.smartswitch.databinding.LayoutHistoryBinding
+import com.smartswitch.setupPortraitWithWindowInsets
 import com.smartswitch.utils.Constant
 
 
@@ -21,6 +22,8 @@ class HistoryActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = LayoutHistoryBinding.inflate(layoutInflater)
         setContentView(binding!!.root)
+        setupPortraitWithWindowInsets(R.id.main)
+
         try {
             Constant.customSystemBars(
                 this@HistoryActivity, R.color.white, R.color.white, true

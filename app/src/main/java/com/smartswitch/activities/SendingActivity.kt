@@ -6,6 +6,7 @@ import android.content.Context
 import android.content.pm.ApplicationInfo
 import android.content.pm.PackageInfo
 import android.content.pm.PackageManager
+import android.os.Build
 import android.os.Bundle
 import android.os.Environment
 import android.util.Log
@@ -336,7 +337,7 @@ class SendingActivity : BaseActivity() {
 //        Log.e(TAG, "getPackageName: pkgName = $pkgName")
 //        return pkgName
 //    }
-    private fun getPackageName(path: String): String? {
+    private fun getPackageNameOld(path: String): String? {
         return try {
             Log.e(TAG, "getPackageName: path = $path")
             val info: PackageInfo? =
@@ -350,6 +351,32 @@ class SendingActivity : BaseActivity() {
                 Log.e(TAG, "getPackageName: PackageInfo is null")
                 null
             }
+        } catch (e: Exception) {
+            Log.e(TAG, "getPackageName: failed to parse package", e)
+            null
+        }
+    }
+    private fun getPackageName(path: String): String? {
+        return try {
+            Log.e(TAG, "getPackageName: path = $path")
+            val info = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                packageManager.getPackageArchiveInfo(
+                    path,
+                    PackageManager.PackageInfoFlags.of(0)
+                )
+            } else {
+                @Suppress("DEPRECATION")
+                packageManager.getPackageArchiveInfo(path, 0)
+            }
+
+            info?.applicationInfo?.apply {
+                sourceDir = path
+                publicSourceDir = path
+            }
+
+            val pkgName = info?.packageName
+            Log.e(TAG, "getPackageName: pkgName = $pkgName")
+            pkgName
         } catch (e: Exception) {
             Log.e(TAG, "getPackageName: failed to parse package", e)
             null

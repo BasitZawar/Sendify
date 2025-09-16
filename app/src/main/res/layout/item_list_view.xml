@@ -12,13 +12,12 @@
     <FrameLayout
         android:id="@+id/frameLayout"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        >
+        android:layout_height="wrap_content">
 
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/imageView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/_40sdp"
+            android:layout_height="@dimen/_40sdp"
             android:contentDescription="@string/app_name"
             android:padding="@dimen/_1sdp"
             android:scaleType="center"
@@ -30,8 +29,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:src="@drawable/ic_play"
-            android:visibility="gone"
-            />
+            android:visibility="gone" />
 
     </FrameLayout>
 
@@ -75,11 +73,12 @@
         android:id="@+id/checkbox"
         android:layout_width="@dimen/_24sdp"
         android:layout_height="@dimen/_24sdp"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:background="@drawable/uncheck_circle"
+        android:button="@null"
         android:scaleX="0.8"
         android:scaleY="0.8"
-        android:layout_alignParentEnd="true"
-        android:background="@drawable/uncheck_circle"
-        android:layout_centerVertical="true"
-        android:button="@null" />
+        android:visibility="gone" />
 
 </RelativeLayout>
