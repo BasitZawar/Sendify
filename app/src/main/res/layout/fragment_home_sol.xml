@@ -8,6 +8,22 @@
     tools:context=".presentation.mainFragments.HomeSolFragment">
 
 
+    <RelativeLayout
+        android:id="@+id/adRel"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_52sdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <FrameLayout
+            android:id="@+id/adViewContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerInParent="true" />
+
+    </RelativeLayout>
     <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
@@ -15,7 +31,7 @@
         android:layout_marginVertical="@dimen/_2sdp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/adRel"
         app:navigationIcon="@drawable/drawer_icon"
         app:navigationIconTint="#152533"
         app:title="@string/phone_clone"
@@ -28,7 +44,6 @@
             android:layout_gravity="end"
             android:layout_marginEnd="@dimen/_16sdp"
             android:orientation="horizontal">
-
 
             <ImageView
                 android:id="@+id/premiumBtn"

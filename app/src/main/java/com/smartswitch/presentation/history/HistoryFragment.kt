@@ -13,16 +13,23 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.FileProvider
 import androidx.core.view.isVisible
-import com.smartswitch.interfaces.OnFileClick
 import androidx.documentfile.provider.DocumentFile
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.gms.ads.MobileAds
+import com.google.android.gms.ads.nativead.NativeAdOptions
+import com.google.android.gms.ads.nativead.NativeAdView
 import com.google.android.material.tabs.TabLayout
 import com.smartswitch.R
 import com.smartswitch.databinding.HistoryFragmentBinding
+import com.smartswitch.interfaces.OnFileClick
+import com.smartswitch.new_ads.nativeads.NativeAdsUtil
 import com.smartswitch.presentation.adapter.HistoryFilesAdapter
+import com.smartswitch.subscriptions.PrefUtil
 import com.smartswitch.utils.Constant
 import com.smartswitch.utils.PaperDB
+import com.smartswitch.utils.extensions.gone
+import com.smartswitch.utils.extensions.isAlive
 import com.smartswitch.utils.formatLength
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -31,7 +38,6 @@ import kotlinx.coroutines.withContext
 import java.io.File
 
 class HistoryFragment : Fragment() {
-
     var binding: HistoryFragmentBinding? = null
     lateinit var adapter: HistoryFilesAdapter
     var receivedFiles: ArrayList<HistoryModel> = ArrayList()
@@ -47,11 +53,8 @@ class HistoryFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding?.tabLayout?.visibility = View.VISIBLE
-
-
         binding?.tabLayout?.getTabAt(0)?.text = getString(R.string.received).lowercase()
         binding?.tabLayout?.getTabAt(1)?.text = getString(R.string.sent).lowercase()
-
 
         CoroutineScope(Dispatchers.IO).launch {
             try {
@@ -144,7 +147,7 @@ class HistoryFragment : Fragment() {
                                     } catch (e: Exception) {
                                         Constant.showSnackBar(
                                             requireActivity(),
-                                            "Already installed"
+                                            ""
                                         )
                                     }
 
@@ -215,10 +218,37 @@ class HistoryFragment : Fragment() {
                         ) {
 
                         }
-
                     })
                 }
+            }
+        }
+        if (PrefUtil(requireContext()).getBool(
+                "is_premium",
+                false
+            ) || sentFiles.isEmpty() || receivedFiles.isEmpty()
+        ) {
+            binding!!.nativeBannerPlaceHolder.gone()
+        } else {
+            loadNative(getString(R.string.native_home))
+        }
+    }
 
+    private fun loadNative(adId: String) {
+        // if (PrefUtil(this@SplashActivity).getBool("is_premium", false)) return
+        MobileAds.initialize(requireContext())
+        NativeAdsUtil.loadNativeAd(
+            requireContext(),
+            1,
+            adId,
+            NativeAdOptions.ADCHOICES_TOP_LEFT
+        ) { nativeAd ->
+            isAlive {
+                val adView = layoutInflater.inflate(
+                    R.layout.ads_google_small_native, null
+                ) as NativeAdView
+                NativeAdsUtil.populateUnifiedNativeAdView(nativeAd, adView)
+                binding?.nativeAd?.removeAllViews()
+                binding?.nativeAd?.addView(adView)
             }
         }
     }

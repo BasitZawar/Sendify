@@ -35,6 +35,9 @@
         android:name="com.smartswitch.presentation.mainFragments.HomeSolFragment"
         android:label="fragment_home_sendify"
         tools:layout="@layout/fragment_home_sol">
+        <argument
+            android:name="from"
+            app:argType="string" />
         <action
             android:id="@+id/action_homeSendifyFragment_to_settingsSendifyFragment"
             app:destination="@id/settingsSendifyFragment"
@@ -107,6 +110,13 @@
         <action
             android:id="@+id/action_splashSendifyFragment_to_languageFragment"
             app:destination="@id/languageFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_splashSendifyFragment_to_premiumFragment"
+            app:destination="@id/premiumFragment"
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
@@ -437,6 +447,9 @@
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_onBoardingFragment_to_homeSendifyFragment"
+            app:destination="@id/homeSendifyFragment" />
     </fragment>
     <fragment
         android:id="@+id/premiumLifeTimeFragment"
@@ -452,6 +465,9 @@
         android:name="com.smartswitch.PremiumFragment"
         android:label="fragment_premium"
         tools:layout="@layout/fragment_premium_new">
+        <argument
+            android:name="source"
+            app:argType="string" />
         <action
             android:id="@+id/action_premiumFragment_to_homeSendifyFragment"
             app:destination="@id/homeSendifyFragment"
@@ -459,9 +475,14 @@
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right" />
-        <argument
-            android:name="source"
-            app:argType="string" />
+
+        <action
+            android:id="@+id/action_premiumFragment_to_languageFragment"
+            app:destination="@id/languageFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
     </fragment>
 
 

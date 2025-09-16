@@ -18,6 +18,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresApi
 import androidx.core.view.isVisible
 import com.smartswitch.R
+import com.smartswitch.ads.inter_ads.InterstitialClass
 import com.smartswitch.connection.SocketHandler
 import com.smartswitch.databinding.ActivityReceivingBinding
 import com.smartswitch.domain.model.ShowFileModel
@@ -509,11 +510,11 @@ class ReceivingActivity : BaseActivity() {
         val file = File(folder, "$newFileName$extension")
         Log.e("TESTAG", "Received file.absolutePath: ${file.absolutePath}")
 
-         PaperDB.addReceiveHistory(
-             ShowFileModel(
-                 file.path, "Received"
-             )
-         )
+        PaperDB.addReceiveHistory(
+            ShowFileModel(
+                file.path, "Received"
+            )
+        )
 
         val filePathsToScan = listOf(file.absolutePath)
         Log.d("MediaScanner", "filePathsToScan $filePathsToScan")
@@ -640,55 +641,55 @@ class ReceivingActivity : BaseActivity() {
     }
 
     override fun onBackPressed() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-            if (Environment.isExternalStorageManager()) {
-                if (binding.layoutProgress.isVisible) {
-                    if (binding.cancel.text == "Complete" || binding.cancel.text == "Go Back") {
-                        socket?.let {
-                            if (it.isConnected) {
-                                it.close()
-                            }
-                        }
-                        finish()
-                    }else {
-                        handleOnBackPress(this,"Press again to cancel Receiving"){
-                            socket?.let {
-                                if (it.isConnected) {
-                                    it.close()
-                                }
-                            }
-                            finish()
-                        }
-                    }
-                }
+        val hasPermission =
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                Environment.isExternalStorageManager()
             } else {
-                finish()
+                Constant.checkPermission(this)
             }
-        } else {
-            if (Constant.checkPermission(this)) {
-                if (binding.layoutProgress.isVisible) {
-                    if (binding.cancel.text == "Complete" || binding.cancel.text == "Go Back") {
-                        socket?.let {
-                            if (it.isConnected) {
-                                it.close()
-                            }
-                        }
-                        finish()
-                    } else {
-                        handleOnBackPress(this,"Press again to cancel Receiving"){
-                            socket?.let {
-                                if (it.isConnected) {
-                                    it.close()
-                                }
-                            }
-                            finish()
-                        }
-                    }
+
+        if (!hasPermission) {
+            finish()
+            return
+        }
+
+        if (!binding.layoutProgress.isVisible) {
+            finish()
+            return
+        }
+
+        when (binding.cancel.text.toString()) {
+            "Complete" -> {
+                showInterstitialThenFinish()
+            }
+            "Go Back" -> {
+                closeSocketAndFinish()
+            }
+            else -> {
+                handleOnBackPress(this, "Press again to cancel Receiving") {
+                    showInterstitialThenFinish()
                 }
-            } else {
-                finish()
             }
         }
+    }
+
+    private fun showInterstitialThenFinish() {
+        InterstitialClass.request_interstitial(
+            this,
+            this,
+            getString(R.string.inter_all)
+        ) {
+            closeSocketAndFinish()
+        }
+    }
+
+    private fun closeSocketAndFinish() {
+        socket?.let {
+            if (it.isConnected) {
+                it.close()
+            }
+        }
+        finish()
     }
 
     @Deprecated("Deprecated in Java")

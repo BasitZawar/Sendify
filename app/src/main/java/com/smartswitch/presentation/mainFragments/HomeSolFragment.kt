@@ -33,12 +33,15 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
+import com.google.android.gms.ads.AdView
 import com.google.android.gms.ads.MobileAds
 import com.google.android.gms.ads.nativead.NativeAdOptions
 import com.google.android.gms.ads.nativead.NativeAdView
 import com.smartswitch.R
 import com.smartswitch.activities.ConnectionActivity
 import com.smartswitch.ads.PrefUtils
+import com.smartswitch.ads.banner_ads.setupBannerAd
 import com.smartswitch.ads.inter_ads.InterstitialClass
 import com.smartswitch.ads.native_ads.NativeAdsManager
 import com.smartswitch.databinding.DialogExitBinding
@@ -46,6 +49,7 @@ import com.smartswitch.databinding.FragmentHomeSolBinding
 import com.smartswitch.new_ads.RewardedAd_Manager
 import com.smartswitch.new_ads.nativeads.NativeAdsUtil
 import com.smartswitch.presentation.history.HistoryActivity
+import com.smartswitch.presentation.language.LanguageFragmentArgs
 import com.smartswitch.subscriptions.PrefUtil
 import com.smartswitch.utils.Dialogs
 import com.smartswitch.utils.MyDialogBox
@@ -65,6 +69,9 @@ class HomeSolFragment : Fragment() {
     private var _binding: FragmentHomeSolBinding? = null
     private val binding get() = _binding!!
     private var rewardedDialog: Dialog? = null
+    var count = 0
+    private val args: LanguageFragmentArgs by navArgs()
+
     var TAG = "HomeSolFragment"
     private var doubleBackToExitPressedOnce = false
     private val backPressHandler = Handler(Looper.getMainLooper())
@@ -93,7 +100,6 @@ class HomeSolFragment : Fragment() {
     }
 
     private fun loadNative(adId: String) {
-
         // if (PrefUtil(this@SplashActivity).getBool("is_premium", false)) return
         MobileAds.initialize(requireContext())
         NativeAdsUtil.loadNativeAd(
@@ -115,21 +121,38 @@ class HomeSolFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        PrefUtil(requireContext()).setBool("first_user", true)
+        Log.e(TAG, "onViewCreated savArgument: ${args.from}")
+        if (args.from == "premium_cross_first") {
+            count + 1
+        }
+        Log.e(TAG, "onViewCreated: count $count")
         isAlive { activityContext ->
-
             if (PrefUtil(requireContext()).getBool("is_premium", false)) {
-
+                binding.adRel.gone()
                 binding.nativeBannerPlaceHolder.gone()
             } else {
                 binding.nativeBannerPlaceHolder.visible()
+                binding.adRel.visible()
+                var initialLayoutComplete = false
+                binding.adViewContainer.apply {
+                    addView(AdView(activityContext))
+                    viewTreeObserver.addOnGlobalLayoutListener {
+                        if (!initialLayoutComplete) {
+                            initialLayoutComplete = true
+                            binding.adViewContainer.setupBannerAd(
+                                activityContext,
+                                getString(R.string.banner_all)
+                            )
+                        }
+                    }
+                }
                 loadNative(getString(R.string.native_home))
             }
 
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
                 notificationPermission(activityContext)
             }
-
-
 
             (activityContext as FragmentActivity).handleBackPressWithAction {
                 if (doubleBackToExitPressedOnce) {
@@ -253,6 +276,7 @@ class HomeSolFragment : Fragment() {
             }
 
             binding.sendBtn.setSafeOnClickListener {
+                Log.e(TAG, "onViewCreated: sendBtn count $count ", )
 //                if (PermissionManager.hasLocationPermission(activityContext) && PermissionManager.hasNearbyPermission(
 //                        activityContext
 //                    ) && PermissionManager.hasStorageAccessPermission(activityContext)
@@ -262,9 +286,10 @@ class HomeSolFragment : Fragment() {
                         false
                     ) || !InterstitialClass.isInternetAvailable(
                         requireContext()
-                    )
+                    ) || count % 2 == 0
                 ) {
                     findNavController().navigate(R.id.action_homeSendifyFragment_to_mediaSendifyFragment)
+                    count++
                 } else {
                     InterstitialClass.request_interstitial(
                         requireContext(),
@@ -274,6 +299,7 @@ class HomeSolFragment : Fragment() {
                         Handler(Looper.getMainLooper()).postDelayed({
                             isAlive {
                                 findNavController().navigate(R.id.action_homeSendifyFragment_to_mediaSendifyFragment)
+                                count++
                             }
                         }, 100L)
                     }
@@ -288,6 +314,7 @@ class HomeSolFragment : Fragment() {
             }
 
             binding.receiveBtn.setSafeOnClickListener {
+                Log.e(TAG, "onViewCreated: receiveBtn count $count ", )
 
                 if (PermissionManager.hasLocationPermission(activityContext) && PermissionManager.hasNearbyPermission(
                         activityContext
@@ -298,9 +325,10 @@ class HomeSolFragment : Fragment() {
                             false
                         ) || !InterstitialClass.isInternetAvailable(
                             requireContext()
-                        )
+                        ) || count % 2 == 0
                     ) {
                         startActivity(Intent(requireContext(), ConnectionActivity::class.java))
+                        count++
 //                        findNavController().navigate(R.id.action_homeSendifyFragment_to_receiverScanDeviceSendifyFragment)
                     } else {
                         InterstitialClass.request_interstitial(
@@ -311,6 +339,7 @@ class HomeSolFragment : Fragment() {
                             isAlive {
                                 Handler(Looper.getMainLooper()).postDelayed({
                                     isAlive {
+                                        count++
                                         startActivity(
                                             Intent(
                                                 requireContext(),
@@ -346,9 +375,10 @@ class HomeSolFragment : Fragment() {
                         false
                     ) || !InterstitialClass.isInternetAvailable(
                         requireContext()
-                    )
+                    ) || count % 2 == 0
                 ) {
                     navigateToMediaFragment(1)
+                    count++
                 } else {
                     InterstitialClass.request_interstitial(
                         requireContext(),
@@ -359,6 +389,7 @@ class HomeSolFragment : Fragment() {
                             Log.d("PermissionCheck", "permissionsGranted: ")
                             isAlive {
                                 navigateToMediaFragment(1)
+                                count++
                             }
                         }, 100L)
                     }
@@ -383,9 +414,10 @@ class HomeSolFragment : Fragment() {
                         false
                     ) || !InterstitialClass.isInternetAvailable(
                         requireContext()
-                    )
+                    ) || count % 2 == 0
                 ) {
                     navigateToMediaFragment(2) // Document tab
+                    count++
                 } else {
                     InterstitialClass.request_interstitial(
                         requireContext(),
@@ -396,6 +428,7 @@ class HomeSolFragment : Fragment() {
                             Log.d("PermissionCheck", "permissionsGranted: ")
                             isAlive {
                                 navigateToMediaFragment(2) // Document tab
+                                count++
                             }
                         }, 100L)
                     }
@@ -421,9 +454,10 @@ class HomeSolFragment : Fragment() {
                         false
                     ) || !InterstitialClass.isInternetAvailable(
                         requireContext()
-                    )
+                    ) || count % 2 == 0
                 ) {
                     navigateToMediaFragment(3) // Document tab
+                    count++
                 } else {
                     InterstitialClass.request_interstitial(
                         requireContext(),
@@ -434,7 +468,7 @@ class HomeSolFragment : Fragment() {
                             isAlive {
                                 Log.d("PermissionCheck", "permissionsGranted: ")
                                 navigateToMediaFragment(3) // Document tab
-
+                                count++
                             }
                         }, 100L)
 
@@ -461,9 +495,10 @@ class HomeSolFragment : Fragment() {
                         false
                     ) || !InterstitialClass.isInternetAvailable(
                         requireContext()
-                    )
+                    ) || count % 2 == 0
                 ) {
                     navigateToMediaFragment(4) // Document tab
+                    count++
                 } else {
                     InterstitialClass.request_interstitial(
                         requireContext(),
@@ -473,6 +508,7 @@ class HomeSolFragment : Fragment() {
                         Handler(Looper.getMainLooper()).postDelayed({
                             isAlive {
                                 navigateToMediaFragment(4) // Document tab
+                                count++
                                 Log.d("PermissionCheck", "permissionsGranted: ")
                             }
                         }, 100L)
@@ -499,9 +535,10 @@ class HomeSolFragment : Fragment() {
                         false
                     ) || !InterstitialClass.isInternetAvailable(
                         requireContext()
-                    )
+                    ) || count % 2 == 0
                 ) {
                     navigateToMediaFragment(0) // Document tab
+                    count++
                 } else {
                     InterstitialClass.request_interstitial(
                         requireContext(),
@@ -513,6 +550,7 @@ class HomeSolFragment : Fragment() {
                                 isAlive {
                                     Log.d("PermissionCheck", "permissionsGranted: ")
                                     navigateToMediaFragment(0) // Document tab
+                                    count++
                                 }
                             }, 100L)
                         }
@@ -539,9 +577,10 @@ class HomeSolFragment : Fragment() {
                         false
                     ) || !InterstitialClass.isInternetAvailable(
                         requireContext()
-                    )
+                    ) || count % 2 == 0
                 ) {
                     navigateToMediaFragment(5) // Document tab
+                    count++
                 } else {
                     InterstitialClass.request_interstitial(
                         requireContext(),
@@ -552,6 +591,7 @@ class HomeSolFragment : Fragment() {
                             isAlive {
                                 Log.d("PermissionCheck", "permissionsGranted: ")
                                 navigateToMediaFragment(5) // Document tab
+                                count++
                             }
                         }, 100L)
                     }

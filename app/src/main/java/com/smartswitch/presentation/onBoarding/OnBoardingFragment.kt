@@ -149,7 +149,7 @@ class OnBoardingFragment : Fragment() {
             if (currentId == R.id.onBoardingFragment) {
                 navController.navigate(
                     OnBoardingFragmentDirections
-                        .actionOnBoardingFragmentToPremiumFragment("intro")
+                        .actionOnBoardingFragmentToHomeSendifyFragment("from_onb_to_home")
                 )
             }
 //        else if (currentId == R.id.onBoardingFragment) {

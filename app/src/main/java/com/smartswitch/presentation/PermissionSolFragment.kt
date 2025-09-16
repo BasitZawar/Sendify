@@ -69,7 +69,7 @@ class PermissionSolFragment : Fragment() {
             }
             binding.apply {
                 (activityContext as FragmentActivity).handleBackPressWithAction {
-                    findNavController().navigate(PermissionSolFragmentDirections.actionPermissionSendifyFragmentToHomeSendifyFragment())
+                    findNavController().navigate(PermissionSolFragmentDirections.actionPermissionSendifyFragmentToHomeSendifyFragment(""))
                 }
 
                 skipButton.setSafeOnClickListener {
@@ -245,7 +245,7 @@ class PermissionSolFragment : Fragment() {
         PrefUtils.setBoolean(requireContext(), "is_first_time_launch1", true)
 //        findNavController().navigate(R.id.action_permissionSendifyFragment_to_homeSendifyFragment)
         if (PrefUtil(requireContext()).getBool("is_premium", false)) {
-            findNavController().navigate(PermissionSolFragmentDirections.actionPermissionSendifyFragmentToHomeSendifyFragment())
+            findNavController().navigate(PermissionSolFragmentDirections.actionPermissionSendifyFragmentToHomeSendifyFragment(""))
         } else {
             findNavController().navigate(
                 PermissionSolFragmentDirections.actionPermissionSendifyFragmentToPremiumFragment(

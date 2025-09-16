@@ -10,12 +10,14 @@ import android.os.Build
 import android.os.Bundle
 import android.os.Environment
 import android.util.Log
+import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import com.google.android.gms.ads.AdView
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.smartswitch.R
+import com.smartswitch.ads.inter_ads.InterstitialClass
 import com.smartswitch.connection.SocketHandler.Companion.getSocket
 import com.smartswitch.databinding.ActivitySendingBinding
 import com.smartswitch.domain.model.MediaInfoModel
@@ -281,7 +283,21 @@ class SendingActivity : BaseActivity() {
     }
 
     override fun onBackPressed() {
-        if (binding.cancel.text == "Complete" || binding.cancel.text == "Go Back") {
+        if (binding.cancel.text == "Complete") {
+            InterstitialClass.request_interstitial(
+                this,
+                this,
+                getString(R.string.inter_all)
+            ) {
+                socket?.let {
+                    if (it.isConnected) {
+                        it.close()
+                    }
+                }
+                finish()
+            }
+        } else if (binding.cancel.text == "Go Back") {
+
             socket?.let {
                 if (it.isConnected) {
                     it.close()
@@ -290,12 +306,18 @@ class SendingActivity : BaseActivity() {
             finish()
         } else {
             handleOnBackPress(this, "Press again to cancel Sending") {
-                socket?.let {
-                    if (it.isConnected) {
-                        it.close()
+                InterstitialClass.request_interstitial(
+                    this,
+                    this,
+                    getString(R.string.inter_all)
+                ) {
+                    socket?.let {
+                        if (it.isConnected) {
+                            it.close()
+                        }
                     }
+                    finish()
                 }
-                finish()
             }
         }
     }
@@ -356,6 +378,7 @@ class SendingActivity : BaseActivity() {
             null
         }
     }
+
     private fun getPackageName(path: String): String? {
         return try {
             Log.e(TAG, "getPackageName: path = $path")

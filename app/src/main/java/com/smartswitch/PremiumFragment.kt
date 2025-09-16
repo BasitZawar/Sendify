@@ -455,7 +455,12 @@ class PremiumFragment : Fragment(), SubscriptionPurchaseInterface {
                         ) {
                             Handler(Looper.getMainLooper()).postDelayed({
                                 isAlive {
-                                    findNavController().navigate(R.id.action_premiumFragment_to_homeSendifyFragment)
+                                    val action = PremiumFragmentDirections
+                                        .actionPremiumFragmentToHomeSendifyFragment("premium_cross_first")
+
+                                    findNavController().navigate(action)
+
+//                                    findNavController().navigate(R.id.action_premiumFragment_to_homeSendifyFragment)
                                 }
                             }, 100L)
                         }
@@ -487,6 +492,27 @@ class PremiumFragment : Fragment(), SubscriptionPurchaseInterface {
                         }
 
 
+                    }
+                }
+
+                "first_user_from_splash" -> {
+                    InterstitialClass.request_interstitial(
+                        requireContext(),
+                        requireActivity(),
+                        getString(R.string.premium_screen_inter)
+                    ) {
+                        isAlive {
+                            Handler(Looper.getMainLooper()).postDelayed({
+                                isAlive {
+                                    val action = PremiumFragmentDirections
+                                        .actionPremiumFragmentToLanguageFragment("premium_cross_first")
+
+                                    findNavController().navigate(action)
+
+//                                    findNavController().navigate(R.id.action_premiumFragment_to_languageFragment)
+                                }
+                            }, 200L)
+                        }
                     }
                 }
             }

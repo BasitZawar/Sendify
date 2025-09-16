@@ -106,7 +106,10 @@ class LanguageFragment : Fragment() {
 
             binding.btnDone.setOnClickListener {
                 Log.d("awaiskhan", "Done btn is clicked")
-                if ( PrefUtil(requireContext()).getBool("is_premium", false) || !InterstitialClass.isInternetAvailable(
+                if (PrefUtil(requireContext()).getBool(
+                        "is_premium",
+                        false
+                    ) || !InterstitialClass.isInternetAvailable(
                         requireContext()
                     )
                 ) {
@@ -134,12 +137,12 @@ class LanguageFragment : Fragment() {
                 }
             }
 
-            if ( PrefUtil(requireContext()).getBool("is_premium", false)) {
+            if (PrefUtil(requireContext()).getBool("is_premium", false)) {
                 binding.adRel.gone()
             } else {
-               isAlive {
-                   displayNativeAd()
-               }
+                isAlive {
+                    displayNativeAd()
+                }
             }
             // Set up the toolbar's back navigation
             binding.headerLayout.setNavigationOnClickListener {
@@ -175,39 +178,45 @@ class LanguageFragment : Fragment() {
 
     private fun navigate() {
         isAlive {
-            Log.d("awaiskhan", "call navigate")
+            Log.d("awaiskhan", "call navigate with ${args.from}")
+            if (args.from == "premium_cross_first") {
+                findNavController().navigate(R.id.action_languageFragment_to_onBoardingFragment)
 
-            if (args.from == "splash") {
-                if (!PrefUtils.getBoolean(requireContext(), "is_first_time_launch1")) {
-//                                        Log.d("SplashFragment___", "Navigating to PermissionFragment")
-//                                        findNavController().navigate(
-//                                            SplashSolFragmentDirections.actionSplashSendifyFragmentToLanguageFragment(
-//                                                "splash"
-//                                            )
-//                                        )
-
-                    findNavController().navigate(R.id.action_languageFragment_to_onBoardingFragment)
-                } else {
-//                                        findNavController().navigate(
-//                                            SplashSolFragmentDirections.actionSplashSendifyFragmentToLanguageFragment(
-//                                                "splash"
-//                                            )
-//                                        )
-                    //findNavController().navigate(R.id.action_languageFragment_to_homeSendifyFragment)
-
-
-                    if (PrefUtil(requireContext()).getBool("is_premium", false)) {
-                        findNavController().navigate(LanguageFragmentDirections.actionLanguageFragmentToHomeSendifyFragment())
-                    } else {
-                        findNavController().navigate(
-                            LanguageFragmentDirections.actionLanguageFragmentToPremiumFragment(
-                                "language"
-                            )
-                        )
-                    }
-                }
+//                if (!PrefUtils.getBoolean(requireContext(), "is_first_time_launch1")) {
+////                                        Log.d("SplashFragment___", "Navigating to PermissionFragment")
+////                                        findNavController().navigate(
+////                                            SplashSolFragmentDirections.actionSplashSendifyFragmentToLanguageFragment(
+////                                                "splash"
+////                                            )
+////                                        )
+//
+//                    findNavController().navigate(R.id.action_languageFragment_to_onBoardingFragment)
+//                } else {
+////                                        findNavController().navigate(
+////                                            SplashSolFragmentDirections.actionSplashSendifyFragmentToLanguageFragment(
+////                                                "splash"
+////                                            )
+////                                        )
+//                    //findNavController().navigate(R.id.action_languageFragment_to_homeSendifyFragment)
+//
+//
+//                    if (PrefUtil(requireContext()).getBool("is_premium", false)) {
+//                        findNavController().navigate(LanguageFragmentDirections.actionLanguageFragmentToHomeSendifyFragment())
+//                    } else {
+//                        findNavController().navigate(
+//                            LanguageFragmentDirections.actionLanguageFragmentToPremiumFragment(
+//                                "language"
+//                            )
+//                        )
+//                    }
+//                }
             } else {
-                findNavController().navigateUp()
+                findNavController().navigate(
+                    LanguageFragmentDirections.actionLanguageFragmentToPremiumFragment(
+                        "language"
+                    )
+                )
+//                findNavController().navigateUp()
             }
         }
     }

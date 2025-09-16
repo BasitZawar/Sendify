@@ -141,16 +141,16 @@ class SplashSolFragment : Fragment() {
     private fun intentbutton() {
         if (isAdded && !isRemoving && !requireActivity().isFinishing) {
             Log.e(LOG_TAG, "Navigate to onBoarding")
-
             isAlive {
-                if (!PermissionManager.hasLocationPermission(requireContext()) || !PermissionManager.hasNearbyPermission(
-                        requireContext()
-                    ) || !PermissionManager.hasStorageAccessPermission(requireContext())
-                ) {
+//                if (!PermissionManager.hasLocationPermission(requireContext()) || !PermissionManager.hasNearbyPermission(
+//                        requireContext()
+//                    ) || !PermissionManager.hasStorageAccessPermission(requireContext())
+//                )
+                if (!PrefUtil(requireContext()).getBool("first_user", false)) {
                     Log.d("SplashFragment___", "Navigating to PermissionFragment")
                     findNavController().navigate(
-                        SplashSolFragmentDirections.actionSplashSendifyFragmentToLanguageFragment(
-                            "splash"
+                        SplashSolFragmentDirections.actionSplashSendifyFragmentToPremiumFragment(
+                            "first_user_from_splash"
                         )
                     )
                 } else {
